@@ -1,0 +1,2159 @@
+# Open Seismic Datasets — machine-readable catalog
+# Source of truth. Edit here, then run: python scripts/build_readme.py
+# Schema: catalog/SCHEMA.md
+
+# ---------------------------------------------------------------------------
+# Named 3D field surveys
+# ---------------------------------------------------------------------------
+
+- id: parihaka-3d
+  name: Parihaka 3D
+  category: field-3d
+  region: New Zealand — offshore Taranaki Basin
+  country: NZ
+  data_type: ["3D post-stack", "angle stacks (near/mid/far/full)", "SEG-Y"]
+  ancillary: []
+  size_bytes: 20397919536
+  size_display: "~20.4 GB (4 × 5.1 GB)"
+  size_confidence: verified
+  license: "Free; acknowledge NZ Petroleum & Minerals (Crown Minerals)"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-download
+  url: https://wiki.seg.org/wiki/Parihaka-3D
+  download:
+    - kind: full stack
+      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_full_angle.sgy
+    - kind: near
+      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_near_stack.sgy
+    - kind: mid
+      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_mid_stack.sgy
+    - kind: far
+      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_far_stack.sgy
+  bulk_method: "per-file HTTPS (bucket listing is denied, but objects fetch fine)"
+  notes: >-
+    The canonical open 3D for ML work — used in the SEG/AICrowd fault-identification
+    challenge and countless facies papers. Angle stacks make AVO experiments possible.
+    True pre-stack gathers must be ordered from NZP&M.
+    LABELS: a facies + boundary label set exists (CC BY 4.0 npy, 4,177,334,904 B),
+    but NO dedicated Parihaka FAULT label set was found on Zenodo despite the
+    fault-challenge association — verified absent, not merely unlocated.
+    Geometry read from the SEG-Y binary header: 3 ms, 1168 samples,
+    1,038,162 traces.
+  verified: true
+  tags: ["ml-benchmark", "facies", "segy", "avo"]
+
+- id: opunake-3d
+  name: Opunake 3D
+  category: field-3d
+  region: New Zealand — southern Taranaki (215 km²)
+  country: NZ
+  data_type: ["3D post-stack final stack", "SEG-Y"]
+  size_bytes: 10402944680
+  size_display: "10.4 GB"
+  size_confidence: verified
+  license: "Free; acknowledge NZ Petroleum & Minerals"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-download
+  url: https://wiki.seg.org/wiki/Opunake-3D
+  download:
+    - kind: https
+      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/OPUNAKE-3D/OPUNAKE3D-PR3461-FS.3D.Final_Stack.sgy
+  bulk_method: "single-file HTTPS"
+  notes: "Largest single free NZ volume on the open.source.geoscience bucket."
+  verified: true
+  tags: ["segy"]
+
+- id: kerry-3d
+  name: Kerry 3D
+  category: field-3d
+  region: New Zealand — onshore Taranaki
+  country: NZ
+  data_type: ["3D post-stack PSTM", "SEG-Y"]
+  size_bytes: 1107042960
+  size_display: "1.1 GB"
+  size_confidence: verified
+  license: "Free; acknowledge NZ Petroleum & Minerals"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-download
+  url: https://wiki.seg.org/wiki/Kerry-3D
+  download:
+    - kind: https
+      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/Keri_3D/Kerry3D.segy
+  bulk_method: "single-file HTTPS"
+  notes: >-
+    Small enough to iterate on quickly; heavily used in fault- and
+    fracture-network papers. Upstream really does spell the folder "Keri_3D".
+  verified: true
+  tags: ["fault", "segy", "small"]
+
+- id: waihapa-3d
+  name: Waihapa 3D
+  category: field-3d
+  region: New Zealand — onshore Taranaki
+  country: NZ
+  data_type: ["3D post-stack", "SEG-Y"]
+  size_bytes: null
+  size_display: "~1–2 GB"
+  size_confidence: estimate
+  size_bytes_min: 1000000000
+  size_bytes_max: 2000000000
+  license: "Free; acknowledge NZ Petroleum & Minerals"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-request
+  url: https://wiki.seg.org/wiki/Waihapa-3D
+  download: []
+  bulk_method: "SEG wiki link, or order free from NZP&M"
+  notes: >-
+    The exact S3 key could not be confirmed — the SEG wiki sits behind a Cloudflare
+    challenge and the bucket denies listing. Search "Waihapa-3D SEG wiki".
+  verified: false
+  tags: ["segy", "needs-verification"]
+
+- id: maui-3d
+  name: Maui 3D
+  category: field-3d
+  region: New Zealand — offshore Taranaki (Maui field)
+  country: NZ
+  data_type: ["3D post-stack + reprocessed vintages", "pre-stack orderable"]
+  ancillary: ["wells", "logs"]
+  size_bytes: null
+  size_display: "10s of GB stack; 100s of GB pre-stack"
+  size_confidence: estimate
+  license: "Open-file under the Crown Minerals Act"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-registration
+  url: https://geodata.nzpam.govt.nz/
+  download: []
+  bulk_method: "NZP&M exploration database (RealMe login)"
+  notes: "Not on the public S3 mirror. NZ's most-drilled field — full well suite available."
+  verified: false
+  tags: ["wells", "prestack"]
+
+- id: poseidon-3d
+  name: Poseidon 3D
+  category: field-3d
+  region: Australia — NW Shelf, Browse Basin (~2,900 km²)
+  country: AU
+  data_type: ["3D angle stacks: near 55.23 / far 55.09 / mid 54.99 / full-AGC 36.80 GB", "MDIO (zarr) and SEG-Y"]
+  ancillary: ["10 wells with time-depth", "deviation surveys", "stacking velocities"]
+  size_bytes: 202110633264
+  size_display: "202.11 GB MDIO bucket (56,465 objects); ~50 GB SEG-Y set"
+  size_confidence: verified
+  license: "CC BY 4.0 (AWS registry); CC BY 3.0 AU (TerraNubis)"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://registry.opendata.aws/tgs-opendata-poseidon/
+  download:
+    - kind: s3
+      uri: https://tgs-opendata-poseidon.s3.amazonaws.com/index.html
+    - kind: segy+wells
+      uri: https://terranubis.com/datainfo/NW-Shelf-Australia-Poseidon-3D
+  bulk_method: "aws s3 sync s3://tgs-opendata-poseidon --no-sign-request (us-west-2)"
+  notes: >-
+    Courtesy of ConocoPhillips + Geoscience Australia via TGS. The TerraNubis
+    package bundles wells, which makes it the better starting point for ML.
+    Raw field data is available through NOPIMS.
+  verified: true
+  tags: ["ml-benchmark", "wells", "mdio", "segy", "cloud-native"]
+
+# ---------------------------------------------------------------------------
+# National / regulator archives
+# ---------------------------------------------------------------------------
+
+- id: nopims-ga
+  name: NOPIMS (Geoscience Australia / NOPTA)
+  category: national-archive
+  region: All Australian offshore basins
+  country: AU
+  data_type: ["2D/3D/4D field (pre-stack)", "processed", "velocities", "navigation"]
+  ancillary: ["well logs", "reports"]
+  size_bytes: null
+  size_display: "~3–4 PB"
+  size_confidence: estimate
+  size_bytes_min: 3000000000000000
+  size_bytes_max: 4000000000000000
+  license: "CC BY 4.0 after release"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-registration
+  url: https://www.ga.gov.au/nopims
+  download:
+    - kind: portal
+      uri: https://public.neats.nopta.gov.au/nopims
+  bulk_method: "portal download; very large orders offline via ausgeodata@ga.gov.au"
+  notes: >-
+    Almost certainly the largest genuinely-free archive that includes pre-stack
+    field data. GA calls it "one of the world's largest collections of petroleum
+    data". Release rules tightened 28 Nov 2025 (ministerial approval).
+  verified: true
+  tags: ["prestack", "petabyte", "flagship"]
+
+- id: diskos-sodir
+  name: Diskos NDR (Sodir / Norwegian Offshore Directorate)
+  category: national-archive
+  region: Norwegian Continental Shelf
+  country: "NO"
+  data_type: ["2D/3D post-stack", "velocities", "navigation", "pre-stack since 2012"]
+  size_bytes: null
+  size_display: ">22 PB stored; ~1 PB+ released"
+  size_confidence: official
+  size_bytes_min: 22000000000000000
+  size_bytes_max: null
+  license: "Released data free to members; public portal charges media/handling only"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-request
+  url: https://www.sodir.no/en/diskos/seismic/
+  download: []
+  bulk_method: "Diskos Public Portal order; members get direct download/API"
+  notes: >-
+    >1,300 public 3D surveys, >24,000 public post-stack cubes, 30,000 released
+    datasets. The largest government seismic repository in Europe.
+  verified: false
+  tags: ["petabyte", "prestack", "flagship"]
+
+- id: uk-ndr
+  name: UK National Data Repository (NSTA)
+  category: national-archive
+  region: UK Continental Shelf
+  country: GB
+  data_type: ["2D/3D post-stack SEG-Y", "pre-stack (mandatory upload since 2018)", "navigation"]
+  size_bytes: null
+  size_display: ">600 TB confirmed 2023; ~1 PB quoted 2024–25"
+  size_confidence: official
+  size_bytes_min: 600000000000000
+  size_bytes_max: null
+  license: "Open Government Licence after the release period"
+  license_spdx: OGL-UK-3.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-registration
+  url: https://ndr.nstauthority.co.uk/
+  download: []
+  bulk_method: "web portal with preview + download; bulk transfer on request"
+  notes: >-
+    Free with registration and genuinely large. Includes the government-funded
+    2D programmes (SW Britain, ESP ~19,000 km, Rockall, Mid-North Sea High).
+    4-year confidentiality on processed seismic.
+  verified: true
+  tags: ["prestack", "petabyte", "flagship"]
+
+- id: nlog
+  name: NLOG (TNO — Geological Survey of the Netherlands)
+  category: national-archive
+  region: Netherlands onshore and offshore
+  country: NL
+  data_type: ["2D/3D post-stack SEG-Y", "navigation", "some pre-stack"]
+  size_bytes: null
+  size_display: "~50–100 TB online"
+  size_confidence: estimate
+  size_bytes_min: 50000000000000
+  size_bytes_max: 100000000000000
+  license: "Free, no charge"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://www.nlog.nl/en/seismic-data
+  download: []
+  bulk_method: "interactive map / data-centre download; FTP for large volumes"
+  notes: >-
+    The most frictionless national archive in Europe — no registration at all.
+    ~135+ 3D surveys covering ~99,900 km², plus ~5,900 NAM 2D lines.
+    5-year statutory confidentiality (10 for multi-client).
+  verified: true
+  tags: ["no-account", "flagship"]
+
+- id: namss
+  name: NAMSS — National Archive of Marine Seismic Surveys (USGS)
+  category: national-archive
+  region: US OCS — Gulf of Mexico, Atlantic, Pacific, Alaska
+  country: US
+  data_type: ["2D stacks", "3D post-stack volumes", "SEG-Y", "SEG-P1 navigation"]
+  size_bytes: null
+  size_display: "~30–40 TB"
+  size_confidence: estimate
+  size_bytes_min: 30000000000000
+  size_bytes_max: 40000000000000
+  license: "Public domain (US Government)"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://walrus.wr.usgs.gov/namss/
+  download:
+    - kind: mirror
+      uri: https://edx.netl.doe.gov/dataset/namss
+  bulk_method: "per-survey ZIP over HTTPS; scriptable with wget once survey IDs are known"
+  notes: >-
+    567 2D surveys (2.36 M line-km) + 182 3D surveys as of 2019, likely 800+ now.
+    No registration, no account — the easiest large US archive to script against.
+    No pre-stack. Inherits BOEM's 25-year proprietary term.
+  verified: true
+  tags: ["no-account", "public-domain", "scriptable"]
+
+- id: nzpam-datapack
+  name: NZP&M Petroleum Exploration Data Pack
+  category: national-archive
+  region: All New Zealand basins
+  country: NZ
+  data_type: ["2D (475,000 line-km)", "3D (>24,000 km²)", "field + processed"]
+  ancillary: ["1", "044 wells", "671 LAS composites", "interpretation projects"]
+  size_bytes: null
+  size_display: "multi-TB"
+  size_confidence: estimate
+  license: "Open-file under the Crown Minerals Act"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-registration
+  url: https://www.nzpam.govt.nz/maps-geoscience/petroleum-datapack
+  download:
+    - kind: catalogue
+      uri: https://geodata.nzpam.govt.nz/
+  bulk_method: "free bulk download via Azure Storage Explorer, or NZ$250 on an HDD"
+  notes: "The whole national archive in one package. Total TB is not published."
+  verified: true
+  tags: ["wells", "bulk", "flagship"]
+
+- id: sarig-sa
+  name: SARIG (South Australia)
+  category: national-archive
+  region: South Australia — Cooper/Eromanga, Otway, Officer
+  country: AU
+  data_type: ["2D SEG-Y (>8,000 lines, >150,000 line-km)", "3D", "field data"]
+  ancillary: ["LAS logs", "well completion reports", "checkshots"]
+  size_bytes: null
+  size_display: "~1 PB+"
+  size_confidence: estimate
+  size_bytes_min: 1000000000000000
+  size_bytes_max: null
+  license: "Free, SA Crown / CC-BY-style terms"
+  license_spdx: null
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://catalog.sarig.sa.gov.au/dataset/mesac719
+  download:
+    - kind: basin-in-a-box (Otway)
+      uri: https://catalog.sarig.sa.gov.au/dataset/mesac29507
+  bulk_method: "no login; AWS S3 bulk for large packages"
+  notes: >-
+    The "Basin in a Box" packages bundle SEG-Y + logs + reports + mapping as one
+    zip — the fastest way to get a complete, workstation-ready basin.
+  verified: true
+  tags: ["no-account", "wells", "bulk"]
+
+- id: gsq-qld
+  name: GSQ Open Data Portal (Queensland)
+  category: national-archive
+  region: Queensland — Bowen, Surat, Cooper/Eromanga, Galilee
+  country: AU
+  data_type: ["2D and some 3D", "SEG-Y + support data"]
+  size_bytes: null
+  size_display: "~100s of TB (1,402 seismic datasets)"
+  size_confidence: official
+  license: "CC BY 4.0 (Queensland Government)"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://geoscience.data.qld.gov.au/data/seismic/?type=seismic&res_format=segy
+  download: []
+  bulk_method: "S3-backed download, no login"
+  notes: "1,402 open seismic datasets confirmed via the CKAN API. 3-year confidentiality then open file."
+  verified: true
+  tags: ["no-account", "cc-by", "scriptable"]
+
+- id: wapims-wa
+  name: WAPIMS (Western Australia DEMIRS)
+  category: national-archive
+  region: WA onshore and state waters — Carnarvon, Perth, Canning
+  country: AU
+  data_type: ["processed seismic", "navigation", "scanned sections"]
+  ancillary: ["wells", "survey reports"]
+  size_bytes: null
+  size_display: "~100s of TB"
+  size_confidence: estimate
+  license: "Free, WA Government terms"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://wapims.dmp.wa.gov.au/wapims
+  download: []
+  bulk_method: "individual items online; basin packages so large you mail in a hard drive"
+  notes: "Contact petdata@dmpe.wa.gov.au for bulk."
+  verified: true
+  tags: ["bulk"]
+
+- id: geus-denmark
+  name: GEUS Subsurface Data Portal (Denmark)
+  category: national-archive
+  region: Denmark, Danish North Sea, Greenland
+  country: DK
+  data_type: ["2D/3D processed seismic"]
+  ancillary: ["~2", "000 wells"]
+  size_bytes: null
+  size_display: "~10s of TB (~1,400 surveys)"
+  size_confidence: estimate
+  license: "Free download; handling fee for field data"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://data.geus.dk/geusmap/?mapname=oil_and_gas&lang=en
+  download: []
+  bulk_method: "map-based download; no API"
+  notes: "Free since Oct 2023 — the old Frisbee webshop is retired."
+  verified: true
+  tags: ["wells"]
+
+- id: ireland-pad
+  name: Ireland PAD / GSI petroleum seismic
+  category: national-archive
+  region: Irish offshore — Porcupine, Rockall, Celtic Sea
+  country: IE
+  data_type: ["2D (~400,000 km)", "44 3D surveys", "SEG-Y"]
+  size_bytes: null
+  size_display: "~100s of TB"
+  size_confidence: estimate
+  license: "Free (metadata CC BY 4.0); SEG-Y free on request"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-registration
+  url: https://data.gov.ie/dataset/3d-seismic-survey
+  download: []
+  bulk_method: "web/FTP; ordered on disk for large volumes"
+  notes: "Released data has been free since 2013. Includes the 2013 ~18,000 km Atlantic regional 2D."
+  verified: false
+  tags: []
+
+- id: videpi-italy
+  name: ViDEPI (Italy)
+  category: national-archive
+  region: Italy — Adriatic, Po Valley, onshore
+  country: IT
+  data_type: ["scanned 2D seismic sections (raster)", "some SEG-Y"]
+  size_bytes: null
+  size_display: "~85,000 km of 2D as images"
+  size_confidence: official
+  license: "CC BY 4.0"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://www.videpi.com/videpi/videpi.asp
+  download: []
+  bulk_method: "direct HTTP"
+  notes: >-
+    Raster sections rather than SEG-Y, but genuinely open and CC BY. Released one
+    year after permit expiry. Good for vectorization / image-based ML.
+  verified: true
+  tags: ["no-account", "cc-by", "raster"]
+
+- id: kgs-kansas
+  name: Kansas Geological Survey free 3D surveys
+  category: national-archive
+  region: USA — Kansas (Hugoton, Cherokee Basin)
+  country: US
+  data_type: ["3D SEG-Y volumes", "2D lines", "4D (CCUS monitoring)"]
+  ancillary: ["well logs"]
+  size_bytes: null
+  size_display: "<1 TB (dozens of GB)"
+  size_confidence: estimate
+  size_bytes_min: null
+  size_bytes_max: 1000000000000
+  license: "Free"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: closed
+  url: https://www.kgs.ku.edu/Geophysics/
+  download: []
+  bulk_method: "none — KGS publishes no downloadable seismic"
+  notes: >-
+    SETTLED NEGATIVE. Dickman, Wellington (CO2 CCUS) and Cutter are widely cited as
+    free KGS 3D volumes; they are not downloadable. An Internet Archive CDX sweep of
+    the ENTIRE history of kgs.ku.edu returns exactly one SEG-Y-matching URL —
+    segy2fpt.exe, a converter utility. Zero .sgy files, ever. /Geophysics/ and
+    /4Dseismic/ hold reports only; /Datasale/ is maps; the petroleum DB lists no
+    seismic; DOE EDX's Kansas records are PDF/HTML; Zenodo has nothing. The KGS
+    Ozark page notes that work used "donated regional 3D seismic" — i.e. licensed
+    third-party data KGS cannot redistribute. Request-only at best. Do not plan
+    around these volumes.
+  verified: true
+  tags: ["ccs", "4d", "small", "no-account"]
+
+- id: teapot-dome
+  name: Teapot Dome 3D (RMOTC)
+  category: field-3d
+  region: USA — Wyoming
+  country: US
+  data_type: ["3D post-stack", "pre-stack gathers"]
+  ancillary: ["well logs", "production data"]
+  size_bytes: null
+  size_display: "14.4 GB"
+  size_confidence: verified
+  size_bytes_min: 14400000000
+  size_bytes_max: 14400000000
+  license: "Public domain (US DOE)"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-registration
+  url: https://edx.netl.doe.gov/
+  download: []
+  bulk_method: "NETL EDX (free login); also mirrored via SEG wiki"
+  notes: >-
+    One of the very few open datasets with pre-stack gathers AND wells AND
+    production history — still the reference for integrated-workflow demos.
+    Contains NO VSP, contrary to common citation (verified by enumerating all
+    4,447 tar members). Needs no FTP password. rmotc.doe.gov is dead.
+  verified: false
+  tags: ["prestack", "wells", "public-domain"]
+
+- id: anp-brazil
+  name: ANP BDEP / REATE (Brazil)
+  category: national-archive
+  region: Brazilian basins — Santos, Campos, Equatorial Margin
+  country: BR
+  data_type: ["2D/3D field and processed", "some pre-stack"]
+  size_bytes: null
+  size_display: "~5–7 PB total; 100 TB pre-stack + 37 TB post-stack publicly offered"
+  size_confidence: official
+  size_bytes_min: 5000000000000000
+  size_bytes_max: 7000000000000000
+  license: "Public data free for universities; fee for industry delivery"
+  license_spdx: null
+  usage:
+    commercial: "no"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: academic-free
+  url: https://www.gov.br/anp/pt-br/assuntos/exploracao-e-producao-de-oleo-e-gas/dados-tecnicos
+  download: []
+  bulk_method: "portal ordering; delivery on media/SFTP"
+  notes: "One of the largest state archives anywhere. Free to academia under agreement."
+  verified: true
+  tags: ["petabyte", "academic-free"]
+
+- id: pasa-south-africa
+  name: PASA (Petroleum Agency South Africa)
+  category: national-archive
+  region: South African offshore and onshore — Orange Basin, Outeniqua
+  country: ZA
+  data_type: ["2D (~300,000 line-km)", "3D (>40,000 km²)", "field and processed"]
+  size_bytes: null
+  size_display: "~100s of TB"
+  size_confidence: estimate
+  license: "Fee for data packages; free indexes; academic tier available"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: academic-free
+  url: https://www.pasa.co.za
+  download: []
+  bulk_method: "order via data centre"
+  notes: "Orange Basin coverage is topical given recent Namibian/South African discoveries."
+  verified: true
+  tags: []
+
+- id: sdls-antarctica
+  name: Antarctic Seismic Data Library System (SDLS)
+  category: national-archive
+  region: Antarctica (south of 60°S)
+  country: MULTI
+  data_type: ["final-stack MCS 2D SEG-Y", "navigation"]
+  size_bytes: null
+  size_display: "~5–15 TB (~300,000 line-km public)"
+  size_confidence: estimate
+  size_bytes_min: 5000000000000
+  size_bytes_max: 15000000000000
+  license: "Antarctic Treaty mandate; free registration; non-commercial"
+  license_spdx: null
+  usage:
+    commercial: "no"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-registration
+  url: https://sdls.ogs.it/
+  download:
+    - kind: US mirror
+      uri: https://www.usap-dc.org/sdls
+  bulk_method: "portal download after login; also via GeoMapApp"
+  notes: >-
+    Unique in being mandated open by treaty: data becomes unrestricted 8 years
+    after collection. Ross Sea, Weddell, Wilkes Land coverage.
+  verified: true
+  tags: ["polar", "treaty-mandated"]
+
+- id: india-ndr
+  name: India NDR (DGH)
+  category: national-archive
+  region: Indian basins — KG, Mumbai Offshore
+  country: IN
+  data_type: ["2D/3D and pre-stack (post-2017)"]
+  size_bytes: null
+  size_display: "~8–10 PB (~2.5 M line-km 2D, ~500,000 km² 3D)"
+  size_confidence: estimate
+  size_bytes_min: 8000000000000000
+  size_bytes_max: 10000000000000000
+  license: "Free viewing; fee for download, waived for academia"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: academic-free
+  url: https://www.dghindia.gov.in/
+  download: []
+  bulk_method: "web/FTP request; media delivery"
+  notes: "Enormous, and free to academia — an underexploited archive. 7-year confidentiality."
+  verified: false
+  tags: ["petabyte", "academic-free"]
+
+- id: cnih-mexico
+  name: CNIH (Mexico — CNH)
+  category: national-archive
+  region: Mexican onshore and offshore — Perdido, Campeche, Sureste
+  country: MX
+  data_type: ["2D/3D including pre-stack"]
+  size_bytes: null
+  size_display: "~2–11 PB"
+  size_confidence: estimate
+  size_bytes_min: 2000000000000000
+  size_bytes_max: 11000000000000000
+  license: "Fee-based licence per km / km²"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: fee
+  url: https://portal.cnih.cnh.gob.mx/
+  download: []
+  bulk_method: "order form; media or cloud delivery"
+  notes: "Very large but fee-gated. Included for completeness."
+  verified: false
+  tags: ["petabyte"]
+
+- id: anh-colombia
+  name: ANH EPIS / BIP (Colombia)
+  category: national-archive
+  region: Colombia — Llanos, Magdalena, Caribbean offshore
+  country: CO
+  data_type: ["2D (~150,000 km)", "3D (~30,000 km²)", "pre-stack after confidentiality"]
+  size_bytes: null
+  size_display: "~1.5 PB"
+  size_confidence: estimate
+  size_bytes_min: 1500000000000000
+  size_bytes_max: 1500000000000000
+  license: "Free for academia; fee for industry"
+  license_spdx: null
+  usage:
+    commercial: "no"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: academic-free
+  url: https://www.anh.gov.co
+  download: []
+  bulk_method: "order/download from EPIS"
+  notes: "5-year confidentiality, then public."
+  verified: false
+  tags: ["petabyte", "academic-free"]
+
+# ---------------------------------------------------------------------------
+# Academic and research archives
+# ---------------------------------------------------------------------------
+
+- id: mgds-asp
+  name: MGDS / Academic Seismic Portal (Lamont-Doherty)
+  category: academic-archive
+  region: Global — US academic fleet (Langseth, Ewing, Conrad, Vema)
+  country: US
+  data_type: ["raw and processed MCS", "SCS", "OBS/refraction", "SEG-D/SEG-Y", "navigation"]
+  size_bytes: null
+  size_display: "151.2 TB total; >80 TB seismic"
+  size_confidence: official
+  size_bytes_min: 80000000000000
+  size_bytes_max: null
+  license: "CC BY-NC-SA 3.0"
+  license_spdx: CC-BY-NC-SA-3.0
+  usage:
+    commercial: "no"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "yes"
+    ml_training: "unclear"
+  usage_basis: spdx
+  access: open-download
+  url: https://www.marine-geo.org/
+  download:
+    - kind: collections
+      uri: https://www.marine-geo.org/collections/
+  bulk_method: "per-file HTTPS, OGC web services, DataONE mirror, GeoMapApp"
+  notes: >-
+    The largest purely academic marine seismic archive, and one of the few with
+    real pre-stack field data openly downloadable. 2.6 M files, 3,905 programs.
+    Absorbed the UTIG portal in 2020. Includes CRISP, ENAM, CASIE21.
+  verified: true
+  tags: ["prestack", "no-account", "flagship", "academic"]
+
+- id: pangaea-seismic
+  name: PANGAEA seismic collection
+  category: academic-archive
+  region: Global — German research fleet (Sonne, Meteor, Polarstern)
+  country: DE
+  data_type: ["2D/3D MCS raw (SEG-D) and processed (SEG-Y)", "OBS/wide-angle", "P-Cable 3D"]
+  size_bytes: null
+  size_display: ">50 TB and growing"
+  size_confidence: estimate
+  size_bytes_min: 50000000000000
+  size_bytes_max: null
+  license: "Mostly CC BY 4.0"
+  license_spdx: null
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://wiki.pangaea.de/wiki/Seismic
+  download:
+    - kind: viewer
+      uri: https://marine-data.de
+  bulk_method: "direct HTTPS per DOI; pangaeapy API"
+  notes: >-
+    The fastest-growing academic marine archive in Europe, DOI'd and properly
+    licensed since the 2020 standardisation. Scriptable via pangaeapy.
+  verified: true
+  tags: ["cc-by", "no-account", "api", "academic"]
+
+- id: ncei-trackline
+  name: NOAA NCEI Marine Trackline / Seismic Reflection archive
+  category: academic-archive
+  region: Global, 1939–present
+  country: US
+  data_type: ["SCS/MCS/refraction SEG-Y", "scanned analog sections", "MGD77T"]
+  size_bytes: null
+  size_display: "~10–30 TB digital"
+  size_confidence: estimate
+  size_bytes_min: 10000000000000
+  size_bytes_max: 30000000000000
+  license: "US Government public domain"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://www.ncei.noaa.gov/products/marine-seismic-reflection
+  download:
+    - kind: trackline
+      uri: https://www.ncei.noaa.gov/products/marine-trackline-geophysical-data
+  bulk_method: "Trackline Geophysical Data Viewer (HTTPS zips); migrating to cloud"
+  notes: "Only a subset of lines is online; much remains request-based."
+  verified: true
+  tags: ["public-domain", "no-account"]
+
+- id: usgs-cmgds
+  name: USGS Coastal & Marine Geoscience Data System (CMGDS)
+  category: academic-archive
+  region: US coasts and Great Lakes
+  country: US
+  data_type: ["chirp", "boomer", "sparker sub-bottom", "high-res MCS SEG-Y"]
+  size_bytes: null
+  size_display: "~5–20 TB"
+  size_confidence: estimate
+  size_bytes_min: 5000000000000
+  size_bytes_max: 20000000000000
+  license: "Public domain, DOI'd data releases"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://cmgds.marine.usgs.gov/
+  download: []
+  bulk_method: "HTTPS from data-release pages; ScienceBase API"
+  notes: "The largest open high-resolution / sub-bottom collection in the US."
+  verified: false
+  tags: ["public-domain", "high-res", "api"]
+
+- id: jamstec-obsmcs
+  name: JAMSTEC Seismic Survey Database (OBS/MCS)
+  category: academic-archive
+  region: NW Pacific — Nankai Trough, Japan Trench, Izu-Bonin
+  country: JP
+  data_type: ["MCS", "OBS refraction/wide-angle"]
+  size_bytes: null
+  size_display: "tens to 100+ TB"
+  size_confidence: estimate
+  license: "Academic use via request form (DOI 10.17596/0002069)"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-request
+  url: https://www.jamstec.go.jp/obsmcs_db/e/
+  download: []
+  bulk_method: "request, then download or HDD"
+  notes: "The best OBS/crustal dataset in Asia; Nankai is the classic subduction imaging target."
+  verified: true
+  tags: ["obs", "academic"]
+
+- id: ogs-snap
+  name: OGS SNAP (Seismic data Network Access Point)
+  category: academic-archive
+  region: Mediterranean, Adriatic, Black Sea
+  country: IT
+  data_type: ["MCS (rescued vintage + modern)", "multibeam"]
+  size_bytes: null
+  size_display: "~5–10 TB (~91,000–100,000 line-km)"
+  size_confidence: estimate
+  size_bytes_min: 5000000000000
+  size_bytes_max: 10000000000000
+  license: "Free with registration"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-registration
+  url: https://snap.ogs.it/cache/index.jsp
+  download: []
+  bulk_method: "web portal, geographic search, SEG-Y download"
+  notes: "Also hosts the Antarctic SDLS. Feeds EMODnet/SeaDataNet."
+  verified: true
+  tags: ["academic"]
+
+- id: bgs-marine
+  name: BGS marine geophysical and seismic data
+  category: academic-archive
+  region: UK Continental Shelf, 1966–
+  country: GB
+  data_type: ["airgun/sparker/boomer/pinger SCS", "some MCS", "scanned analog"]
+  size_bytes: null
+  size_display: "~5–20 TB (~350,000 line-km)"
+  size_confidence: estimate
+  size_bytes_min: 5000000000000
+  size_bytes_max: 20000000000000
+  license: "NERC copyright; free for research on request"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-request
+  url: https://www.bgs.ac.uk/
+  download: []
+  bulk_method: "request SEG-Y via enquiries@bgs.ac.uk; WMS for index"
+  notes: "Also holds the BIRPS deep crustal reflection data (by request)."
+  verified: true
+  tags: []
+
+- id: lithoprobe
+  name: LITHOPROBE
+  category: academic-archive
+  region: Canada — crustal transects
+  country: CA
+  data_type: ["deep crustal 2D reflection (raw + processed SEG-Y)", "magnetotellurics"]
+  size_bytes: null
+  size_display: "~1–5 TB"
+  size_confidence: estimate
+  size_bytes_min: 1000000000000
+  size_bytes_max: 5000000000000
+  license: "Open Government Licence — Canada"
+  license_spdx: "OGL-Canada-2.0"
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://open.canada.ca/data/en/dataset/959c15a2-a9ae-580a-b5ea-077140e219b7
+  download: []
+  bulk_method: "GeoGratis FTP per line"
+  notes: >-
+    Search open.canada.ca for "Lithoprobe" to enumerate all lines — each is a
+    separate dataset record. One of the great deep-crustal programmes.
+  verified: true
+  tags: ["crustal", "no-account"]
+
+- id: dekorp
+  name: DEKORP (GFZ Data Services)
+  category: academic-archive
+  region: Germany — deep crustal
+  country: DE
+  data_type: ["deep crustal Vibroseis 2D (~4,700 km) + one 400 km² 3D"]
+  size_bytes: null
+  size_display: "~1–2 TB"
+  size_confidence: estimate
+  size_bytes_min: 1000000000000
+  size_bytes_max: 2000000000000
+  license: "CC BY-NC 4.0"
+  license_spdx: CC-BY-NC-4.0
+  usage:
+    commercial: "no"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "unclear"
+  usage_basis: spdx
+  access: open-request
+  url: https://dataservices.gfz-potsdam.de/dekorp/
+  download:
+    - kind: EPOS-MSL mirror
+      uri: https://acc.epos-msl.uu.nl
+  bulk_method: "per-profile request form"
+  notes: "~40 lines. The German counterpart to COCORP/BIRPS."
+  verified: true
+  tags: ["crustal"]
+
+- id: seisdare
+  name: SeisDARE
+  category: academic-archive
+  region: Iberia, Morocco, Texas
+  country: ES
+  data_type: ["deep seismic sounding", "wide-angle", "high-res; SEG-Y/SEG-D"]
+  size_bytes: null
+  size_display: "<1 TB (21 datasets)"
+  size_confidence: official
+  size_bytes_min: null
+  size_bytes_max: 1000000000000
+  license: "CC BY 4.0, DOI'd"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://essd.copernicus.org/articles/13/1053/2021/
+  download:
+    - kind: repository
+      uri: https://digital.csic.es/handle/10261/101879
+  bulk_method: "HTTPS per DOI"
+  notes: >-
+    A model of how legacy seismic rescue should be done — fully open, documented,
+    and citable. Covers the ESCI, IAM and ILIHA legacy programmes.
+  verified: true
+  tags: ["cc-by", "crustal", "legacy-rescue"]
+
+- id: nrcan-marine-repo
+  name: Canadian National Marine Seismic Data Repository (NRCan/GSC)
+  category: academic-archive
+  region: Atlantic, Pacific and Arctic Canada
+  country: CA
+  data_type: ["50 years of scanned SCS/sparker/Huntec records (JPEG2000)", "some SEG-Y"]
+  size_bytes: null
+  size_display: ">10 TB (mostly images)"
+  size_confidence: estimate
+  size_bytes_min: 10000000000000
+  size_bytes_max: null
+  license: "Open Government Licence — Canada"
+  license_spdx: "OGL-Canada-2.0"
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://open.canada.ca/data/en/dataset/e1fa0090-4b06-e476-5c71-e2326666a4d0
+  download:
+    - kind: ftp
+      uri: ftp://ftp.maps.canada.ca/pub/nrcan_rncan/Seismology_Sismologie/Seismic_Reflection-Imagerie_Sismique/
+  bulk_method: "FTP/HTTPS; ESRI REST, WMS, KML"
+  notes: "Scanned records rather than SEG-Y — good for image-based rescue/digitisation work."
+  verified: true
+  tags: ["raster", "no-account"]
+
+# ---------------------------------------------------------------------------
+# Earthquake / passive waveform archives
+# ---------------------------------------------------------------------------
+
+- id: earthscope-dmc
+  name: EarthScope Data Archive (formerly IRIS DMC)
+  category: passive-waveform
+  region: Global
+  country: US
+  data_type: ["continuous and event miniSEED", "PH5 nodal", "station metadata"]
+  size_bytes: null
+  size_display: ">1 PB (published; FDSN DOI sizes are estimates - see SCHEMA)"
+  size_confidence: official
+  size_bytes_min: 1000000000000000
+  size_bytes_max: null
+  license: "Open; cite the network DOI"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-download
+  url: https://www.earthscope.org/data/
+  download:
+    - kind: s3
+      uri: https://registry.opendata.aws/
+  bulk_method: "FDSN web services, ROVER, PH5; aws s3 ls s3://earthscope-geophysical-data --no-sign-request (us-east-2)"
+  notes: >-
+    The largest open seismic archive in the world. Also the home of controlled-source
+    PASSCAL experiments (SEG-Y via PH5), the Apollo (XA) and InSight (XB) mirrors,
+    and USArray. Networks on S3 include AK, II, IU, N4, PB, TA, UU, UW.
+  verified: true
+  tags: ["petabyte", "no-account", "cloud-native", "api", "flagship"]
+
+- id: scedc
+  name: SCEDC (Southern California Earthquake Data Center)
+  category: passive-waveform
+  region: Southern California
+  country: US
+  data_type: ["continuous and event waveforms", "catalog from 1932", "phase picks", "DAS"]
+  size_bytes: null
+  size_display: "~150 TB"
+  size_confidence: official
+  size_bytes_min: 150000000000000
+  size_bytes_max: 150000000000000
+  license: "Open; cite doi:10.7909/C3WD3xH1"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-download
+  url: https://scedc.caltech.edu/data/cloud.html
+  bulk_method: "aws s3 ls s3://scedc-pds --no-sign-request (us-west-2, daily updates); FDSNWS; STP"
+  notes: "Also hosts the Ridgecrest DAS data (2020, 250 Hz, hourly SEG-Y)."
+  verified: true
+  tags: ["no-account", "cloud-native", "das"]
+
+- id: ncedc
+  name: NCEDC (Northern California Earthquake Data Center)
+  category: passive-waveform
+  region: Northern California
+  country: US
+  data_type: ["continuous/event waveforms", "catalogs", "GPS", "strain"]
+  size_bytes: null
+  size_display: "184–190 TB"
+  size_confidence: official
+  size_bytes_min: 184000000000000
+  size_bytes_max: 190000000000000
+  license: "Open"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://ncedc.org
+  bulk_method: "aws s3 ls s3://ncedc-pds --no-sign-request (us-east-2); FDSNWS"
+  notes: "29 networks, 2,640 stations. Includes the Parkfield HRSN borehole network (BP)."
+  verified: true
+  tags: ["no-account", "cloud-native"]
+
+- id: geonet-nz
+  name: GeoNet (GNS Science, New Zealand)
+  category: passive-waveform
+  region: New Zealand
+  country: NZ
+  data_type: ["seismic", "strong motion", "GNSS", "tsunami gauges"]
+  size_bytes: null
+  size_display: ">100 TB (~12 GB/day miniSEED)"
+  size_confidence: estimate
+  size_bytes_min: 100000000000000
+  size_bytes_max: null
+  license: "CC BY 3.0 NZ"
+  license_spdx: CC-BY-3.0-NZ
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://www.geonet.org.nz/data/access/aws
+  bulk_method: "aws s3 ls s3://geonet-open-data --no-sign-request (ap-southeast-2); FDSNWS"
+  notes: "One of the cleanest CC-BY national waveform archives; >600 sites."
+  verified: true
+  tags: ["no-account", "cloud-native", "cc-by"]
+
+- id: orfeus-eida
+  name: ORFEUS EIDA federation
+  category: passive-waveform
+  region: Europe
+  country: MULTI
+  data_type: ["continuous waveforms from ~11 federated nodes"]
+  size_bytes: null
+  size_display: "~1 PB+ aggregate (estimate; unmeasured)"
+  size_confidence: estimate
+  size_bytes_min: 1000000000000000
+  size_bytes_max: null
+  license: "Open (some restricted via EIDA tokens)"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://www.orfeus-eu.org/data/eida/
+  bulk_method: "federated FDSN web services (eida-federator) + routing service"
+  notes: >-
+    Nodes: GEOFON/GFZ (largest), EPOS-France/RESIF, INGV, ETH, BGR, NOA, KOERI,
+    NIEP, ICGC, UIB-NORSAR, ODC/KNMI, BGS. One query hits them all.
+  verified: true
+  tags: ["petabyte", "api", "federated"]
+
+- id: nied-mowlas
+  name: NIED MOWLAS (Hi-net, F-net, K-NET, KiK-net, S-net, DONET)
+  category: passive-waveform
+  region: Japan
+  country: JP
+  data_type: ["borehole short-period", "broadband", "strong motion", "cabled seafloor"]
+  size_bytes: null
+  size_display: "~1 PB (estimate; unmeasured)"
+  size_confidence: estimate
+  size_bytes_min: 1000000000000000
+  size_bytes_max: 1000000000000000
+  license: "Free registration; no redistribution; results-reporting obligation"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "no"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-registration
+  url: https://www.hinet.bosai.go.jp
+  bulk_method: "web download + HinetPy; WIN32 format; 50 MB/request cap; no FDSN/S3"
+  notes: >-
+    The densest seismic network on Earth (~800 Hi-net boreholes, 150 S-net
+    seafloor nodes) but the most awkward to bulk-download. K-NET/KiK-net is the
+    largest strong-motion collection anywhere (>1 M records).
+  verified: true
+  tags: ["petabyte", "registration-required", "awkward-bulk"]
+
+- id: isc-bulletin
+  name: ISC Bulletin
+  category: passive-waveform
+  region: Global, 1904–present
+  country: GB
+  data_type: ["event bulletin/catalog", "phase readings"]
+  size_bytes: null
+  size_display: "~90 GB (>4 M events, ~50 M readings)"
+  size_confidence: official
+  size_bytes_min: 90000000000
+  size_bytes_max: 90000000000
+  license: "CC BY"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://www.isc.ac.uk/iscbulletin/
+  bulk_method: "web search + ISC web services; mirror at isc-mirror.iris.washington.edu"
+  notes: "Includes ISC-GEM (1900–) and ISC-EHB. The definitive global catalog."
+  verified: false
+  tags: ["catalog", "api", "cc-by"]
+
+# ---------------------------------------------------------------------------
+# DAS
+# ---------------------------------------------------------------------------
+
+- id: pubdas
+  name: PubDAS
+  category: das
+  region: Multiple — Alaska, Pennsylvania, California, Illinois, Spain
+  country: MULTI
+  data_type: ["distributed acoustic sensing", "8 datasets (Table 1)"]
+  size_bytes: null
+  size_display: "76.6 TB (Table 1 holdings)"
+  size_confidence: verified
+  size_bytes_min: 76600000000000
+  size_bytes_max: 76600000000000
+  license: "Open (CC BY)"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-registration
+  url: https://pubdas.org
+  download:
+    - kind: paper
+      uri: https://www.osti.gov/pages/biblio/1957924
+  bulk_method: "Globus endpoint 'PubDAS'"
+  notes: >-
+    The main open DAS repository. Its eight ACTUAL holdings are Fairbanks,
+    FORESEE, FOSSA, LaFarge and Stanford-1/2/3 and Valencia, summing to 76.6 TB
+    (Table 1). The widely-quoted "~90 TB" is the paper's headline figure, not the
+    table total. PoroTomo and Utah FORGE are NOT hosted here — they appear in
+    Table 3, "datasets available on other platforms", and live on DOE GDR / AWS.
+    Citing PubDAS as PoroTomo's host is a common and verifiable error.
+  verified: true
+  tags: ["das", "flagship", "globus"]
+
+- id: porotomo
+  name: PoroTomo (Brady Hot Springs)
+  category: das
+  region: USA — Nevada geothermal field
+  country: US
+  data_type: ["surface + borehole DAS", "nodal seismic", "vibroseis source"]
+  size_bytes: null
+  size_display: "186.86 TB decimal (169.94 TiB); ~52 TB unique"
+  size_confidence: verified
+  size_bytes_min: 186860000000000
+  size_bytes_max: 186860000000000
+  license: "Open (DOE Geothermal Data Repository)"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://gdr.openei.org/submissions/980
+  bulk_method: "aws s3 ls s3://nrel-pds-porotomo/DAS/ --no-sign-request (224,205 objects)"
+  notes: >-
+    The reference DAS + nodal + active-source experiment for geothermal imaging.
+    IMPORTANT: ~3.5x of the archive is format redundancy — SEG-Y (52.17 TB),
+    H5 (90.88 TB) and H5-standardized (43.81 TB) are the SAME ~18 days. Pull one
+    format: unique content is ~52 TB, not 187 TB. Also note DOE GDR labels binary
+    units as "TB", so its published figures are really TiB.
+    NOT hosted by PubDAS (that is a common misattribution).
+  verified: false
+  tags: ["das", "geothermal", "nodal"]
+
+- id: utah-forge-das
+  name: Utah FORGE DAS
+  category: das
+  region: USA — Utah (enhanced geothermal)
+  country: US
+  data_type: ["downhole microseismic DAS (2019, 2022, 2024)", "12-s HDF5 files"]
+  ancillary: ["seismic catalogs", "geophone data"]
+  size_bytes: null
+  size_display: "multi-TB"
+  size_confidence: estimate
+  license: "Open"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://gdr.openei.org/submissions/1185
+  bulk_method: "HTTP + shell script; hosted off-GDR at Utah CHPC; also in PubDAS"
+  notes: "Additional submissions at gdr.openei.org/submissions/1680 and /1725."
+  verified: true
+  tags: ["das", "geothermal", "microseismic"]
+
+- id: rutford-das
+  name: Rutford Ice Stream DAS / DAS-N2N
+  category: das
+  region: Antarctica
+  country: AQ
+  data_type: ["1 km cable", "1 kHz", "1 m channel spacing", "Jan 2020"]
+  size_bytes: null
+  size_display: "hundreds of GB to TB"
+  size_confidence: estimate
+  license: "CC BY"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://zenodo.org/records/4778368
+  download:
+    - kind: denoising benchmark
+      uri: https://zenodo.org/records/7064405
+  bulk_method: "Zenodo direct download"
+  notes: "Icequake microseismicity; the DAS-N2N self-supervised denoising benchmark."
+  verified: true
+  tags: ["das", "polar", "denoise", "cc-by", "no-account"]
+
+# ---------------------------------------------------------------------------
+# ML benchmarks (earthquake) — exploration-seismic ML lives in its own section
+# ---------------------------------------------------------------------------
+
+- id: stead
+  name: STEAD (STanford EArthquake Dataset)
+  category: ml-benchmark
+  region: Global
+  country: US
+  data_type: ["60 s 3-component waveforms at 100 Hz", "P/S picks", "coda", "noise"]
+  size_bytes: null
+  size_display: "~85 GB (1.2 M traces)"
+  size_confidence: official
+  size_bytes_min: 85000000000
+  size_bytes_max: 85000000000
+  license: "CC BY 4.0"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://github.com/smousavi05/STEAD
+  bulk_method: "HTTP chunks (6 × ~15 GB); also via SeisBench"
+  notes: "The dataset EQTransformer was trained on; still the default starting point."
+  verified: true
+  tags: ["ml-benchmark", "phase-picking", "cc-by", "no-account"]
+
+- id: instance
+  name: INSTANCE
+  category: ml-benchmark
+  region: Italy
+  country: IT
+  data_type: ["120 s 3-component at 100 Hz", "~50k events + 130k noise"]
+  size_bytes: null
+  size_display: "~330 GB (1.2 M traces)"
+  size_confidence: official
+  size_bytes_min: 330000000000
+  size_bytes_max: 330000000000
+  license: "CC BY 4.0"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://data.ingv.it/en/dataset/471
+  bulk_method: "HTTP; also via SeisBench"
+  notes: "Includes ground-motion metadata, so it doubles as a regression benchmark."
+  verified: true
+  tags: ["ml-benchmark", "phase-picking", "ground-motion", "cc-by"]
+
+- id: mlaapde
+  name: MLAAPDE
+  category: ml-benchmark
+  region: Global
+  country: US
+  data_type: ["120 s 3-component broadband", "P/Pn/Pg/S/Sn/Sg labels"]
+  size_bytes: null
+  size_display: "TB-scale (>5.1 M recordings)"
+  size_confidence: official
+  license: "US Government public domain"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://doi.org/10.5066/P9OJGE3G
+  bulk_method: "ScienceBase; also via SeisBench"
+  notes: "The largest labeled global phase dataset — built by the USGS NEIC."
+  verified: false
+  tags: ["ml-benchmark", "phase-picking", "public-domain", "large"]
+
+- id: diting
+  name: DiTing
+  category: ml-benchmark
+  region: China, 2013–2020
+  country: CN
+  data_type: ["180 s 3-component at 50 Hz", "P/S picks", "first-motion polarity"]
+  size_bytes: null
+  size_display: ">100 GB (2.73 M traces, 787k events)"
+  size_confidence: estimate
+  size_bytes_min: 100000000000
+  size_bytes_max: null
+  license: "Open (registration on the Chinese platform)"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-registration
+  url: https://doi.org/10.1016/j.eqs.2022.01.022
+  bulk_method: "download via data.earthquake.cn"
+  notes: >-
+    The practical route to Chinese waveform data, since raw CENC archives are
+    effectively closed to non-Chinese users. DiTing 2.0 and CSNCD followed in 2024.
+  verified: false
+  tags: ["ml-benchmark", "polarity", "large"]
+
+- id: seisbench
+  name: SeisBench
+  category: hub
+  region: Global
+  country: MULTI
+  data_type: ["Python library wrapping ~45 waveform dataset classes + pretrained models"]
+  size_bytes: null
+  size_display: "n/a (loader; datasets range GB–TB)"
+  size_confidence: unknown
+  license: "GPL-3.0 (library); datasets keep their own licences"
+  license_spdx: GPL-3.0
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: per-dataset
+  access: open-download
+  url: https://seisbench.readthedocs.io/en/stable/pages/documentation/data/waveform_datasets.html
+  download:
+    - kind: github
+      uri: https://github.com/seisbench/seisbench
+  bulk_method: "pip install seisbench; datasets auto-download on first use"
+  notes: >-
+    Start here for earthquake ML — one API over STEAD, INSTANCE, ETHZ, GEOFON,
+    Iquique, LenDB, PNW, SCEDC, CREW, TXED, CWA, OBS, ESM25, LFE stacks, VCSEIS
+    and a DAS class. Saves weeks of format wrangling.
+  verified: true
+  tags: ["loader", "essential", "python"]
+
+- id: pnw-ml
+  name: PNW-ML (Pacific Northwest)
+  category: ml-benchmark
+  region: USA — Pacific Northwest
+  country: US
+  data_type: ["earthquakes", "explosions", "\"exotic\" surface events"]
+  size_bytes: null
+  size_display: "tens of GB (~190k traces + 9.2k exotic)"
+  size_confidence: official
+  license: "CC BY"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://github.com/niyiyu/PNW-ML
+  bulk_method: "HTTP; also via SeisBench"
+  notes: "The rare labeled set with explosions and surface events — good for discrimination tasks."
+  verified: true
+  tags: ["ml-benchmark", "discrimination", "cc-by"]
+
+- id: crew
+  name: CREW (Curated Regional Earthquake Waveforms)
+  category: ml-benchmark
+  region: Global regional
+  country: US
+  data_type: ["5-minute 3-component windows with both P and S labeled"]
+  size_bytes: null
+  size_display: "2.3 M waveforms"
+  size_confidence: official
+  license: "CC BY"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://doi.org/10.5281/zenodo.11276286
+  bulk_method: "Zenodo; also via SeisBench"
+  notes: "Longer windows than STEAD, so better for full-sequence models."
+  verified: false
+  tags: ["ml-benchmark", "phase-picking", "cc-by"]
+
+# ---------------------------------------------------------------------------
+# Strong motion
+# ---------------------------------------------------------------------------
+
+- id: esm-db
+  name: ESM — Engineering Strong Motion database
+  category: strong-motion
+  region: Europe and the Mediterranean
+  country: MULTI
+  data_type: ["processed accelerograms", "flatfiles"]
+  size_bytes: null
+  size_display: "76,242 ground motions, 9,927 stations, 1,391 events"
+  size_confidence: official
+  license: "CC BY (registration)"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-registration
+  url: https://esm-db.eu
+  bulk_method: "web services at esm-db.eu/esmws; also in SeisBench as ESM25"
+  notes: "The European counterpart to NGA-West2, and considerably more open."
+  verified: true
+  tags: ["strong-motion", "api", "cc-by"]
+
+- id: nga-west2
+  name: NGA-West2 (PEER)
+  category: strong-motion
+  region: Global shallow-crustal
+  country: US
+  data_type: ["~21", "300 3-component records", "~600 events", "flatfile + time series"]
+  size_bytes: null
+  size_display: "~21,300 records"
+  size_confidence: official
+  license: "Registration; paid annual membership from 2 July 2026"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: fee
+  url: https://ngawest2.berkeley.edu
+  bulk_method: "web only; 200 records per 2 weeks cap"
+  notes: >-
+    The reference GMPE development dataset, but access is tightening — it moves
+    to a paid membership model in July 2026. Grab what you need before then.
+  verified: true
+  tags: ["strong-motion", "access-changing"]
+
+- id: cesmd
+  name: CESMD (Center for Engineering Strong Motion Data)
+  category: strong-motion
+  region: USA and international
+  country: US
+  data_type: ["processed and raw strong motion", "instrumented structures"]
+  size_bytes: null
+  size_display: "tens of thousands of records, 2,000+ stations"
+  size_confidence: estimate
+  license: "US Government public domain"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://www.strongmotioncenter.org
+  bulk_method: "web (IQR/IDR), Virtual Data Center"
+  notes: "Includes building/bridge arrays, which few other databases have."
+  verified: false
+  tags: ["strong-motion", "public-domain"]
+
+# ---------------------------------------------------------------------------
+# Planetary and ocean-bottom
+# ---------------------------------------------------------------------------
+
+- id: insight-seis
+  name: InSight SEIS (Mars)
+  category: planetary
+  region: Mars — Elysium Planitia
+  country: GLOBAL
+  data_type: ["VBB + SP seismometer", "2018–2022; ~1", "300 catalogued marsquakes"]
+  size_bytes: null
+  size_display: "hundreds of GB"
+  size_confidence: estimate
+  license: "Public domain (NASA)"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://pds-geosciences.wustl.edu/missions/insight/seis.htm
+  bulk_method: "PDS HTTP; also FDSN web services as network XB via EarthScope"
+  notes: >-
+    Reprocessed release Oct 2023. Being FDSN-accessible means ObsPy works on it
+    unmodified — the easiest planetary seismic data to actually use.
+  verified: true
+  tags: ["planetary", "public-domain", "fdsn", "no-account"]
+
+- id: apollo-pse
+  name: Apollo Passive Seismic Experiment (Moon)
+  category: planetary
+  region: Moon — Apollo 11/12/14/15/16/17 landing sites
+  country: GLOBAL
+  data_type: ["lunar seismometers 1969–1977; ~13", "000 catalogued events"]
+  size_bytes: null
+  size_display: "tens of GB"
+  size_confidence: estimate
+  license: "Public domain (NASA)"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-apollo_pse
+  bulk_method: "PDS HTTP; also FDSN as network XA via EarthScope"
+  notes: "Restored under NASA PDART. Deep moonquakes, impacts, thermal moonquakes."
+  verified: true
+  tags: ["planetary", "public-domain", "fdsn", "no-account"]
+
+- id: ooi-rca
+  name: OOI Regional Cabled Array
+  category: planetary
+  region: Cascadia margin / Axial Seamount
+  country: US
+  data_type: ["broadband and short-period OBS", "hydrophones", "pressure", "2014–"]
+  size_bytes: null
+  size_display: ">100 TB across all streams"
+  size_confidence: estimate
+  size_bytes_min: 100000000000000
+  size_bytes_max: null
+  license: "Open (CC BY)"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://oceanobservatories.org
+  bulk_method: "FDSN web services (network OO); OOI raw data archive HTTP"
+  notes: "Captured the 2015 Axial Seamount eruption in situ — a unique dataset."
+  verified: false
+  tags: ["obs", "cabled", "cc-by"]
+
+# ---------------------------------------------------------------------------
+# Hubs, registries, curated lists
+# ---------------------------------------------------------------------------
+
+- id: seg-open-data
+  name: SEG Wiki — Open Data
+  category: hub
+  region: Global
+  country: GLOBAL
+  data_type: ["curated index of open seismic datasets"]
+  size_bytes: null
+  size_display: "n/a (index)"
+  size_confidence: unknown
+  license: "Wiki content CC BY-SA; datasets keep their own terms"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: per-dataset
+  access: open-download
+  url: https://wiki.seg.org/wiki/Open_data
+  bulk_method: "n/a"
+  notes: >-
+    The community's default index — Parihaka, Kerry, Opunake, Waihapa, Poseidon,
+    Stratton, Teapot Dome, F3, Penobscot and more. Sits behind Cloudflare, so it
+    resists scraping; browse it manually.
+  verified: false
+  tags: ["index", "essential"]
+
+- id: terranubis
+  name: TerraNubis (dGB Earth Sciences)
+  category: hub
+  region: Global
+  country: NL
+  data_type: ["packaged OpendTect projects: seismic + wells + interpretation"]
+  size_bytes: null
+  size_display: "~1 TB across free datasets"
+  size_confidence: estimate
+  size_bytes_min: 1000000000000
+  size_bytes_max: 1000000000000
+  license: "Per-dataset (F3 and Penobscot are free)"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: per-dataset
+  access: open-registration
+  url: https://terranubis.com
+  bulk_method: "web download of project bundles"
+  notes: >-
+    Hosts F3 (Netherlands), Penobscot (Nova Scotia), Poseidon and others as
+    ready-to-open projects with wells and horizons already loaded. The lowest
+    friction way to get an interpretable dataset.
+  verified: true
+  tags: ["index", "packaged", "wells", "essential"]
+
+- id: aws-open-data
+  name: AWS Registry of Open Data
+  category: hub
+  region: Global
+  country: GLOBAL
+  data_type: ["cloud-hosted dataset registry"]
+  size_bytes: null
+  size_display: "n/a (registry)"
+  size_confidence: unknown
+  license: "Per-dataset"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: per-dataset
+  access: open-download
+  url: https://registry.opendata.aws/
+  bulk_method: "aws s3 sync --no-sign-request per bucket"
+  notes: >-
+    Seismic entries: TGS Poseidon 3D, SCEDC, NCEDC, EarthScope, GeoNet.
+    Roughly 1.3 PB of miniSEED sits on S3 across these, free to read.
+  verified: true
+  tags: ["index", "cloud-native", "essential"]
+
+- id: osdu-open-test-data
+  name: OSDU Open Test Data
+  category: hub
+  region: Global
+  country: GLOBAL
+  data_type: ["reference datasets for OSDU platform testing"]
+  size_bytes: null
+  size_display: "~1–2 TB"
+  size_confidence: estimate
+  size_bytes_min: 1000000000000
+  size_bytes_max: 2000000000000
+  license: "Apache-2.0 (repo); data per source licence"
+  license_spdx: Apache-2.0
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: per-dataset
+  access: open-download
+  url: https://community.opengroup.org/osdu/platform/data-flow/data-loading/open-test-data
+  bulk_method: "git / HTTP"
+  notes: "Bundles Volve, a TNO/NLOG subset and Poseidon in a consistent data model."
+  verified: true
+  tags: ["index", "no-account"]
+
+- id: co2datashare
+  name: CO2 DataShare
+  category: hub
+  region: Norway and international CCS sites
+  country: "NO"
+  data_type: ["CCS reference datasets — 4D seismic", "wells", "models"]
+  size_bytes: null
+  size_display: "~1 TB"
+  size_confidence: estimate
+  size_bytes_min: 1000000000000
+  size_bytes_max: 1000000000000
+  license: "Open, per-dataset licences"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: per-dataset
+  access: open-registration
+  url: https://co2datashare.org
+  bulk_method: "web download"
+  notes: >-
+    Hosts the Sleipner 4D CO2 monitoring dataset and Smeaheia — the canonical
+    open data for CCS time-lapse work.
+  verified: false
+  tags: ["ccs", "4d", "index"]
+
+- id: volve
+  name: Volve field dataset (Equinor)
+  category: field-3d
+  region: Norwegian North Sea
+  country: "NO"
+  data_type: ["3D and 4D seismic (pre- and post-stack)", "VSP"]
+  ancillary: ["wells", "logs", "production data", "models", "reports — ~40", "000 files"]
+  size_bytes: null
+  size_display: "~5 TB total"
+  size_confidence: official
+  size_bytes_min: 5000000000000
+  size_bytes_max: 5000000000000
+  license: "Equinor Open Data Licence"
+  license_spdx: null
+  usage:
+    commercial: "no"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-registration
+  url: https://www.equinor.com/energy/volve-data-sharing
+  bulk_method: "Azure blob download"
+  notes: >-
+    The most complete open field dataset in existence — an entire producing
+    field's lifecycle, seismic through production. If you build one integrated
+    demo, build it on Volve.
+  verified: true
+  tags: ["prestack", "4d", "wells", "production", "flagship", "essential"]
+
+- id: noaa-deep-sea-minerals
+  name: NOAA Deep Sea Minerals (gs://noaa-deep-sea-minerals)
+  category: academic-archive
+  region: American Samoa EEZ — Pacific
+  country: US
+  data_type: ["sub-bottom profiler SEG-Y", "XTF sidescan", "Kongsberg multibeam", "CARIS HIPS/SIPS projects", "seafloor imagery"]
+  ancillary: ["sound velocity profiles", "tide data", "positioning"]
+  size_bytes: 24909686375972
+  size_display: "24.9 TB total; 998 GiB of SEG-Y (15,903 files)"
+  size_confidence: verified
+  license: "CC0 1.0 (public domain dedication)"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://console.cloud.google.com/marketplace/product/noaa-public/noaa-mcm
+  download:
+    - kind: gcs
+      uri: https://storage.googleapis.com/noaa-deep-sea-minerals
+  bulk_method: "anonymous GCS; gsutil -m cp / gcloud storage cp, no auth or egress credentials"
+  notes: >-
+    The largest body of real geophysical trace data on Google Cloud by a wide margin,
+    and absent from every curated index found — it is not even on Google's own
+    public-datasets docs page. 4,537,470 objects enumerated exhaustively.
+    SEG-Y lives under OPR-T900-KR-26/H14280/ (AUV survey, legs L1-L20,
+    Processed/SBP/*.sgy). Format confirmed by decoding a textual header:
+    EdgeTech DW-216 chirp, 1-9 kHz, 41 us sample interval, 5,828 samples/trace.
+    Caveat: high-frequency shallow-penetration marine chirp, NOT exploration-scale;
+    single geography; NOAA labels it preliminary and not approved for navigation.
+  verified: true
+  tags: ["segy", "cc0", "no-account", "cloud-native", "marine", "undocumented-find"]
+
+- id: kevin-dome
+  name: Kevin Dome 3D (Big Sky Carbon Sequestration Partnership)
+  category: field-3d
+  region: USA — Montana, Kevin Dome (37.25 sq mi)
+  country: US
+  data_type: ["3D nine-component (9C) multicomponent", "SEG-Y"]
+  ancillary: ["wells", "characterisation reports"]
+  size_bytes: null
+  size_display: "~589 GB SEG-Y"
+  size_confidence: official
+  size_bytes_min: 589000000000
+  size_bytes_max: 589000000000
+  license: "Free (US DOE-funded; confirm terms on the host record)"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://edx.netl.doe.gov/
+  download: []
+  bulk_method: "DOE NETL EDX record"
+  notes: >-
+    The best free ONSHORE US 3D found in this survey, and unusual for being full
+    nine-component multicomponent — converted-wave (PS) work is possible, which
+    almost no other open dataset supports. A CCS characterisation survey.
+    Search EDX for "Kevin Dome" to reach the record.
+  verified: true
+  tags: ["multicomponent", "9c", "ccs", "onshore", "segy", "large"]
+
+- id: cocorp
+  name: COCORP (Consortium for Continental Reflection Profiling)
+  category: field-2d
+  region: USA — continental deep crustal transects
+  country: US
+  data_type: ["2D deep crustal reflection", "PRE-STACK shot gathers (780 SEG-Y)", "177 stacks"]
+  size_bytes: 150106116096
+  size_display: "~139.8 GiB total (121.9 GiB pre-stack shot gathers)"
+  size_confidence: verified
+  license: "Unstated — academic archive, no licence text published"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: http://cocorp.eas.cornell.edu
+  download:
+    - kind: apache index
+      uri: http://cocorp.eas.cornell.edu
+  bulk_method: "unauthenticated Apache directory index — wget -r works"
+  notes: >-
+    A significant and largely unknown open resource: genuine PRE-STACK land shot
+    gathers, which almost no open dataset provides. Verified by decoding an EBCDIC
+    SEG-Y header. AT RISK — no FDSN code, no IRIS/EarthScope copy, Cornell is the
+    sole archive and it is unmaintained. Worth mirroring. Licence is unstated,
+    so confirm terms before commercial use.
+  verified: true
+  tags: ["prestack", "crustal", "no-account", "at-risk", "segy"]
+
+- id: fire-finland
+  name: FIRE (Finnish Reflection Experiment)
+  category: field-2d
+  region: Finland — Fennoscandian Shield
+  country: FI
+  data_type: ["2D deep crustal reflection", "RAW FIELD SEG-Y included", "processed stacks"]
+  size_bytes: 1147000000000
+  size_display: "1.147 TB"
+  size_confidence: verified
+  license: "CC BY 4.0"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://www.gtk.fi/
+  download: []
+  bulk_method: "GTK / DOI-registered records"
+  notes: >-
+    The largest open deep-crustal dataset anywhere, and unusually permissive —
+    CC BY 4.0 WITH raw field data included, which is rare at this scale.
+    Independently re-measured; full DOIs recovered. Hardrock/shield setting,
+    so a useful complement to the sedimentary-basin volumes.
+  verified: true
+  tags: ["crustal", "prestack", "cc-by", "hardrock", "large"]
+
+- id: earthscope-assembled
+  name: EarthScope Assembled Datasets archive
+  category: academic-archive
+  region: Global — controlled-source and legacy experiments
+  country: US
+  data_type: ["controlled-source reflection/refraction", "SEG-Y", "PH5", "legacy program archives"]
+  size_bytes: 14043271823360
+  size_display: "12.775 TiB across 852 datasets"
+  size_confidence: verified
+  license: "Open"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://ds.iris.edu/ds/nodes/dmc/data/assembled/
+  download: []
+  bulk_method: "undocumented '?json' listing API on the assembled-data endpoint"
+  notes: >-
+    INVISIBLE TO FDSN QUERIES — this archive does not surface through normal FDSN
+    web services, which is why so many legacy programs are described as "lost".
+    Sweeping its undocumented ?json listing resolved: CD-ROM (31.6 GiB),
+    Deep Probe (3.78 GiB), SNORCLE refraction, INDEPTH I-III, POLONAISE,
+    CELEBRATION 2000, ALP 2002, SUDETES, the Russian PNE profiles, and
+    Cascadia 21-008 (758.87 GiB). Check here before concluding a program is gone.
+  verified: true
+  tags: ["crustal", "prestack", "no-account", "hidden-api", "large"]

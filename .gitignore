@@ -1,0 +1,34 @@
+# Downloaded seismic data — never commit. This repo indexes; it does not host.
+data/
+*.sgy
+*.segy
+*.SEGY
+*.su
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.las
+*.mdio
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Tooling output
+report.json
+*.part
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Excel lock files
+~$*.xlsx

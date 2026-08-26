@@ -2157,3 +2157,285 @@
     Cascadia 21-008 (758.87 GiB). Check here before concluding a program is gone.
   verified: true
   tags: ["crustal", "prestack", "no-account", "hidden-api", "large"]
+
+# ---------------------------------------------------------------------------
+# Added by the 2026-08-26 refinement sweep
+# ---------------------------------------------------------------------------
+
+- id: teal-south
+  name: Teal South 4C/4D (Eugene Island Block 354)
+  category: field-3d
+  region: USA — Gulf of Mexico, Eugene Island Block 354 (~80 mi offshore Louisiana)
+  country: US
+  data_type: ["3D OBC 4-component", "time-lapse (4D): 1997 + 1999 surveys", "P-Z CMP gathers", "P-S converted-wave CCP gathers", "final stacks + migrations", "SEG-Y big-endian"]
+  ancillary: ["well logs", "Apache well logs", "VSP", "directional surveys with sidetracks", "bit records", "tape logs and observer notes", "reference papers"]
+  size_bytes: 15326377125
+  size_display: "15.33 GB (14.27 GiB) across 38 files"
+  size_confidence: verified
+  license: "Open download; no licence stated by the host. Released via the Energy Research Clearing House (data originally Texaco)."
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://www.seismicrocks.com/tealsouth.html
+  download:
+    - kind: phase-1 P-Z CMP gathers
+      uri: https://www.seismicrocks.com/tealsouth/seismic/TS-104544-phase1-pz.zip
+    - kind: phase-2 P-Z CMP gathers (part 1)
+      uri: https://www.seismicrocks.com/tealsouth/seismic/TS-104546-phase2-pz-1.zip
+    - kind: phase-2 P-Z CMP gathers (part 2)
+      uri: https://www.seismicrocks.com/tealsouth/seismic/TS-104547-phase2-pz-2.zip
+    - kind: phase-1 converted-wave CCP (c1)
+      uri: https://www.seismicrocks.com/tealsouth/seismic/TS-103685-phase1-c1.zip
+    - kind: phase-1 converted-wave CCP (c2)
+      uri: https://www.seismicrocks.com/tealsouth/seismic/TS-103686-phase1-c2.zip
+    - kind: phase-2 converted-wave CCP (c1)
+      uri: https://www.seismicrocks.com/tealsouth/seismic/TS-103687-phase2-c1.zip
+    - kind: phase-2 converted-wave CCP (c2)
+      uri: https://www.seismicrocks.com/tealsouth/seismic/TS-103688-phase2-c2.zip
+    - kind: well logs
+      uri: https://www.seismicrocks.com/tealsouth/other/TealSouth_WellLogs.zip
+    - kind: VSP
+      uri: https://www.seismicrocks.com/tealsouth/other/TealSouth_VSP.zip
+  bulk_method: "per-file HTTPS from a flat directory listing on seismicrocks.com"
+  notes: >-
+    FOUND BY THIS SWEEP — absent from every index consulted, including the SEG wiki
+    Open data page. This is one of very few open datasets that is simultaneously
+    4D (time-lapse, July 1997 + April 1999) and 4C (ocean-bottom cable, P-Z plus
+    P-S converted wave), and it ships wells, VSP and directional surveys alongside.
+    That combination supports converted-wave and time-lapse work that almost no
+    other open dataset allows — the same gap Kevin Dome fills onshore.
+    All 38 files measured by HTTP HEAD; the seven zipped gather volumes are
+    12.28 GB of the 15.33 GB total.
+    CAVEAT the host states directly - the P-S amplitudes "seem to be unreliable".
+    Ownership traces to Texaco via the Energy Research Clearing House (Gene W.
+    Sparkman); no licence text is published, so nothing is asserted here beyond
+    the fact that it downloads without an account.
+  verified: true
+  tags: ["4d", "4c", "multicomponent", "obc", "converted-wave", "wells", "vsp", "segy", "no-account", "undocumented-find"]
+
+- id: oz-yilmaz-40
+  name: Oz Yilmaz 40 shot gathers
+  category: field-2d
+  region: Global — 40 shot records from surveys worldwide
+  country: MULTI
+  data_type: ["2D shot gathers", "Seismic Unix (.su) little-endian", "SEG-Y little-endian", "display images"]
+  ancillary: ["per-shot images"]
+  size_bytes: 33364928
+  size_display: "33.36 MB (3 archives)"
+  size_confidence: verified
+  license: "No formal licence; acknowledge Oz Yilmaz and SEG (originally released by Western Geophysical)"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "yes"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: licence-text
+  access: open-download
+  url: https://www.seismicrocks.com/oz40.html
+  download:
+    - kind: Seismic Unix, little-endian
+      uri: https://www.seismicrocks.com/seismicunix/oz.forty.su.tgz
+    - kind: SEG-Y, little-endian
+      uri: https://www.seismicrocks.com/seismicunix/oz.forty.sgy.tgz
+    - kind: shot-gather images
+      uri: https://www.seismicrocks.com/seismicunix/oz40-images.tgz
+  bulk_method: "three HTTPS tarballs"
+  notes: >-
+    The teaching set behind Yilmaz's "Seismic Data Analysis" — 40 shot records
+    collected worldwide by Western Geophysical in the mid-1980s. The SEG wiki
+    "Candidate open data" page routes to this data via
+    http://www.cwp.mines.edu/cwpcodes/ (403 to every client tried; the www host
+    fails DNS outright) and "Stanford (SEP)" (the SEP data-library path now
+    redirects to a DokuWiki home page). Neither route works. seismicrocks.com
+    does, and is the live host found by this sweep.
+    Exact HEAD sizes - oz.forty.su.tgz 15,618,506 B; oz.forty.sgy.tgz
+    15,455,217 B; oz40-images.tgz 2,291,205 B.
+    Big-endian SU copies are on the Seismic Unix wiki (nextcloud.seismic-unix.org);
+    a Madagascar SConstruct for RSF conversion is in github.com/ahay/src.
+  verified: true
+  tags: ["shot-gathers", "prestack", "teaching", "small", "no-account", "segy", "undocumented-find"]
+
+- id: hardpicks
+  name: Hardpicks — hardrock first-break picking benchmark
+  category: ml-benchmark
+  region: Canada — Brunswick & Halfmile Lake (NB), Lalor (MB), Sudbury (ON)
+  country: CA
+  data_type: ["3D land reflection shot gathers", "HDF5 (.hdf5.xz)", "first-break picks in trace headers"]
+  ancillary: ["survey geometry"]
+  size_bytes: 23787278764
+  size_display: "23.79 GB compressed (4 surveys)"
+  size_confidence: verified
+  license: "CC BY 4.0 (Brunswick, Halfmile Lake); Open Government Licence - Canada (Lalor, Sudbury)"
+  license_spdx: null
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: licence-text
+  access: open-download
+  url: https://github.com/mila-iqia/hardpicks
+  download:
+    - kind: Brunswick 3D
+      uri: https://d3sakqnghgsk6x.cloudfront.net/Brunswick_3D/Brunswick_orig_1500ms_V2.hdf5.xz
+    - kind: Halfmile Lake 3D
+      uri: https://d3sakqnghgsk6x.cloudfront.net/Halfmile_3D/Halfmile3D_add_geom_sorted.hdf5.xz
+    - kind: Lalor 3D
+      uri: https://d3sakqnghgsk6x.cloudfront.net/Lalor_3D/Lalor_raw_z_1500ms_norp_geom_v3.hdf5.xz
+    - kind: Sudbury 3D
+      uri: https://d3sakqnghgsk6x.cloudfront.net/Sudbury_3D/preprocessed_Sudbury3D.hdf.xz
+  bulk_method: "four HTTPS objects on CloudFront (NRCan-hosted); no account"
+  notes: >-
+    RARE — labelled REAL FIELD data, not synthetic. Millions of traces across
+    hardrock mining sites with expert first-break picks stored in the trace headers,
+    plus an explicit cross-survey generalisation split, so it tests transfer between
+    acquisition conditions rather than just in-survey accuracy. Mila/NRCan;
+    Geophysics 89(1) WA279 (2023) and NeurIPS 2021 ML4PS.
+    This filled a real hole - the catalogue's labelled field data was fault/facies
+    interpretation only, with nothing for the processing-side task of first-break
+    picking, and nothing at all in a hardrock/mineral-exploration setting.
+    Exact HEAD sizes - Brunswick 9,066,402,472 B; Lalor 6,540,672,216 B;
+    Sudbury 5,273,637,612 B; Halfmile Lake 2,906,566,464 B.
+    Licence is SPLIT by survey - two CC BY 4.0, two OGL-Canada - so no single SPDX
+    id is asserted, though both grant the same five usage axes. Code is Apache-2.0.
+  verified: true
+  tags: ["ml-benchmark", "first-break", "labels", "field-data", "hardrock", "mining", "prestack", "no-account"]
+
+- id: quakeflow-das
+  name: QuakeFlow DAS (PhaseNet-DAS training data)
+  category: das
+  region: USA — Arcata/Ferndale CA, Monterey Bay (SeaFOAM submarine cable), Ridgecrest North CA
+  country: US
+  data_type: ["DAS event windows", "HDF5", "microstrain/s", "event metadata (origin time, location, magnitude)"]
+  ancillary: ["per-file event attributes"]
+  size_bytes: 674313768517
+  size_display: "674.31 GB (7,697 files)"
+  size_confidence: verified
+  license: "MIT"
+  license_spdx: MIT
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://huggingface.co/datasets/AI4EPS/quakeflow_das
+  download:
+    - kind: HuggingFace repo
+      uri: https://huggingface.co/datasets/AI4EPS/quakeflow_das
+  bulk_method: "huggingface-cli / git-lfs; 7,697 HDF5 objects"
+  notes: >-
+    The training corpus behind PhaseNet-DAS, and the largest single open DAS
+    collection found outside PubDAS/PoroTomo.
+    THE DATASET CARD UNDER-DESCRIBES THE REPO. It names three subsets - arcata,
+    monterey_bay and ridgecrest_north. Enumerating the tree API found SIX:
+    arcata 510.30 GB / 6,086 files (the card says 2,470), ridgecrest_north
+    82.92 GB / 751, polarity 45.63 GB / 674, eureka 23.71 GB / 147,
+    ridgecrest_south 7.25 GB / 3, monterey_bay 4.51 GB / 33. The undocumented
+    `polarity` subset is the interesting one - first-motion polarity is a
+    different labelled task from the rest of the repo. Its label semantics are
+    not described anywhere on the card, so verify against the QuakeFlow source
+    before relying on it.
+    Elsewhere labels are EVENT-LEVEL (origin time, location, magnitude), NOT
+    per-channel phase picks - you supply the picker. Some arcata files are missing
+    event attributes; the card says so.
+    SIZE WARNING, and a correction to the method used elsewhere in this repo -
+    HuggingFace usedStorage reports 807,379,803,096 B for this repo, but the
+    actual working tree is 674,313,768,517 B. usedStorage counts every revision
+    in git history and over-reports by 133.07 GB (19.7%) here. The tree figure is
+    the one recorded. See docs/prior-art-and-hubs.md for the corrected table.
+  verified: true
+  tags: ["das", "ml-benchmark", "labels", "phase-picking", "earthquake", "submarine-cable", "large"]
+
+- id: multiseismo
+  name: MultiSeismo (PNNL) — multimodal seismic dataset
+  category: ml-benchmark
+  region: Global — 16k+ events, 2010-2023
+  country: GLOBAL
+  data_type: ["multi-station waveforms", "parquet", "intensity maps", "population-exposure rasters", "textual event descriptions (JSON)"]
+  ancillary: ["MISCE multimodal instruction set"]
+  size_bytes: 106534693427
+  size_display: "106.53 GB (104 parquet files)"
+  size_confidence: verified
+  license: "CC0 1.0"
+  license_spdx: CC0-1.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "no"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://huggingface.co/datasets/PNNL/MultiSeismo
+  download:
+    - kind: HuggingFace repo
+      uri: https://huggingface.co/datasets/PNNL/MultiSeismo
+  bulk_method: "huggingface-cli; one parquet per event id"
+  notes: >-
+    FOUND BY THIS SWEEP — a genuinely different shape of seismic dataset, and CC0,
+    which is rare at this size. Each of the 16,000+ events pairs global-network
+    waveforms with an intensity map, a population-exposure visualisation and a
+    written description in a standard JSON schema, which makes it the only
+    catalogued corpus usable for vision-language / text-conditioned seismic work
+    rather than waveform-only ML. arXiv:2605.26320; the paper also releases MISCE
+    (instruction set) and SeisModal (a fine-tuned Unified-IO-2 variant).
+    Byte count is the working tree via the HuggingFace tree API, not usedStorage.
+  verified: true
+  tags: ["ml-benchmark", "multimodal", "vision-language", "cc0", "labels", "earthquake", "large"]
+
+- id: subsurfacegen-field-scale
+  name: SubsurfaceGen field-scale velocity + wavefield dataset
+  category: synthetic
+  region: Synthetic — field-scale models spanning multiple geological settings
+  country: GLOBAL
+  data_type: ["3D velocity volumes (SOS-smoothed, 619 depth samples)", "2D velocity slices", "acoustic wavefields", "multi-source shot-gather cubes", "HDF5"]
+  ancillary: ["parquet index", "2.81 GB preview variant"]
+  size_bytes: 11923346031911
+  size_display: "11.92 TB (47,084 files)"
+  size_confidence: verified
+  license: "CC BY 4.0"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://huggingface.co/datasets/subsurfacegen/field-scale-dataset
+  download:
+    - kind: HuggingFace repo
+      uri: https://huggingface.co/datasets/subsurfacegen/field-scale-dataset
+    - kind: preview variant (2.81 GB)
+      uri: https://huggingface.co/datasets/subsurfacegen/field-scale-dataset-preview
+  bulk_method: "huggingface-cli; 47,084 HDF5 objects across models/ subdirectories"
+  notes: >-
+    SIZE CORRECTION — this is 7.35x larger than previously recorded anywhere,
+    including in this repo's own prior-art table. HuggingFace usedStorage
+    reports 1,623,610,657,665 B; the actual working tree, enumerated over 48
+    pages of the tree API with cursor-loop and path-dedup checks, is
+    11,923,346,031,911 B across 47,084 unique paths (11,923,344,423,924 B of it
+    .h5). Spot-confirmed by direct HTTP HEAD - models/f3_d619/f3_050_sos.h5
+    returns Content-Length 2,939,479,031, matching the API exactly.
+    That makes this the LARGEST open exploration-seismic ML dataset on HuggingFace
+    by a wide margin - four times the 2.91 TB Seismic-AI-Data SeisBench mirror -
+    and it is CC BY 4.0, so commercially usable.
+    Field-scale 3D velocity volumes paired with acoustic wavefields and shot-gather
+    cubes across five frequency bands (3-6, 3-8.5, 3-12, 3-17.5, 3-25 Hz).
+    NOTE this cuts against the repo's standing warning that published sizes always
+    err LARGE - here the published figure was far too SMALL.
+  verified: true
+  tags: ["synthetic", "velocity-model", "fwi", "wavefield", "cc-by", "large", "size-correction"]

@@ -866,8 +866,12 @@ CC-BY-NC-SA-4.0 1 · ODbL 1. By volume, unlicensed records account for
 
 | # | Dataset | Bytes | Licence | Downloads | Last modified |
 |---:|---|---:|---|---:|---|
-| 1 | `HeXingChen/Seismic-AI-Data` | 2,916,246,352,428 | MIT | 10,102 | 2026-01-21 |
-| 2 | `subsurfacegen/field-scale-dataset` | 1,623,610,657,665 | CC-BY-4.0 | 229 | 2026-05-06 |
+> **These are `usedStorage` figures and are provisional — see §b.6 and footnote 4.**
+> Where a row has been re-measured against the tree API the corrected value is given
+> inline. The ranking itself is wrong: `subsurfacegen/field-scale-dataset` is #1, not #2.
+
+| 1 | `HeXingChen/Seismic-AI-Data` | 2,916,246,352,428 (tree: 2,907,508,850,352) | MIT | 10,102 | 2026-01-21 |
+| 2 | `subsurfacegen/field-scale-dataset` | 1,623,610,657,665 — **WRONG, tree: 11,923,346,031,911 (11.92 TB)** | CC-BY-4.0 | 229 | 2026-05-06 |
 | 3 | `cangyeone/SeismicX-Cont` | 427,176,078,330 | other | 4,074 | 2026-07-22 |
 | 4 | `JasonXF/SeismicTransformerData` | 289,998,313,442 | Apache-2.0 | 1,673 | 2026-08-06 |
 | 5 | `YinghaoXu/SeisMIC-Init` | 75,518,754,391 | none | 23 | 2026-03-29 |
@@ -1887,13 +1891,147 @@ you off-platform for test data.
 
 ---
 
+## b.6 Refinement sweep, 2026-08-26 — corrections and new finds
+
+A second pass aimed at two things the first survey did not cover: **datasets whose only
+barrier is asking someone**, and **labelled data outside the interpretation tasks**
+(fault / facies / salt) that dominate the existing catalogue. Everything below was
+verified live in this pass; flags follow the `[V-HEAD]` / `[V-API]` / `[V-DEAD]` key.
+
+### b.6.1 Two more index nodes are dead — the count is six, not four
+
+The SEG wiki's own **`Candidate open data`** page (recoverable only through the Wayback
+Machine — `wiki.seg.org` still 403s every client) routes readers to two hubs. Both are
+gone:
+
+| Node | What it held | Status | Flag |
+|---|---|---|---|
+| `www.cwp.mines.edu/cwpcodes/` | Colorado School of Mines CWP — the SEG wiki's stated route to the Oz Yilmaz 40-shot collection | **`www` host fails DNS outright; bare `cwp.mines.edu` returns 403 to every client and UA tried.** No route to data. | `[V-DEAD]` |
+| `www.geo.mtu.edu/spot/SeismicData/` | "Michigan Tech's list of links to public seismic datasets" — an index node in its own right | **301-redirects to `https://www.mtu.edu/geo/research/focus/`**, a generic departmental page. The list is gone. | `[V-DEAD]` |
+
+Also checked and dead: **`wikidev.seg.org`** — surfaced by search engines as an
+apparently-live mirror of the SEG wiki, which would have solved the 403 problem. It
+**does not resolve (NXDOMAIN)**. It is a stale search-index artefact; do not chase it.
+
+That takes the count of dead index nodes since 2022 from four to **six**, and both new
+ones were *linked from the SEG wiki as live routes*. The wiki cannot audit its own
+links because Cloudflare blocks its bots — this is that failure mode, measured.
+
+### b.6.2 The SEG "Candidate open data" page — the permission-gated wish list
+
+This page is the closest thing the field has to a register of *"data that could be open
+if someone asked the owner"*, and it is not indexed anywhere else. Recovered content
+(snapshot `20240330083118`):
+
+| Dataset | Holder / blocker | Note |
+|---|---|---|
+| **SMAART JV: Pluto 1.5, Sigsbee 2A & 2B, Ziggy** | Restrictive licence forbidding redistribution; SEG wiki says TNO/Delphi maintain them, but the Delphi host is gone | The page's explicit ask: *"Can owners be found and convinced to offer a more generous license… before the data are orphaned"* |
+| **Marmousi** | Same category — listed as redistribution-forbidden | Widely mirrored anyway; the licence question is genuinely unresolved |
+| **Mobil Viking Graben — VSP at both wells + observer logs** | Believed lost; Delft had a copy in 2013 and no longer does | The stacked data survives; the VSP and logs are the missing part |
+| **Hess VTI 2D, Model94, Statics94, 1997 2.5D (Etgen & Regone), 2004 BP, 2007 BP TTI** | On `software.seg.org`, which returns HTTP 525 | Consistent with this repo's earlier finding that probing the S3 bucket for these names returns nothing |
+| **SEG student field camp data** | Exists in SEG-D; nobody has converted or hosted it | Named contact on the page: John Stockwell |
+| **EDGER consortium multicomponent compendium (UT Austin)** | Compiled but not published | University-held; would need an ask |
+| **Kurt Marfurt's Stratton processing lab** | Described as sitting on a named individual's laptop | Genuinely at risk |
+
+Live and already catalogued, for completeness: **KAUST CSIM Qademah Fault 3D**
+(`csim.kaust.edu.sa/files/FieldData/Qademah_2014/QademahFault.htm`, 200, 42,746 B) `[V-PAGE]`.
+
+### b.6.3 University-held data: CREWES and Stanford SEP
+
+Both were absent from this repo entirely. Both turn out to be **negative results worth
+recording**, which is why they are here rather than in `datasets.yaml`:
+
+- **CREWES (University of Calgary)** — holds Blackfoot 3C-3D (8.5 km² multicomponent
+  land 3D with field data, observer notes, a low-frequency dataset and a 3C-3D VSP),
+  the Hussar low-frequency experiment (2011, dynamite + Vibroseis, five receiver types)
+  and the Priddis near-surface surveys. **`crewes.org` publishes no data at all** —
+  `/ResearchLinks/` offers only the Matlab toolbox (156.62 MB) and textbook sample data
+  (13.65 MB); `/ResearchLinks/ExplorationDatasets/`, `/Samples/` and `/data/` all 404.
+  Blackfoot was formerly sold through the SEG Bookstore and is now listed on the SEG
+  wiki's **`Non-open seismic data`** page — the University of Calgary owns it under
+  restrictive terms. Route is `support@crewes.org` or sponsorship, not download.
+  `[V-PAGE]`
+- **Stanford Exploration Project** — the widely-cited SEP data library path
+  `sepwww.stanford.edu/public/docs/sepdatalib/toc_html/` returns **200 but now renders a
+  DokuWiki home page**, not a data index. SEP publishes reports and theses openly (all
+  material older than three years) but no browsable data library. The SEG wiki lists
+  "Stanford (SEP)" as a route to the Yilmaz shots; that route no longer works. `[V-DEAD]`
+
+**The general shape of the "just ask" category:** the barrier is rarely a licence fee.
+It is that the holder is a university consortium with sponsor obligations (CREWES), a
+defunct JV whose members have dispersed (SMAART), or an individual (Marfurt's lab). The
+first is answerable by email; the second and third are archival-rescue problems.
+
+### b.6.4 New datasets added to the catalogue by this sweep
+
+| Dataset | Bytes (measured) | Labels | Licence | Why it was missing | Flag |
+|---|---:|---|---|---|---|
+| **Teal South 4C/4D** | 15,326,377,125 (38 files) | none | unstated | Host `seismicrocks.com` appears in no index consulted, including the SEG wiki | `[V-HEAD]` |
+| **Hardpicks** (Brunswick, Halfmile Lake, Lalor, Sudbury) | 23,787,278,764 (4 files) | **first-break picks, real field data** | CC-BY-4.0 ×2, OGL-Canada ×2 | Was a single line in a GitHub-stars list here — no sizes, URLs or licence | `[V-HEAD]` |
+| **QuakeFlow DAS** | 674,313,768,517 (7,697 files) | event metadata; **first-motion polarity** | MIT | Name contains neither "seismic" nor "segy"; missed by the 12-term HF sweep | `[V-API]` |
+| **MultiSeismo** (PNNL) | 106,534,693,427 (104 files) | text descriptions, intensity maps, exposure | **CC0-1.0** | Same reason | `[V-API]` |
+| **Oz Yilmaz 40 shot gathers** | 33,364,928 (3 files) | none | attribution only | Both SEG-listed routes dead; live host unindexed | `[V-HEAD]` |
+| **SubsurfaceGen field-scale** | 11,923,346,031,911 (47,084 files) | velocity models | CC-BY-4.0 | Present, but recorded at 1/7th its true size | `[V-API]` |
+
+**Teal South is the most significant of these.** It is simultaneously **4D** (July 1997
+baseline + April 1999 monitor) and **4C** (ocean-bottom cable, P-Z plus P-S converted
+wave), and ships wells, a VSP, directional surveys and observer notes. That combination
+— time-lapse *and* multicomponent *and* pre-stack *and* with wells — is not available in
+any other open dataset in this catalogue. Ownership traces to Texaco via the Energy
+Research Clearing House. The host warns directly that the P-S amplitudes "seem to be
+unreliable"; that caveat is carried into the catalogue entry.
+
+**Hardpicks closed a real category gap.** Before it, every labelled *field* dataset here
+was an interpretation task (fault, facies, horizon, channel, karst). There was nothing
+for a **processing** task, and nothing in a hardrock/mineral-exploration setting.
+Hardpicks is both, with picks in the trace headers and an explicit cross-survey split
+that tests generalisation between acquisition conditions rather than in-survey accuracy.
+
+### b.6.5 Method note — what the first HF sweep missed and why
+
+The §b.2 sweep used 12 search terms and found 326 datasets. It missed
+`AI4EPS/quakeflow_das` (674 GB) and `PNNL/MultiSeismo` (107 GB) because
+**HuggingFace's `search=` matches the repo id and card, and neither id contains any of
+the 12 terms** — `quakeflow_das` matches only on the substring `das`, whose results are
+overwhelmed by unrelated repos (`daspartho/*`, `dash8x/*`, `DasanCallDial`), and
+`MultiSeismo` matches "seismo" but not "seismic". Two fixes, both cheap:
+
+1. **Search by tag, not text.** `?filter=distributed-acoustic-sensing`, `?filter=seismology`,
+   `?filter=geophysics` reach repos whose names carry no domain word. `quakeflow_das`
+   carries all three tags and would have surfaced immediately.
+2. **Never rank by `usedStorage`** — see footnote 4. The tree API is the only figure
+   worth recording, and it changed the #1 entry on the leaderboard.
+
+### b.6.6 Still open
+
+- **`polarity`, `eureka` and `ridgecrest_south` in QuakeFlow DAS are undocumented.** The
+  dataset card names three subsets; the repo has six. Label semantics for `polarity`
+  (45.63 GB, 674 files) are described nowhere. Worth an issue on `AI4EPS/quakeflow`.
+- **OpenSeisML** (arXiv:2605.20539) — UK-NDR-derived velocity models with well logs and
+  checkshot time-to-depth conversion. The paper is out; **no dataset URL or DOI is given
+  in it**. If released it would be the first open *real-field* velocity-model training
+  set at scale. `[U]`
+- **Unicamp-NAMSS** (arXiv:2602.04890) — 2,588 cleaned 2D migrated sections from 122
+  NAMSS survey areas, with geographic macro-region splits for generalisation testing.
+  **No repository URL stated in the paper.** `[U]`
+- **CIG-Bench** (arXiv:2606.09094) — fault, RGT, geobody and property-modelling
+  benchmark with pretrained baselines, at `douyimin.github.io/CIG-bench`. Not yet
+  size-verified. `[U]`
+- The §b.2 table's remaining 300+ `usedStorage` figures have not been re-measured.
+  Re-running §b.6.5's tree-API method across all of them is a bounded, scriptable job
+  and would put a real number on the corpus, replacing the provisional 5.70 TB.
+
+
 ---
 
 # What the survey implies for this repo
 
-**The niche is genuinely vacant, and shrinking.** Four index nodes have been lost since
-2022 (Data Underground, Agile Scientific, Papers With Code, and the SEG wiki's
-machine-accessibility). Nothing has replaced them. Four separate GitHub queries aimed
+**The niche is genuinely vacant, and shrinking.** **Six** index nodes have been lost
+since 2022: Data Underground, Agile Scientific, Papers With Code, the SEG wiki's
+machine-accessibility, and — added by the 2026-08-26 sweep, §b.6.1 — CWP Colorado
+School of Mines (`www.cwp.mines.edu`, DNS failure) and Michigan Tech's public seismic
+data list (`geo.mtu.edu/spot/SeismicData/`, redirected away). The last two were both
+still linked from the SEG wiki as live routes. Nothing has replaced any of them. Four separate GitHub queries aimed
 squarely at "structured seismic data catalogue" return **zero repositories**.
 
 **Every surviving resource has exactly one of the properties needed, never all:**
@@ -1964,9 +2102,22 @@ evidence):
    nine targeted phrase queries, giving 4,099 deduplicated records — very likely to
    contain the true top-25 by size, but **not provably so**. Re-run with an
    authenticated token (`size=100`) to close this.
-4. **HuggingFace `usedStorage`** counts all revisions in a repo's git history, so for
-   datasets with rewritten history it can exceed the size of a single checkout. Treat
-   the HF byte figures as upper bounds.
+4. **HuggingFace `usedStorage` is unreliable in BOTH directions — corrected 2026-08-26.**
+   The earlier guidance here ("treat HF byte figures as upper bounds") was wrong.
+   `usedStorage` counts all revisions in a repo's git history, so it can *over*-report
+   a single checkout — measured at **+19.7 %** for `AI4EPS/quakeflow_das`
+   (807,379,803,096 B reported vs 674,313,768,517 B actual tree) and **+163.8 %** for
+   `MH0386/seismic_data`. But it can also badly *under*-report: for
+   `subsurfacegen/field-scale-dataset` it reports 1,623,610,657,665 B against an actual
+   tree of **11,923,346,031,911 B — a 7.35x undercount**, which is the single largest
+   size error found anywhere in this survey.
+   **The reliable method is the tree API**, not `usedStorage`:
+   `GET /api/datasets/<id>/tree/main?recursive=true&limit=1000`, following the
+   `Link: rel="next"` cursor, summing `lfs.size` where present and `size` otherwise,
+   de-duplicating on `path` and guarding against cursor loops. Spot-check the result
+   with a real HTTP HEAD on `…/resolve/main/<path>` and compare `Content-Length`.
+   Every HF figure in §b.2's table above is a `usedStorage` figure and is therefore
+   **provisional** — only the entries re-measured in §b.6 are trustworthy.
 5. **OpenFWI 3D dataset size.** The home page announces "twelve datasets… including one
    3D dataset" but `docs/data.html` publishes size rows for only eleven. The 3D
    dataset's size is not stated anywhere reachable.

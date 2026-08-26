@@ -364,3 +364,43 @@ Sorted by **licence safety first**, then usefulness.
 | — | ⚠️ **FaultSeg3D** | The standard fault baseline **but "personal and research use only"; commercial use requires contacting the authors.** Use the CIG fault/channel/karst sets instead — same group, CC-BY-4.0. | **Research only** |
 | — | ⚠️ **Chevron FWI suite** | Excellent elastic FWI benchmarks **but a revocable, non-transferable bespoke licence** | **Bespoke, legal review needed** |
 | — | ⚠️ **TGS Salt (Kaggle)** | Popular, but competition rules govern; not an open licence | **Kaggle rules** |
+
+---
+
+## 13. Added by the 2026-08-26 refinement sweep
+
+Three of these fill task categories this document previously had **no** entry for.
+Full verification detail is in `docs/prior-art-and-hubs.md` §b.6.
+
+| Dataset | Bytes (measured) | Task / labels | Licence | Flag |
+|---|---:|---|---|---|
+| **Hardpicks** — Brunswick, Halfmile Lake, Lalor, Sudbury | 23,787,278,764 | **First-break picking on REAL FIELD data**, picks in HDF5 trace headers, cross-survey generalisation split | CC-BY-4.0 (×2), OGL-Canada (×2); code Apache-2.0 | `[V-HEAD]` |
+| **SubsurfaceGen field-scale** | 11,923,346,031,911 | Velocity models paired with acoustic wavefields + multi-source shot cubes, five frequency bands | **CC-BY-4.0** | `[V-API]` |
+| **QuakeFlow DAS** | 674,313,768,517 | DAS event metadata; an undocumented **first-motion polarity** subset (45.63 GB) | MIT | `[V-API]` |
+| **MultiSeismo** (PNNL) | 106,534,693,427 | Waveforms + intensity maps + exposure rasters + **text descriptions** — vision-language seismic | **CC0-1.0** | `[V-API]` |
+
+**Why Hardpicks matters here.** Every labelled *field* dataset in §§4–8 is an
+*interpretation* task — fault, facies, horizon, channel, karst, salt. Hardpicks is the
+only labelled real-field dataset in this catalogue for a **processing** task, and the
+only one in a hardrock / mineral-exploration setting rather than a sedimentary basin.
+Its benchmark is explicitly built around transfer *between* surveys, so it measures
+generalisation across acquisition conditions rather than in-survey accuracy.
+Geophysics **89(1)**, WA279 (2023); NeurIPS 2021 ML4PS.
+
+**Why SubsurfaceGen changes the FWI shortlist.** §12 flags OpenFWI as best-in-class but
+NonCommercial (CC BY-NC-SA 4.0), leaving no large permissive velocity-inversion corpus.
+SubsurfaceGen is **CC BY 4.0 and 11.92 TB** — 15x OpenFWI's 2D+CO2 families combined —
+and its size was under-reported by 7.35x everywhere, including in this repo's own
+prior-art table, which is why it was overlooked. Start from the 2.81 GB `-preview` repo.
+
+**Still unresolved** (`[U]` — no dataset URL published by the authors):
+
+- **OpenSeisML** (arXiv:2605.20539) — velocity models + well logs + checkshots curated
+  from the UK NDR. Would be the first open *real-field* velocity-model training set at
+  scale. The paper names no repository.
+- **Unicamp-NAMSS** (arXiv:2602.04890) — 2,588 cleaned 2D migrated sections from 122
+  NAMSS survey areas with geographic macro-region splits. No repository URL stated.
+- **CIG-Bench** (arXiv:2606.09094) — fault / RGT / geobody / property-modelling
+  benchmark with pretrained baselines at `douyimin.github.io/CIG-bench`. Not size-verified.
+- **Swell-noise denoising benchmark** (S2666544126000353) — four synthetic volumes ×
+  two real swell-noise files × four SNRs, 32 train/test configurations. Not size-verified.

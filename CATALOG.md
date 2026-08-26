@@ -6,19 +6,20 @@ A catalog of open, public, and potentially accessible seismic datasets worldwide
 
 ## At a glance
 
-- **72** catalogued entries across **23** countries/regions
-- **40.5 TB** of directly-downloadable data with exact byte counts (8 entries measured)
-- **60** entries are free to download (45 with no account at all)
+- **78** catalogued entries across **23** countries/regions
+- **53.2 TB** of directly-downloadable data with exact byte counts (14 entries measured)
+- **66** entries are free to download (51 with no account at all)
 
 | Category | Entries |
 |---|---|
-| [Named 3D field surveys](#named-3d-field-surveys) | 9 |
-| [Named 2D surveys and line sets](#named-2d-surveys-and-line-sets) | 2 |
+| [Named 3D field surveys](#named-3d-field-surveys) | 10 |
+| [Named 2D surveys and line sets](#named-2d-surveys-and-line-sets) | 3 |
 | [National / regulator archives](#national-regulator-archives) | 19 |
 | [Academic and research archives](#academic-and-research-archives) | 13 |
-| [ML-ready and labeled datasets](#ml-ready-and-labeled-datasets) | 6 |
+| [ML-ready and labeled datasets](#ml-ready-and-labeled-datasets) | 8 |
+| [Synthetic models and benchmarks](#synthetic-models-and-benchmarks) | 1 |
 | [Earthquake / passive waveform archives](#earthquake-passive-waveform-archives) | 7 |
-| [Distributed acoustic sensing (DAS)](#distributed-acoustic-sensing-das) | 4 |
+| [Distributed acoustic sensing (DAS)](#distributed-acoustic-sensing-das) | 5 |
 | [Strong-motion databases](#strong-motion-databases) | 3 |
 | [Planetary and ocean-bottom](#planetary-and-ocean-bottom) | 3 |
 | [Hubs, registries, and curated lists](#hubs-registries-and-curated-lists) | 6 |
@@ -62,6 +63,7 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 | [Parihaka 3D](https://wiki.seg.org/wiki/Parihaka-3D) | New Zealand — offshore Taranaki Basin | 3D post-stack, angle stacks (near/mid/far/full), SEG-Y | ~20.4 GB (4 × 5.1 GB) | 🟢 open | Free; acknowledge NZ Petroleum & Minerals (Crown Minerals) | COM? BY | [full stack](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_full_angle.sgy) · [near](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_near_stack.sgy) · [mid](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_mid_stack.sgy) · [far](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_far_stack.sgy) |
 | [Waihapa 3D](https://wiki.seg.org/wiki/Waihapa-3D) | New Zealand — onshore Taranaki | 3D post-stack, SEG-Y | ~1–2 GB *(est.)* | 🟡 request | Free; acknowledge NZ Petroleum & Minerals | COM? BY | SEG wiki link, or order free from NZP&M |
 | [Kevin Dome 3D (Big Sky Carbon Sequestration Partnership)](https://edx.netl.doe.gov/) | USA — Montana, Kevin Dome (37.25 sq mi) | 3D nine-component (9C) multicomponent, SEG-Y | ~589 GB SEG-Y | 🟢 open | Free (US DOE-funded; confirm terms on the host record) | COM? | DOE NETL EDX record |
+| [Teal South 4C/4D (Eugene Island Block 354)](https://www.seismicrocks.com/tealsouth.html) | USA — Gulf of Mexico, Eugene Island Block 354 (~80 mi offshore Louisiana) | 3D OBC 4-component, time-lapse (4D): 1997 + 1999 surveys, P-Z CMP gathers, P-S converted-wave CCP gathers, final stacks + migrations, SEG-Y big-endian | 15.33 GB (14.27 GiB) across 38 files | 🟢 open | Open download; no licence stated by the host. Released via the Energy Research Clearing House (data originally Texaco). | COM? | [phase-1 P-Z CMP gathers](https://www.seismicrocks.com/tealsouth/seismic/TS-104544-phase1-pz.zip) · [phase-2 P-Z CMP gathers (part 1)](https://www.seismicrocks.com/tealsouth/seismic/TS-104546-phase2-pz-1.zip) · [phase-2 P-Z CMP gathers (part 2)](https://www.seismicrocks.com/tealsouth/seismic/TS-104547-phase2-pz-2.zip) · [phase-1 converted-wave CCP (c1)](https://www.seismicrocks.com/tealsouth/seismic/TS-103685-phase1-c1.zip) · [phase-1 converted-wave CCP (c2)](https://www.seismicrocks.com/tealsouth/seismic/TS-103686-phase1-c2.zip) · [phase-2 converted-wave CCP (c1)](https://www.seismicrocks.com/tealsouth/seismic/TS-103687-phase2-c1.zip) · [phase-2 converted-wave CCP (c2)](https://www.seismicrocks.com/tealsouth/seismic/TS-103688-phase2-c2.zip) · [well logs](https://www.seismicrocks.com/tealsouth/other/TealSouth_WellLogs.zip) · [VSP](https://www.seismicrocks.com/tealsouth/other/TealSouth_VSP.zip) |
 | [Teapot Dome 3D (RMOTC)](https://edx.netl.doe.gov/) | USA — Wyoming | 3D post-stack, pre-stack gathers | 14.4 GB | 🟡 free acct | Public domain (US DOE) | COM ML | NETL EDX (free login); also mirrored via SEG wiki |
 
 ## Named 2D surveys and line sets
@@ -69,6 +71,7 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 | Dataset | Region | Type | Size | Access | License | Use | Get it |
 |---|---|---|---|---|---|---|---|
 | [FIRE (Finnish Reflection Experiment)](https://www.gtk.fi/) | Finland — Fennoscandian Shield | 2D deep crustal reflection, RAW FIELD SEG-Y included, processed stacks | 1.147 TB | 🟢 open | CC BY 4.0 | COM BY ML | GTK / DOI-registered records |
+| [Oz Yilmaz 40 shot gathers](https://www.seismicrocks.com/oz40.html) | Global — 40 shot records from surveys worldwide | 2D shot gathers, Seismic Unix (.su) little-endian, SEG-Y little-endian, display images | 33.36 MB (3 archives) | 🟢 open | No formal licence; acknowledge Oz Yilmaz and SEG (originally released by Western Geophysical) | COM? BY | [Seismic Unix, little-endian](https://www.seismicrocks.com/seismicunix/oz.forty.su.tgz) · [SEG-Y, little-endian](https://www.seismicrocks.com/seismicunix/oz.forty.sgy.tgz) · [shot-gather images](https://www.seismicrocks.com/seismicunix/oz40-images.tgz) |
 | [COCORP (Consortium for Continental Reflection Profiling)](http://cocorp.eas.cornell.edu) | USA — continental deep crustal transects | 2D deep crustal reflection, PRE-STACK shot gathers (780 SEG-Y), 177 stacks | ~139.8 GiB total (121.9 GiB pre-stack shot gathers) | 🟢 open | Unstated — academic archive, no licence text published | COM? | [apache index](http://cocorp.eas.cornell.edu) |
 
 ## National / regulator archives
@@ -117,12 +120,20 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 
 | Dataset | Region | Type | Size | Access | License | Use | Get it |
 |---|---|---|---|---|---|---|---|
+| [Hardpicks — hardrock first-break picking benchmark](https://github.com/mila-iqia/hardpicks) | Canada — Brunswick & Halfmile Lake (NB), Lalor (MB), Sudbury (ON) | 3D land reflection shot gathers, HDF5 (.hdf5.xz), first-break picks in trace headers | 23.79 GB compressed (4 surveys) | 🟢 open | CC BY 4.0 (Brunswick, Halfmile Lake); Open Government Licence - Canada (Lalor, Sudbury) | COM BY ML | [Brunswick 3D](https://d3sakqnghgsk6x.cloudfront.net/Brunswick_3D/Brunswick_orig_1500ms_V2.hdf5.xz) · [Halfmile Lake 3D](https://d3sakqnghgsk6x.cloudfront.net/Halfmile_3D/Halfmile3D_add_geom_sorted.hdf5.xz) · [Lalor 3D](https://d3sakqnghgsk6x.cloudfront.net/Lalor_3D/Lalor_raw_z_1500ms_norp_geom_v3.hdf5.xz) · [Sudbury 3D](https://d3sakqnghgsk6x.cloudfront.net/Sudbury_3D/preprocessed_Sudbury3D.hdf.xz) |
 | [DiTing](https://doi.org/10.1016/j.eqs.2022.01.022) | China, 2013–2020 | 180 s 3-component at 50 Hz, P/S picks, first-motion polarity | >100 GB (2.73 M traces, 787k events) *(est.)* | 🟡 free acct | Open (registration on the Chinese platform) | COM? | download via data.earthquake.cn |
+| [MultiSeismo (PNNL) — multimodal seismic dataset](https://huggingface.co/datasets/PNNL/MultiSeismo) | Global — 16k+ events, 2010-2023 | multi-station waveforms, parquet, intensity maps, population-exposure rasters, textual event descriptions (JSON) | 106.53 GB (104 parquet files) | 🟢 open | CC0 1.0 | COM ML | [HuggingFace repo](https://huggingface.co/datasets/PNNL/MultiSeismo) |
 | [INSTANCE](https://data.ingv.it/en/dataset/471) | Italy | 120 s 3-component at 100 Hz, ~50k events + 130k noise | ~330 GB (1.2 M traces) | 🟢 open | CC BY 4.0 | COM BY ML | HTTP; also via SeisBench |
 | [CREW (Curated Regional Earthquake Waveforms)](https://doi.org/10.5281/zenodo.11276286) | Global regional | 5-minute 3-component windows with both P and S labeled | 2.3 M waveforms | 🟢 open | CC BY | COM BY ML | Zenodo; also via SeisBench |
 | [MLAAPDE](https://doi.org/10.5066/P9OJGE3G) | Global | 120 s 3-component broadband, P/Pn/Pg/S/Sn/Sg labels | TB-scale (>5.1 M recordings) | 🟢 open | US Government public domain | COM ML | ScienceBase; also via SeisBench |
 | [PNW-ML (Pacific Northwest)](https://github.com/niyiyu/PNW-ML) | USA — Pacific Northwest | earthquakes, explosions, "exotic" surface events | tens of GB (~190k traces + 9.2k exotic) | 🟢 open | CC BY | COM BY ML | HTTP; also via SeisBench |
 | [STEAD (STanford EArthquake Dataset)](https://github.com/smousavi05/STEAD) | Global | 60 s 3-component waveforms at 100 Hz, P/S picks, coda, noise | ~85 GB (1.2 M traces) | 🟢 open | CC BY 4.0 | COM BY ML | HTTP chunks (6 × ~15 GB); also via SeisBench |
+
+## Synthetic models and benchmarks
+
+| Dataset | Region | Type | Size | Access | License | Use | Get it |
+|---|---|---|---|---|---|---|---|
+| [SubsurfaceGen field-scale velocity + wavefield dataset](https://huggingface.co/datasets/subsurfacegen/field-scale-dataset) | Synthetic — field-scale models spanning multiple geological settings | 3D velocity volumes (SOS-smoothed, 619 depth samples), 2D velocity slices, acoustic wavefields, multi-source shot-gather cubes, HDF5 | 11.92 TB (47,084 files) | 🟢 open | CC BY 4.0 | COM BY ML | [HuggingFace repo](https://huggingface.co/datasets/subsurfacegen/field-scale-dataset) · [preview variant (2.81 GB)](https://huggingface.co/datasets/subsurfacegen/field-scale-dataset-preview) |
 
 ## Earthquake / passive waveform archives
 
@@ -143,6 +154,7 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 | [Rutford Ice Stream DAS / DAS-N2N](https://zenodo.org/records/4778368) | Antarctica | 1 km cable, 1 kHz, 1 m channel spacing, Jan 2020 | hundreds of GB to TB *(est.)* | 🟢 open | CC BY | COM BY ML | [denoising benchmark](https://zenodo.org/records/7064405) |
 | [PubDAS](https://pubdas.org) | Multiple — Alaska, Pennsylvania, California, Illinois, Spain | distributed acoustic sensing, 8 datasets (Table 1) | 76.6 TB (Table 1 holdings) | 🟡 free acct | Open (CC BY) | COM BY ML | [paper](https://www.osti.gov/pages/biblio/1957924) |
 | [PoroTomo (Brady Hot Springs)](https://gdr.openei.org/submissions/980) | USA — Nevada geothermal field | surface + borehole DAS, nodal seismic, vibroseis source | 186.86 TB decimal (169.94 TiB); ~52 TB unique | 🟢 open | Open (DOE Geothermal Data Repository) | COM? | aws s3 ls s3://nrel-pds-porotomo/DAS/ --no-sign-request (224,205 objects) |
+| [QuakeFlow DAS (PhaseNet-DAS training data)](https://huggingface.co/datasets/AI4EPS/quakeflow_das) | USA — Arcata/Ferndale CA, Monterey Bay (SeaFOAM submarine cable), Ridgecrest North CA | DAS event windows, HDF5, microstrain/s, event metadata (origin time, location, magnitude) | 674.31 GB (7,697 files) | 🟢 open | MIT | COM BY ML | [HuggingFace repo](https://huggingface.co/datasets/AI4EPS/quakeflow_das) |
 | [Utah FORGE DAS](https://gdr.openei.org/submissions/1185) | USA — Utah (enhanced geothermal) | downhole microseismic DAS (2019, 2022, 2024), 12-s HDF5 files | multi-TB *(est.)* | 🟢 open | Open | COM? | HTTP + shell script; hosted off-GDR at Utah CHPC; also in PubDAS |
 
 ## Strong-motion databases

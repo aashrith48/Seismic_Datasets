@@ -3,9 +3,9 @@
 **A verified, machine-readable index of open seismic data worldwide** — where it is,
 how big it actually is, what licence it carries, and whether you can train on it.
 
-[![catalogue](https://img.shields.io/badge/datasets-72-1f3864)](CATALOG.md)
-[![artefacts](https://img.shields.io/badge/files_inventoried-217-1f3864)](catalog/file_inventory_field.csv)
-[![measured](https://img.shields.io/badge/measured-38_TB-1f3864)](catalog/seismic_datasets.xlsx)
+[![catalogue](https://img.shields.io/badge/datasets-78-1f3864)](CATALOG.md)
+[![artefacts](https://img.shields.io/badge/files_inventoried-239-1f3864)](catalog/file_inventory_field.csv)
+[![measured](https://img.shields.io/badge/measured-50.75_TB-1f3864)](catalog/seismic_datasets.xlsx)
 [![docs](https://img.shields.io/badge/research_rows-2789-555)](docs/)
 
 ---
@@ -22,10 +22,13 @@ found something worth stating plainly:
 > **No maintained, seismic-focused, machine-readable index of open seismic datasets
 > carrying sizes and licences currently exists — and the niche is emptying, not filling.**
 
-Four index nodes have died since 2022: `dataunderground.org` (domain gone),
-Agile Scientific (company closed), Papers With Code (shut down), and the SEG Wiki's
+Six index nodes have died since 2022: `dataunderground.org` (domain gone),
+Agile Scientific (company closed), Papers With Code (shut down), the SEG Wiki's
 Open Data page (bot-inaccessible, and **19 of its 69 external links are dead — 28%**,
-including the access routes for Teapot Dome, Volve and SMAART).
+including the access routes for Teapot Dome, Volve and SMAART), **CWP Colorado School
+of Mines** (`www.cwp.mines.edu` — DNS failure) and **Michigan Tech's public seismic
+data list** (`geo.mtu.edu/spot/SeismicData/` — redirected to a generic page).
+The last two were still linked from the SEG Wiki as live routes when they were checked.
 
 What survives splits into two halves that never meet: **exploration seismic**
 (SEG wiki, TerraNubis) and **earthquake seismology** (SeisBench, FDSN). Nothing spans
@@ -43,10 +46,14 @@ wrong — sometimes catastrophically. Verified during this work:
 | PoroTomo 187 TB gross | ~52 TB unique (3.5x format redundancy) | 3.5x |
 | PubDAS "~90 TB" | 76.6 TB, and it hosts **zero** PoroTomo bytes | — |
 | Chevron 2013 TTI "~31.5 GB" | 28,640,141,824 B exactly | — |
+| HuggingFace reporting SubsurfaceGen at 1.62 TB | 11.92 TB by tree enumeration | **7.35x — the other way** |
 
-Every error above pointed the *same* direction: the published number was larger than
-the truth. So `size_bytes` here is either an exact measured count or **empty** — never
-a rounded guess. `size_confidence: official` means *"the holder published this"*, not
+Most errors point the *same* direction — the published number is larger than the truth.
+But not all: HuggingFace's `usedStorage` under-reported SubsurfaceGen by **7.35x**,
+making the largest open exploration-seismic ML dataset on the Hub look like the second
+largest. The rule is not "assume published figures are inflated"; it is **measure**.
+So `size_bytes` here is either an exact measured count or **empty** — never a rounded
+guess. `size_confidence: official` means *"the holder published this"*, not
 *"this is true"*.
 
 **Licensing is answered, not just cited.** Every entry carries five machine-readable
@@ -54,7 +61,7 @@ usage axes — `commercial`, `redistribution`, `attribution_required`, `share_al
 `ml_training` — plus `usage_basis` recording where the answer came from. Silence is
 recorded as `unclear`, never as permission.
 
-The honest headline: **30 entries are commercially usable, 6 are not, and 36 are
+The honest headline: **34 entries are commercially usable, 6 are not, and 38 are
 unclear.** That last number is the data holders' silence, faithfully recorded.
 
 **Dead ends are recorded too.** Knowing that `freeusp.org` is gone, that Kansas
@@ -68,8 +75,8 @@ seismic data saves you the search.
 ### I want to train a model today
 
 Open [`catalog/seismic_datasets.xlsx`](catalog/seismic_datasets.xlsx) → **Start Here**
-tab. It lists the 130 artefacts that are permissively licensed and directly
-downloadable, with 52 of them carrying labels.
+tab. It lists the 139 artefacts that are permissively licensed and directly
+downloadable, with 77 of them carrying labels.
 
 Or grab the no-account datasets straight away:
 
@@ -89,6 +96,10 @@ Or grab the no-account datasets straight away:
 | Parihaka 3D (4 angle stacks) | 20.4 GB | facies |
 | F3 facies benchmark | 1.05 GB | facies — MIT, published train/test split |
 | Penobscot interpretation | 2.27 GB | horizons — CC BY 4.0 |
+| Hardpicks (4 surveys) | 23.79 GB | **first-break picks on real field data** — CC BY 4.0 / OGL-Canada |
+
+For velocity/FWI work the largest permissive option is **SubsurfaceGen field-scale**
+(11.92 TB, CC BY 4.0) — start from its 2.81 GB preview repo rather than the full pull.
 
 ### I want the big archives
 
@@ -107,9 +118,9 @@ Browse [`CATALOG.md`](CATALOG.md), or the topic documents in [`docs/`](docs/).
 
 ```
 catalog/
-  datasets.yaml              Source of truth — 72 structured entries
-  file_inventory_field.csv   96 per-file rows: field surveys
-  file_inventory_ml.csv      121 per-file rows: ML + synthetic
+  datasets.yaml              Source of truth — 78 structured entries
+  file_inventory_field.csv   105 per-file rows: field surveys
+  file_inventory_ml.csv      134 per-file rows: ML + synthetic
   seismic_datasets.xlsx      6-tab workbook built from the CSVs
   SCHEMA.md                  Entry schema + the standing size warning
   FILE_INVENTORY_SCHEMA.md   Per-file schema + ML-readiness scale
@@ -178,13 +189,32 @@ Things this survey turned up that appear in no other index:
   20,311,496,528-byte pre-stack CIP gather. Probably the easiest open pre-stack 3D there is.
 - **Kevin Dome, Montana** — ~589 GB of free **nine-component** 3D, supporting
   converted-wave work almost no other open dataset allows.
+- **Teal South is 4D *and* 4C, and appears in no index.** 15,326,377,125 B across 38
+  files on an unindexed host — an ocean-bottom-cable survey shot twice (1997 baseline,
+  1999 monitor) with P-Z *and* P-S converted-wave gathers, plus wells, a VSP,
+  directional surveys and observer notes. Time-lapse **and** multicomponent **and**
+  pre-stack **and** with wells is a combination nothing else here offers.
+- **HuggingFace under-reports its own largest seismic dataset by 7.35x.**
+  `subsurfacegen/field-scale-dataset` reports 1.62 TB via `usedStorage`; enumerating the
+  tree API gives **11,923,346,031,911 B across 47,084 files**, confirmed by HTTP HEAD.
+  It is CC BY 4.0, and it is four times the size of the next largest.
+- **Hardpicks: labelled *real field* data for a *processing* task.** 23.79 GB of
+  hardrock shot gathers from four Canadian mines with expert first-break picks in the
+  trace headers and a cross-survey generalisation split. Every other labelled field
+  dataset here is an interpretation task.
+- **QuakeFlow DAS ships three subsets its own dataset card never mentions** — including
+  a 45.63 GB first-motion **polarity** set.
 
 ## Known limits
 
 - **36 entries have `commercial: unclear`.** The holders did not say. Verify before
   relying on it — and always verify before commercial use regardless.
-- **55 of 217 artefacts have no measured size.** Mostly session-gated portals. Left
+- **55 of 239 artefacts have no measured size.** Mostly session-gated portals. Left
   blank deliberately rather than estimated.
+- **The HuggingFace byte figures in `docs/prior-art-and-hubs.md` §b.2 are provisional.**
+  They come from HF's `usedStorage`, which this sweep proved unreliable in both
+  directions (see §b.6.5). Only the entries re-measured against the tree API are
+  trustworthy; the remaining ~300 have not been redone.
 - Coverage is deepest for exploration seismic, national archives and ML benchmarks;
   thinner for non-English-language regional portals.
 - Sizes and links were verified as of the survey date. Re-run `check_links.py`.

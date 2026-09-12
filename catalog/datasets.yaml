@@ -270,9 +270,12 @@
     datasets are per-Dataset-ID SEGY exposed with 52 metadata columns (Survey
     Type 2D/3D, Dataset Type e.g. MIG FIN, Attribute incl. acoustic impedance,
     File Format, File Size MB, Sample Interval, Num Samples/Traces, CRS, Release
-    Date, Operator); retrieval is a checkbox->cart flow. Whether guest download
-    is free or incurs a media/handling fee is not yet verified. (Earlier survey
-    figures: >1,300 public 3D surveys, ~30,000 released datasets.)
+    Date, Operator); retrieval is a checkbox->cart flow. Guest browsing needs no
+    account, but adding to cart / downloading requires sign-in — the cart action
+    returns "Please sign in to access cart" (verified 2026-09-12), so guest
+    download is not possible. Account terms and any media/handling fees for
+    downloads remain unverified. (Earlier survey figures: >1,300 public 3D
+    surveys, ~30,000 released datasets.)
   verified: false
   tags: ["petabyte", "prestack", "flagship"]
 

@@ -48,9 +48,15 @@
     NOT raw SEG-Y. (b) Zenodo derivatives records 13994329
     (PARIHAKA_PARTITIONED.zip ~928 MB, incl. Chevron annotations) and 21764042
     (~449 MB) — API says public CC-BY but Zenodo bot-blocks anonymous fetches, so
-    UNVERIFIED from here. (c) RAW SEG-Y (the full/near/mid/far angle stacks) now
-    only via the NZP&M Geodata Catalogue (registration + RealMe order). Sizes
-    below were measured when the S3 mirror was public.
+    UNVERIFIED from here. (c) RAW SEG-Y — VERIFIED LIVE 2026-09-12 in the NZP&M
+    Geodata Catalogue (geodata.nzpam.govt.nz): dataset "PARIHAKA-3D : PR4582"
+    exposes 21 SEG-Y resources (near/mid/far/full angle stacks at D / T / PSTM /
+    RPSTM stages), per-file 13.0–45.84 GB (e.g. T-PSTM-FULL 45.84 GB, near-stack
+    13 GB), total 648.95 GB. Search/browse/add-to-cart need NO login (one-time
+    human-verification challenge on search); DOWNLOAD requires a free RealMe login
+    ("Login to download"). So the NZ set is online (not physical-media-only);
+    post-login delivery (direct vs queued) not yet confirmed. The old-mirror sizes
+    below were measured when the S3 bucket was public.
     The canonical open 3D for ML work — used in the SEG/AICrowd fault-identification
     challenge and countless facies papers. Angle stacks make AVO experiments possible.
     True pre-stack gathers must be ordered from NZP&M.
@@ -125,8 +131,10 @@
     ⚠ DOWNLOAD LINK BROKEN 2026-09-12: the open.source.geoscience S3 bucket now
     returns HTTP 403 to anonymous requests (bucket fully private); this SEG-Y URL
     no longer resolves. RESOLUTION 2026-09-12: NO live anonymous mirror found
-    (HuggingFace/Zenodo/AWS/TerraNubis/GitHub all lack Kerry); raw SEG-Y is NZP&M
-    Geodata Catalogue order-only (registration + RealMe login). Size measured when
+    (HuggingFace/Zenodo/AWS/TerraNubis/GitHub all lack Kerry); raw SEG-Y is in the NZP&M
+    Geodata Catalogue (geodata.nzpam.govt.nz), online with per-file sizes and
+    download behind a free RealMe login — same portal/mechanism verified on
+    Parihaka PR4582 (not individually cart-checked here). Size measured when
     live. Small enough to iterate on quickly; heavily used in fault- and
     fracture-network papers. Upstream really does spell the folder "Keri_3D".
   verified: true

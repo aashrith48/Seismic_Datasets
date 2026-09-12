@@ -6,13 +6,13 @@ A catalog of open, public, and potentially accessible seismic datasets worldwide
 
 ## At a glance
 
-- **80** catalogued entries across **23** countries/regions
-- **53.3 TB** of directly-downloadable data with exact byte counts (15 entries measured)
-- **66** entries are free to download (53 with no account at all)
+- **81** catalogued entries across **23** countries/regions
+- **53.3 TB** of directly-downloadable data with exact byte counts (16 entries measured)
+- **67** entries are free to download (54 with no account at all)
 
 | Category | Entries |
 |---|---|
-| [Named 3D field surveys](#named-3d-field-surveys) | 10 |
+| [Named 3D field surveys](#named-3d-field-surveys) | 11 |
 | [Named 2D surveys and line sets](#named-2d-surveys-and-line-sets) | 3 |
 | [National / regulator archives](#national-regulator-archives) | 19 |
 | [Academic and research archives](#academic-and-research-archives) | 13 |
@@ -62,9 +62,10 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 | [Opunake 3D](https://wiki.seg.org/wiki/Opunake-3D) | New Zealand — southern Taranaki (215 km²) | 3D post-stack final stack, SEG-Y | 10.4 GB | 🟢 open | Free; acknowledge NZ Petroleum & Minerals | COM? BY | [https](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/OPUNAKE-3D/OPUNAKE3D-PR3461-FS.3D.Final_Stack.sgy) |
 | [Parihaka 3D](https://wiki.seg.org/wiki/Parihaka-3D) | New Zealand — offshore Taranaki Basin | 3D post-stack, angle stacks (near/mid/far/full), SEG-Y | ~20.4 GB (4 × 5.1 GB) | 🟢 open | Free; acknowledge NZ Petroleum & Minerals (Crown Minerals) | COM? BY | [full stack](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_full_angle.sgy) · [near](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_near_stack.sgy) · [mid](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_mid_stack.sgy) · [far](http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_far_stack.sgy) |
 | [Waihapa 3D](https://wiki.seg.org/wiki/Waihapa-3D) | New Zealand — onshore Taranaki | 3D post-stack, SEG-Y | ~1–2 GB *(est.)* | 🟡 request | Free; acknowledge NZ Petroleum & Minerals | COM? BY | SEG wiki link, or order free from NZP&M |
-| [Kevin Dome 3D (Big Sky Carbon Sequestration Partnership)](https://edx.netl.doe.gov/) | USA — Montana, Kevin Dome (37.25 sq mi) | 3D nine-component (9C) multicomponent, SEG-Y | ~589 GB SEG-Y | 🟢 open | Free (US DOE-funded; confirm terms on the host record) | COM? | DOE NETL EDX record |
+| [Illinois Basin – Decatur Project (IBDP) seismic](https://edx.netl.doe.gov/dataset/illinois-state-geological-survey-isgs-illinois-basin-decatur-project-ibdp-seismic-data-updated) | USA — Illinois Basin, Decatur (CCS site) | 3D post-stack (reprocessed), 4D time-lapse, 3D VSP, 2D lines, SEG-Y (bundled) | ~45.9 GiB active-seismic .tar.bz2 (+6.85 GiB 3D-VSP zip) | 🟢 open | US DOE-funded (Cooperative Agreement DE-FC26-05NT42588); no explicit licence on the EDX record | COM? | [https](https://edx.netl.doe.gov/storage/f/edx/2022/03/2022-03-03T16:41:00.871Z/fe2ae8c2-5acc-4878-83df-6936af04987c/ibdp_active_seismic-tar.bz2) |
+| [Kevin Dome 3D (Big Sky Carbon Sequestration Partnership)](https://edx.netl.doe.gov/dataset/kevin-dome-seismic-survey-pstm) | USA — Montana, Kevin Dome (37.25 sq mi) | 3D nine-component (9C) multicomponent, SEG-Y | ~589 GB SEG-Y | 🟢 open | Free (US DOE-funded; confirm terms on the host record) | COM? | [edx-package](https://edx.netl.doe.gov/dataset/kevin-dome-seismic-survey-pstm) · [https](https://edx.netl.doe.gov/storage/f/edx/2018/12/2018-12-11T12:43:22.638Z/28165609-c028-46ef-b0f0-7748821eb1d0/pp.sgy) |
 | [Teal South 4C/4D (Eugene Island Block 354)](https://www.seismicrocks.com/tealsouth.html) | USA — Gulf of Mexico, Eugene Island Block 354 (~80 mi offshore Louisiana) | 3D OBC 4-component, time-lapse (4D): 1997 + 1999 surveys, P-Z CMP gathers, P-S converted-wave CCP gathers, final stacks + migrations, SEG-Y big-endian | 15.33 GB (14.27 GiB) across 38 files | 🟢 open | Open download; no licence stated by the host. Released via the Energy Research Clearing House (data originally Texaco). | COM? | [phase-1 P-Z CMP gathers](https://www.seismicrocks.com/tealsouth/seismic/TS-104544-phase1-pz.zip) · [phase-2 P-Z CMP gathers (part 1)](https://www.seismicrocks.com/tealsouth/seismic/TS-104546-phase2-pz-1.zip) · [phase-2 P-Z CMP gathers (part 2)](https://www.seismicrocks.com/tealsouth/seismic/TS-104547-phase2-pz-2.zip) · [phase-1 converted-wave CCP (c1)](https://www.seismicrocks.com/tealsouth/seismic/TS-103685-phase1-c1.zip) · [phase-1 converted-wave CCP (c2)](https://www.seismicrocks.com/tealsouth/seismic/TS-103686-phase1-c2.zip) · [phase-2 converted-wave CCP (c1)](https://www.seismicrocks.com/tealsouth/seismic/TS-103687-phase2-c1.zip) · [phase-2 converted-wave CCP (c2)](https://www.seismicrocks.com/tealsouth/seismic/TS-103688-phase2-c2.zip) · [well logs](https://www.seismicrocks.com/tealsouth/other/TealSouth_WellLogs.zip) · [VSP](https://www.seismicrocks.com/tealsouth/other/TealSouth_VSP.zip) |
-| [Teapot Dome 3D (RMOTC)](https://edx.netl.doe.gov/) | USA — Wyoming | 3D post-stack, pre-stack gathers | 14.4 GB | 🟡 free acct | Public domain (US DOE) | COM ML | NETL EDX (free login); also mirrored via SEG wiki |
+| [Teapot Dome 3D (RMOTC)](https://edx.netl.doe.gov/) | USA — Wyoming | 3D post-stack, pre-stack gathers | 14.4 GB | 🟡 free acct | Public domain (US DOE) | COM ML | historically anonymous S3 / SEG-wiki mirror — currently DEAD (403) |
 
 ## Named 2D surveys and line sets
 

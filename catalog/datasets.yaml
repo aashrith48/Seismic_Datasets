@@ -38,6 +38,12 @@
       uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_far_stack.sgy
   bulk_method: "per-file HTTPS (bucket listing is denied, but objects fetch fine)"
   notes: >-
+    ⚠ DOWNLOAD LINKS BROKEN 2026-09-12: the open.source.geoscience S3 bucket now
+    returns HTTP 403 AccessDenied to anonymous requests (verified on all four
+    Parihaka URLs + a known-good control object) — the bucket appears to have been
+    made private/requester-pays. The SEG-wiki-listed S3 links no longer resolve;
+    an alternative host (NZP&M order, or a new mirror) is needed. Sizes below were
+    measured when the mirror was public.
     The canonical open 3D for ML work — used in the SEG/AICrowd fault-identification
     challenge and countless facies papers. Angle stacks make AVO experiments possible.
     True pre-stack gathers must be ordered from NZP&M.
@@ -73,9 +79,14 @@
     - kind: https
       uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/OPUNAKE-3D/OPUNAKE3D-PR3461-FS.3D.Final_Stack.sgy
   bulk_method: "single-file HTTPS"
-  notes: "Largest single free NZ volume on the open.source.geoscience bucket."
+  notes: >-
+    ⚠ DOWNLOAD LINK BROKEN 2026-09-12: the open.source.geoscience S3 bucket now
+    returns HTTP 403 to anonymous requests (bucket made private/requester-pays);
+    this SEG-Y URL no longer resolves. Largest single free NZ volume when the
+    mirror was public; needs a new host (NZP&M order or new mirror). Size measured
+    when live.
   verified: true
-  tags: ["segy"]
+  tags: ["segy", "broken-link"]
 
 - id: kerry-3d
   name: Kerry 3D
@@ -102,10 +113,13 @@
       uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/Keri_3D/Kerry3D.segy
   bulk_method: "single-file HTTPS"
   notes: >-
-    Small enough to iterate on quickly; heavily used in fault- and
+    ⚠ DOWNLOAD LINK BROKEN 2026-09-12: the open.source.geoscience S3 bucket now
+    returns HTTP 403 to anonymous requests (private/requester-pays); this SEG-Y URL
+    no longer resolves — needs a new host (NZP&M order or new mirror). Size measured
+    when live. Small enough to iterate on quickly; heavily used in fault- and
     fracture-network papers. Upstream really does spell the folder "Keri_3D".
   verified: true
-  tags: ["fault", "segy", "small"]
+  tags: ["fault", "segy", "small", "broken-link"]
 
 - id: waihapa-3d
   name: Waihapa 3D
@@ -745,9 +759,13 @@
     seismic; DOE EDX's Kansas records are PDF/HTML; Zenodo has nothing. The KGS
     Ozark page notes that work used "donated regional 3D seismic" — i.e. licensed
     third-party data KGS cannot redistribute. Request-only at best. Do not plan
-    around these volumes.
+    around these volumes. RE-CONFIRMED 2026-09-12: fresh CDX sweep still finds zero
+    .sgy; /CO2/ area is now 404; the Wellington/Ozark "seismic database" serves only
+    passive MICROSEISMIC monitoring (miniSEED + CSV event catalogs), not reflection
+    SEG-Y. This directly contradicts the docs/government-portals.md [K] row claiming
+    "free 3D SEG-Y (Dickman/Wellington/Cutter)" — that claim is FALSE.
   verified: true
-  tags: ["ccs", "4d", "small", "no-account"]
+  tags: ["ccs", "4d", "closed", "settled-negative"]
 
 - id: teapot-dome
   name: Teapot Dome 3D (RMOTC)
@@ -773,14 +791,20 @@
   access: open-registration
   url: https://edx.netl.doe.gov/
   download: []
-  bulk_method: "NETL EDX (free login); also mirrored via SEG wiki"
+  bulk_method: "historically anonymous S3 / SEG-wiki mirror — currently DEAD (403)"
   notes: >-
     One of the very few open datasets with pre-stack gathers AND wells AND
     production history — still the reference for integrated-workflow demos.
     Contains NO VSP, contrary to common citation (verified by enumerating all
-    4,447 tar members). Needs no FTP password. rmotc.doe.gov is dead.
+    4,447 tar members). ⚠ DOWNLOAD BROKEN 2026-09-12: the classic anonymous S3
+    routes are gone — s3.amazonaws.com/teapot/filt_mig.sgy returns HTTP 403
+    AccessDenied (bucket now private), the open.source.geoscience mirror is also
+    403, and EDX package_search q=teapot returns 0 seismic packages. rmotc.doe.gov
+    is dead. So Teapot Dome is NOT currently downloadable via any known open route
+    (the widely-cited ~386 MB filt_mig.sgy could not be re-measured). Needs a new
+    host/mirror. Size 14.4 GB was measured when the mirror was live.
   verified: false
-  tags: ["prestack", "wells", "public-domain"]
+  tags: ["prestack", "wells", "public-domain", "broken-link"]
 
 - id: anp-brazil
   name: ANP BDEP / REATE (Brazil)
@@ -2206,16 +2230,27 @@
     ml_training: "unclear"
   usage_basis: unstated
   access: open-download
-  url: https://edx.netl.doe.gov/
-  download: []
-  bulk_method: "DOE NETL EDX record"
+  url: https://edx.netl.doe.gov/dataset/kevin-dome-seismic-survey-pstm
+  download:
+    - kind: edx-package
+      uri: https://edx.netl.doe.gov/dataset/kevin-dome-seismic-survey-pstm
+    - kind: https
+      uri: https://edx.netl.doe.gov/storage/f/edx/2018/12/2018-12-11T12:43:22.638Z/28165609-c028-46ef-b0f0-7748821eb1d0/pp.sgy
+  bulk_method: "anonymous HTTPS GET on EDX storage URLs; no account; scriptable/resumable"
   notes: >-
     The best free ONSHORE US 3D found in this survey, and unusual for being full
     nine-component multicomponent — converted-wave (PS) work is possible, which
     almost no other open dataset supports. A CCS characterisation survey.
-    Search EDX for "Kevin Dome" to reach the record.
+    DOWNLOAD-VERIFIED 2026-09-12: the EDX package kevin-dome-seismic-survey-pstm
+    exposes standalone PSTM SEG-Y (PP/PS/RR/TT stacks + angle stacks) as direct
+    HTTPS objects, no login. Measured pp.sgy = 2,302,662,192 B (2.30 GB) — ranged
+    GET returned HTTP 206 with a valid SEG-Y EBCDIC header ("PP FILTERED PRESTACK
+    KIRCHHOFF MIGRATED STACK..."); largest object PS_ccps.sgy ~88.7 GiB (CKAN
+    metadata). The ~589 GB is the sum across all Kevin Dome EDX packages
+    (raw-stacks, gathers, shots, velocities, inversions). Related open EDX CCS 3D:
+    see [[ibdp-decatur]].
   verified: true
-  tags: ["multicomponent", "9c", "ccs", "onshore", "segy", "large"]
+  tags: ["multicomponent", "9c", "ccs", "onshore", "segy", "large", "scriptable"]
 
 - id: cocorp
   name: COCORP (Consortium for Continental Reflection Profiling)
@@ -2679,3 +2714,42 @@
     fine-tuning / pretraining for 3D fault U-Nets.
   verified: true
   tags: ["fault", "synthetic", "ml-benchmark", "small", "noncommercial"]
+
+- id: ibdp-decatur
+  name: Illinois Basin – Decatur Project (IBDP) seismic
+  category: field-3d
+  region: USA — Illinois Basin, Decatur (CCS site)
+  country: US
+  data_type: ["3D post-stack (reprocessed)", "4D time-lapse", "3D VSP", "2D lines", "SEG-Y (bundled)"]
+  ancillary: ["wells", "monitoring data"]
+  size_bytes: 49307257896
+  size_bytes_min: null
+  size_bytes_max: null
+  size_display: "~45.9 GiB active-seismic .tar.bz2 (+6.85 GiB 3D-VSP zip)"
+  size_confidence: verified
+  license: "US DOE-funded (Cooperative Agreement DE-FC26-05NT42588); no explicit licence on the EDX record"
+  license_spdx: null
+  usage:
+    commercial: "unclear"
+    redistribution: "unclear"
+    attribution_required: "unclear"
+    share_alike: "unclear"
+    ml_training: "unclear"
+  usage_basis: unstated
+  access: open-download
+  url: https://edx.netl.doe.gov/dataset/illinois-state-geological-survey-isgs-illinois-basin-decatur-project-ibdp-seismic-data-updated
+  download:
+    - kind: https
+      uri: https://edx.netl.doe.gov/storage/f/edx/2022/03/2022-03-03T16:41:00.871Z/fe2ae8c2-5acc-4878-83df-6936af04987c/ibdp_active_seismic-tar.bz2
+  bulk_method: "anonymous HTTPS GET on EDX storage URLs, no login; SEG-Y bundled inside the .tar.bz2"
+  notes: >-
+    A US onshore CCS monitoring site (ISGS / DOE NETL EDX). DOWNLOAD-VERIFIED
+    2026-09-12: the active-seismic archive is a direct anonymous HTTPS object,
+    HEAD-measured 49,307,257,896 B (45.9 GiB, content-disposition: attachment); a
+    3D-VSP zip is a separate 7,357,644,376 B (6.85 GiB). The bundle's own README
+    lists subfolders 3D_Seismic_Volume_Reprocessed, 4D_Seismic_Volume, 2D_Lines and
+    3D_VSP_Reprocessed — so reprocessed 3D post-stack + 4D time-lapse SEG-Y are
+    present, but packaged inside the compressed tarball (per-file SEG-Y size not
+    separable without extracting). Sibling open EDX CCS 3D: [[kevin-dome]].
+  verified: true
+  tags: ["ccs", "3d", "4d", "onshore", "segy", "scriptable", "bundled", "edx"]

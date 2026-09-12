@@ -28,22 +28,29 @@
   access: open-download
   url: https://wiki.seg.org/wiki/Parihaka-3D
   download:
-    - kind: full stack
+    - kind: huggingface-npy
+      uri: https://huggingface.co/datasets/SRaha23/parihaka-taranaki/resolve/main/parihaka_seismic.npy
+    - kind: nzpm-order
+      uri: https://geodata.nzpam.govt.nz/
+    - kind: dead-s3
       uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_full_angle.sgy
-    - kind: near
-      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_near_stack.sgy
-    - kind: mid
-      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_mid_stack.sgy
-    - kind: far
-      uri: http://s3.amazonaws.com/open.source.geoscience/open_data/newzealand/Taranaiki_Basin/PARIHAKA-3D/Parihaka_PSTM_far_stack.sgy
-  bulk_method: "per-file HTTPS (bucket listing is denied, but objects fetch fine)"
+  bulk_method: "live: anonymous HuggingFace .npy cube; raw SEG-Y = NZP&M Geodata Catalogue order (RealMe login)"
   notes: >-
-    ⚠ DOWNLOAD LINKS BROKEN 2026-09-12: the open.source.geoscience S3 bucket now
-    returns HTTP 403 AccessDenied to anonymous requests (verified on all four
-    Parihaka URLs + a known-good control object) — the bucket appears to have been
-    made private/requester-pays. The SEG-wiki-listed S3 links no longer resolve;
-    an alternative host (NZP&M order, or a new mirror) is needed. Sizes below were
-    measured when the mirror was public.
+    ⚠ The classic SEG-Y links are DEAD 2026-09-12: the open.source.geoscience S3
+    bucket is now FULLY PRIVATE (403 AccessDenied on objects, listing, ?location
+    and ?requestPayment; requester-pays header has no effect and returns no
+    x-amz-request-charged — so it is private, not requester-pays). The SEG-wiki
+    still lists these dead URLs. LIVE ALTERNATIVES (found 2026-09-12): (a)
+    VERIFIED anonymous numpy cube on HuggingFace SRaha23/parihaka-taranaki —
+    parihaka_seismic.npy 465,335,488 B + parihaka_labels.npy 116,333,968 B, CC BY
+    4.0 (SEAM/SEG facies-challenge derivative; ranged GET returned HTTP 206 +
+    \x93NUMPY magic); this is a post-stack amplitude cube, directly ML-usable but
+    NOT raw SEG-Y. (b) Zenodo derivatives records 13994329
+    (PARIHAKA_PARTITIONED.zip ~928 MB, incl. Chevron annotations) and 21764042
+    (~449 MB) — API says public CC-BY but Zenodo bot-blocks anonymous fetches, so
+    UNVERIFIED from here. (c) RAW SEG-Y (the full/near/mid/far angle stacks) now
+    only via the NZP&M Geodata Catalogue (registration + RealMe order). Sizes
+    below were measured when the S3 mirror was public.
     The canonical open 3D for ML work — used in the SEG/AICrowd fault-identification
     challenge and countless facies papers. Angle stacks make AVO experiments possible.
     True pre-stack gathers must be ordered from NZP&M.
@@ -81,10 +88,12 @@
   bulk_method: "single-file HTTPS"
   notes: >-
     ⚠ DOWNLOAD LINK BROKEN 2026-09-12: the open.source.geoscience S3 bucket now
-    returns HTTP 403 to anonymous requests (bucket made private/requester-pays);
-    this SEG-Y URL no longer resolves. Largest single free NZ volume when the
-    mirror was public; needs a new host (NZP&M order or new mirror). Size measured
-    when live.
+    returns HTTP 403 to anonymous requests (bucket fully private); this SEG-Y URL
+    no longer resolves. RESOLUTION 2026-09-12: NO live anonymous mirror found
+    (checked HuggingFace, Zenodo, AWS Registry, TerraNubis, GitHub scripts — none
+    host Opunake); raw SEG-Y is NZP&M Geodata Catalogue order-only (registration +
+    RealMe login). Largest single free NZ volume when the mirror was public; size
+    measured then.
   verified: true
   tags: ["segy", "broken-link"]
 
@@ -114,9 +123,11 @@
   bulk_method: "single-file HTTPS"
   notes: >-
     ⚠ DOWNLOAD LINK BROKEN 2026-09-12: the open.source.geoscience S3 bucket now
-    returns HTTP 403 to anonymous requests (private/requester-pays); this SEG-Y URL
-    no longer resolves — needs a new host (NZP&M order or new mirror). Size measured
-    when live. Small enough to iterate on quickly; heavily used in fault- and
+    returns HTTP 403 to anonymous requests (bucket fully private); this SEG-Y URL
+    no longer resolves. RESOLUTION 2026-09-12: NO live anonymous mirror found
+    (HuggingFace/Zenodo/AWS/TerraNubis/GitHub all lack Kerry); raw SEG-Y is NZP&M
+    Geodata Catalogue order-only (registration + RealMe login). Size measured when
+    live. Small enough to iterate on quickly; heavily used in fault- and
     fracture-network papers. Upstream really does spell the folder "Keri_3D".
   verified: true
   tags: ["fault", "segy", "small", "broken-link"]

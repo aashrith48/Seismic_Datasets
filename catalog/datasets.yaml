@@ -367,22 +367,28 @@
   access: open-download
   url: https://www.nlog.nl/en/seismic-data
   download:
+    - kind: datacenter
+      uri: https://www.nlog.nl/datacenter/smc-3d-surveys
+    - kind: rest-list
+      uri: https://www.nlog.nl/nlog-mapviewer/rest/smc/3d/surveys
     - kind: arcgis-rest
       uri: https://www.nlog.nl/standalone/rest/services/nlog_gdn/gdw_ng_smc_grid_utm_v1/MapServer/0/query?f=json&where=1=1&outFields=*
-    - kind: smc-api
-      uri: https://www.nlog.nl/nlog_smc2d-api/surveys
-  bulk_method: "free 3D self-download via map basket; scriptable ArcGIS REST + nlog_smc2d-api (POST/basket flow); FTP for large volumes"
+  bulk_method: "free 3D self-download via public Datacenter/map (no login); REST-backed; delivery is a map-viewer select/download-object action"
   notes: >-
-    The most frictionless national archive in Europe — no registration at all;
-    non-confidential 3D is free to self-download via the map ("free 3D seismic data
-    download via the map"). ~135+ 3D surveys covering ~99,900 km², plus ~5,900 NAM
-    2D lines. The data model distinguishes PostStackSection vs PreStackDataSet;
-    SEG-Y is standard. Scriptable metadata via ArcGIS REST (gdw_ng_smc_grid_utm_v1
-    3D-survey footprints, e.g. L3NAM1987F, Z3NAM1990E) and the nlog_smc2d-api
-    (POST /surveys, verified live 2026-09-12); the actual SEG-Y download runs
-    through a select-then-download-object basket flow, not a plain GET. A fee
-    schedule applies only to data not yet online. 5-year statutory confidentiality
-    (10 for multi-client).
+    The most frictionless national archive in Europe — no registration at all.
+    BROWSER-VERIFIED 2026-09-12: the public Datacenter (nlog.nl/datacenter ->
+    Seismic -> 3D surveys) lists 341 3D surveys with NO login; signal-data types
+    include "SEG-Y original" (released, some 2025) and "DIGITAL". Backed by a
+    public REST API: rest/smc/3d/surveys (the 341 list) and POST
+    rest/smc/signalcollections/details, which returns per-survey holdings with
+    hasSignalData / hasVelocityData / hasQcCompleted flags, file names, byte
+    sizes and Dbk file IDs (e.g. L3AKZ1993A signal collection with a 31,488 B
+    navigation .sgn). So free + no-login and real downloadable holdings are
+    confirmed; the final SEG-Y byte-pull is delivered through the map-viewer
+    select/download-object flow (a plain Dbk-keyed GET was not found — guesses
+    404'd). ArcGIS REST also serves 3D footprints. The data model distinguishes
+    PostStackSection vs PreStackDataSet. A fee applies only to data not yet
+    online. 5-year statutory confidentiality (10 for multi-client).
   verified: true
   tags: ["no-account", "flagship"]
 

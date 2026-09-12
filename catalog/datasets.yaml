@@ -228,11 +228,21 @@
   download:
     - kind: portal
       uri: https://public.neats.nopta.gov.au/nopims
-  bulk_method: "portal download; very large orders offline via ausgeodata@ga.gov.au"
+    - kind: odata
+      uri: https://services.neats.nopta.gov.au/odata/v1/public/nopims/survey/PublicNopimsSurvey
+  bulk_method: "portal basket download; public OData metadata APIs; very large orders offline via ausgeodata@ga.gov.au"
   notes: >-
     Almost certainly the largest genuinely-free archive that includes pre-stack
     field data. GA calls it "one of the world's largest collections of petroleum
-    data". Release rules tightened 28 Nov 2025 (ministerial approval).
+    data". The public NEATS portal (public.neats.nopta.gov.au/nopims) browses
+    without login and exposes public OData metadata APIs (Surveys, Wells,
+    Reprocessings, Released Documents, Core Library) — no account needed. The
+    Surveys OData returned 2,988 surveys, 428 of them 3D (3D MSS / MC3D /
+    2D-3D MSS), verified 2026-09-12 via
+    services.neats.nopta.gov.au/odata/v1/public/nopims/survey. Released data is
+    downloadable via the basket; unreleased seismic requires a basket request
+    and, since 28 Nov 2025, ministerial approval before release. Whether basket
+    download of released SEG-Y needs an account is unverified.
   verified: true
   tags: ["prestack", "petabyte", "flagship"]
 

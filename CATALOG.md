@@ -8,7 +8,7 @@ A catalog of open, public, and potentially accessible seismic datasets worldwide
 
 - **80** catalogued entries across **23** countries/regions
 - **53.3 TB** of directly-downloadable data with exact byte counts (15 entries measured)
-- **67** entries are free to download (53 with no account at all)
+- **67** entries are free to download (54 with no account at all)
 
 | Category | Entries |
 |---|---|
@@ -79,7 +79,7 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 | Dataset | Region | Type | Size | Access | License | Use | Get it |
 |---|---|---|---|---|---|---|---|
 | [GSQ Open Data Portal (Queensland)](https://geoscience.data.qld.gov.au/data/seismic/?type=seismic&res_format=segy) | Queensland — Bowen, Surat, Cooper/Eromanga, Galilee | 2D and some 3D, SEG-Y + support data | ~100s of TB (1,402 seismic datasets) | 🟢 open | CC BY 4.0 (Queensland Government) | COM BY ML | [ckan-api](https://geoscience.data.qld.gov.au/api/3/action/package_search?q=seismic+segy) |
-| [NOPIMS (Geoscience Australia / NOPTA)](https://www.ga.gov.au/nopims) | All Australian offshore basins | 2D/3D/4D field (pre-stack), processed, velocities, navigation | ~3–4 PB *(est.)* | 🟡 free acct | CC BY 4.0 after release | COM BY ML | [portal](https://public.neats.nopta.gov.au/nopims) · [odata](https://services.neats.nopta.gov.au/odata/v1/public/nopims/survey/PublicNopimsSurvey) |
+| [NOPIMS (Geoscience Australia / NOPTA)](https://www.ga.gov.au/nopims) | All Australian offshore basins | 2D/3D/4D field (pre-stack), processed, velocities, navigation | ~3–4 PB *(est.)* | 🟢 open | CC BY 4.0 after release | COM BY ML | [portal](https://public.neats.nopta.gov.au/nopims) · [odata](https://services.neats.nopta.gov.au/odata/v1/public/nopims/survey/PublicNopimsSurvey) |
 | [SARIG (South Australia)](https://catalog.sarig.sa.gov.au/dataset/mesac719) | South Australia — Cooper/Eromanga, Otway, Officer | 2D SEG-Y (>8,000 lines, >150,000 line-km), 3D, field data | ~1 PB+ *(est.)* | 🟢 open | Free, SA Crown / CC-BY-style terms | COM BY ML | [ckan-api](https://catalog.sarig.sa.gov.au/api/3/action/package_search?q=seismic+segy) · [basin-in-a-box (Otway)](https://catalog.sarig.sa.gov.au/dataset/mesac29507) |
 | [WAPIMS (Western Australia DEMIRS)](https://wapims.dmp.wa.gov.au/wapims) | WA onshore and state waters — Carnarvon, Perth, Canning | processed seismic, navigation, scanned sections | ~100s of TB *(est.)* | 🟢 open | Free, WA Government terms | COM? | individual items online; basin packages so large you mail in a hard drive |
 | [ANP BDEP / REATE (Brazil)](https://www.gov.br/anp/pt-br/assuntos/exploracao-e-producao-de-oleo-e-gas/dados-tecnicos) | Brazilian basins — Santos, Campos, Equatorial Margin | 2D/3D field and processed, some pre-stack | ~5–7 PB total; 100 TB pre-stack + 37 TB post-stack publicly offered | 🟡 academic | Public data free for universities; fee for industry delivery | **NC** BY | portal ordering; delivery on media/SFTP |

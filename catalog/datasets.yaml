@@ -223,7 +223,7 @@
     share_alike: "no"
     ml_training: "yes"
   usage_basis: spdx
-  access: open-registration
+  access: open-download
   url: https://www.ga.gov.au/nopims
   download:
     - kind: portal
@@ -239,10 +239,17 @@
     Reprocessings, Released Documents, Core Library) — no account needed. The
     Surveys OData returned 2,988 surveys, 428 of them 3D (3D MSS / MC3D /
     2D-3D MSS), verified 2026-09-12 via
-    services.neats.nopta.gov.au/odata/v1/public/nopims/survey. Released data is
-    downloadable via the basket; unreleased seismic requires a basket request
-    and, since 28 Nov 2025, ministerial approval before release. Whether basket
-    download of released SEG-Y needs an account is unverified.
+    services.neats.nopta.gov.au/odata/v1/public/nopims/survey. Released data
+    downloads WITHOUT an account: selecting an acquisition yields a session
+    userToken and the Survey Data OData function GetSurveyDataForSelection
+    (userToken=...) returns per-item Download_Url + File_Size_Bytes + Data_Format
+    (SEGY) + Data_Description. Files are ZIPs on CloudFront
+    (dnxxuwuw8tglo.cloudfront.net/Surveys/*.zip) served with HTTP range support;
+    a normal browser User-Agent is required (bare curl gets 403). Verified
+    2026-09-12: Sequoia 3D MSS 2021 exposes 90 items incl. a "Final Stacks" SEGY
+    (D00020664.zip, 12,733,719,264 B = post-stack 3D) — ranged GET returned HTTP
+    206 + ZIP magic. Unreleased seismic is request-only via the basket and, since
+    28 Nov 2025, needs ministerial approval before release.
   verified: true
   tags: ["prestack", "petabyte", "flagship"]
 

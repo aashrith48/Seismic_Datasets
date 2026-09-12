@@ -259,10 +259,20 @@
   access: open-request
   url: https://www.sodir.no/en/diskos/seismic/
   download: []
-  bulk_method: "Diskos Public Portal order; members get direct download/API"
+  bulk_method: "Public portal (DecisionSpace 365 Enterprise Search) checkbox->cart order; members get direct download/API"
   notes: >-
-    >1,300 public 3D surveys, >24,000 public post-stack cubes, 30,000 released
-    datasets. The largest government seismic repository in Europe.
+    The largest government seismic repository in Europe. Public guest portal
+    (diskos.com -> Public Portal -> DecisionSpace 365 Enterprise Search at
+    public.dsif.dawlmknpdprd01.ienergycloud.solutions, reCAPTCHA-gated guest
+    login). Released-content counts observed directly in the public portal on
+    2026-09-12: 65,423 Poststack Datasets, 5,869 Seismic Surveys, 12,170
+    Wellbores, 11,661 Navigation Sets, 5,412,648 Wellbore Files. Poststack
+    datasets are per-Dataset-ID SEGY exposed with 52 metadata columns (Survey
+    Type 2D/3D, Dataset Type e.g. MIG FIN, Attribute incl. acoustic impedance,
+    File Format, File Size MB, Sample Interval, Num Samples/Traces, CRS, Release
+    Date, Operator); retrieval is a checkbox->cart flow. Whether guest download
+    is free or incurs a media/handling fee is not yet verified. (Earlier survey
+    figures: >1,300 public 3D surveys, ~30,000 released datasets.)
   verified: false
   tags: ["petabyte", "prestack", "flagship"]
 

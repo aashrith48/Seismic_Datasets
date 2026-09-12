@@ -6,9 +6,9 @@ A catalog of open, public, and potentially accessible seismic datasets worldwide
 
 ## At a glance
 
-- **78** catalogued entries across **23** countries/regions
-- **53.2 TB** of directly-downloadable data with exact byte counts (14 entries measured)
-- **66** entries are free to download (51 with no account at all)
+- **80** catalogued entries across **23** countries/regions
+- **53.3 TB** of directly-downloadable data with exact byte counts (15 entries measured)
+- **67** entries are free to download (53 with no account at all)
 
 | Category | Entries |
 |---|---|
@@ -16,8 +16,8 @@ A catalog of open, public, and potentially accessible seismic datasets worldwide
 | [Named 2D surveys and line sets](#named-2d-surveys-and-line-sets) | 3 |
 | [National / regulator archives](#national-regulator-archives) | 19 |
 | [Academic and research archives](#academic-and-research-archives) | 13 |
-| [ML-ready and labeled datasets](#ml-ready-and-labeled-datasets) | 8 |
-| [Synthetic models and benchmarks](#synthetic-models-and-benchmarks) | 1 |
+| [ML-ready and labeled datasets](#ml-ready-and-labeled-datasets) | 9 |
+| [Synthetic models and benchmarks](#synthetic-models-and-benchmarks) | 2 |
 | [Earthquake / passive waveform archives](#earthquake-passive-waveform-archives) | 7 |
 | [Distributed acoustic sensing (DAS)](#distributed-acoustic-sensing-das) | 5 |
 | [Strong-motion databases](#strong-motion-databases) | 3 |
@@ -78,15 +78,15 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 
 | Dataset | Region | Type | Size | Access | License | Use | Get it |
 |---|---|---|---|---|---|---|---|
-| [GSQ Open Data Portal (Queensland)](https://geoscience.data.qld.gov.au/data/seismic/?type=seismic&res_format=segy) | Queensland — Bowen, Surat, Cooper/Eromanga, Galilee | 2D and some 3D, SEG-Y + support data | ~100s of TB (1,402 seismic datasets) | 🟢 open | CC BY 4.0 (Queensland Government) | COM BY ML | S3-backed download, no login |
+| [GSQ Open Data Portal (Queensland)](https://geoscience.data.qld.gov.au/data/seismic/?type=seismic&res_format=segy) | Queensland — Bowen, Surat, Cooper/Eromanga, Galilee | 2D and some 3D, SEG-Y + support data | ~100s of TB (1,402 seismic datasets) | 🟢 open | CC BY 4.0 (Queensland Government) | COM BY ML | [ckan-api](https://geoscience.data.qld.gov.au/api/3/action/package_search?q=seismic+segy) |
 | [NOPIMS (Geoscience Australia / NOPTA)](https://www.ga.gov.au/nopims) | All Australian offshore basins | 2D/3D/4D field (pre-stack), processed, velocities, navigation | ~3–4 PB *(est.)* | 🟡 free acct | CC BY 4.0 after release | COM BY ML | [portal](https://public.neats.nopta.gov.au/nopims) · [odata](https://services.neats.nopta.gov.au/odata/v1/public/nopims/survey/PublicNopimsSurvey) |
-| [SARIG (South Australia)](https://catalog.sarig.sa.gov.au/dataset/mesac719) | South Australia — Cooper/Eromanga, Otway, Officer | 2D SEG-Y (>8,000 lines, >150,000 line-km), 3D, field data | ~1 PB+ *(est.)* | 🟢 open | Free, SA Crown / CC-BY-style terms | COM BY ML | [basin-in-a-box (Otway)](https://catalog.sarig.sa.gov.au/dataset/mesac29507) |
+| [SARIG (South Australia)](https://catalog.sarig.sa.gov.au/dataset/mesac719) | South Australia — Cooper/Eromanga, Otway, Officer | 2D SEG-Y (>8,000 lines, >150,000 line-km), 3D, field data | ~1 PB+ *(est.)* | 🟢 open | Free, SA Crown / CC-BY-style terms | COM BY ML | [ckan-api](https://catalog.sarig.sa.gov.au/api/3/action/package_search?q=seismic+segy) · [basin-in-a-box (Otway)](https://catalog.sarig.sa.gov.au/dataset/mesac29507) |
 | [WAPIMS (Western Australia DEMIRS)](https://wapims.dmp.wa.gov.au/wapims) | WA onshore and state waters — Carnarvon, Perth, Canning | processed seismic, navigation, scanned sections | ~100s of TB *(est.)* | 🟢 open | Free, WA Government terms | COM? | individual items online; basin packages so large you mail in a hard drive |
 | [ANP BDEP / REATE (Brazil)](https://www.gov.br/anp/pt-br/assuntos/exploracao-e-producao-de-oleo-e-gas/dados-tecnicos) | Brazilian basins — Santos, Campos, Equatorial Margin | 2D/3D field and processed, some pre-stack | ~5–7 PB total; 100 TB pre-stack + 37 TB post-stack publicly offered | 🟡 academic | Public data free for universities; fee for industry delivery | **NC** BY | portal ordering; delivery on media/SFTP |
 | [ANH EPIS / BIP (Colombia)](https://www.anh.gov.co) | Colombia — Llanos, Magdalena, Caribbean offshore | 2D (~150,000 km), 3D (~30,000 km²), pre-stack after confidentiality | ~1.5 PB *(est.)* | 🟡 academic | Free for academia; fee for industry | **NC** BY | order/download from EPIS |
 | [GEUS Subsurface Data Portal (Denmark)](https://data.geus.dk/geusmap/?mapname=oil_and_gas&lang=en) | Denmark, Danish North Sea, Greenland | 2D/3D processed seismic | ~10s of TB (~1,400 surveys) *(est.)* | 🟢 open | Free download; handling fee for field data | COM? | map-based download; no API |
 | [UK National Data Repository (NSTA)](https://ndr.nstauthority.co.uk/) | UK Continental Shelf | 2D/3D post-stack SEG-Y, pre-stack (mandatory upload since 2018), navigation | >600 TB confirmed 2023; ~1 PB quoted 2024–25 | 🟡 free acct | Open Government Licence after the release period | COM BY ML | web portal with preview + download; bulk transfer on request |
-| [Ireland PAD / GSI petroleum seismic](https://data.gov.ie/dataset/3d-seismic-survey) | Irish offshore — Porcupine, Rockall, Celtic Sea | 2D (~400,000 km), 44 3D surveys, SEG-Y | ~100s of TB *(est.)* | 🟡 free acct | Free (metadata CC BY 4.0); SEG-Y free on request | COM? BY | web/FTP; ordered on disk for large volumes |
+| [Ireland PAD / GSI petroleum seismic](https://isde.ie/geonetwork/) | Irish offshore — Porcupine, Rockall, Celtic Sea | 2D (~400,000 km), 44 3D surveys, SEG-Y | ~100s of TB *(est.)* | 🟡 request | Free (metadata CC BY 4.0); SEG-Y free on request | COM? BY | [csw-api](https://isde.ie/geonetwork/srv/eng/csw) |
 | [India NDR (DGH)](https://www.dghindia.gov.in/) | Indian basins — KG, Mumbai Offshore | 2D/3D and pre-stack (post-2017) | ~8–10 PB (~2.5 M line-km 2D, ~500,000 km² 3D) *(est.)* | 🟡 academic | Free viewing; fee for download, waived for academia | COM? | web/FTP request; media delivery |
 | [ViDEPI (Italy)](https://www.videpi.com/videpi/videpi.asp) | Italy — Adriatic, Po Valley, onshore | scanned 2D seismic sections (raster), some SEG-Y | ~85,000 km of 2D as images | 🟢 open | CC BY 4.0 | COM BY ML | direct HTTP |
 | [Antarctic Seismic Data Library System (SDLS)](https://sdls.ogs.it/) | Antarctica (south of 60°S) | final-stack MCS 2D SEG-Y, navigation | ~5–15 TB (~300,000 line-km public) *(est.)* | 🟡 free acct | Antarctic Treaty mandate; free registration; non-commercial | **NC** BY | [US mirror](https://www.usap-dc.org/sdls) |
@@ -95,7 +95,7 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 | [Diskos NDR (Sodir / Norwegian Offshore Directorate)](https://www.sodir.no/en/diskos/seismic/) | Norwegian Continental Shelf | 2D/3D post-stack, velocities, navigation, pre-stack since 2012 | >22 PB stored; ~1 PB+ released | 🟡 request | Released data free to members; public portal charges media/handling only | COM? | Public portal (DecisionSpace 365 Enterprise Search) checkbox->cart order; members get direct download/API |
 | [NZP&M Petroleum Exploration Data Pack](https://www.nzpam.govt.nz/maps-geoscience/petroleum-datapack) | All New Zealand basins | 2D (475,000 line-km), 3D (>24,000 km²), field + processed | multi-TB *(est.)* | 🟡 free acct | Open-file under the Crown Minerals Act | COM? | [catalogue](https://geodata.nzpam.govt.nz/) |
 | [Kansas Geological Survey free 3D surveys](https://www.kgs.ku.edu/Geophysics/) | USA — Kansas (Hugoton, Cherokee Basin) | 3D SEG-Y volumes, 2D lines, 4D (CCUS monitoring) | <1 TB (dozens of GB) *(est.)* | 🔴 closed | Free | COM? | none — KGS publishes no downloadable seismic |
-| [NAMSS — National Archive of Marine Seismic Surveys (USGS)](https://walrus.wr.usgs.gov/namss/) | US OCS — Gulf of Mexico, Atlantic, Pacific, Alaska | 2D stacks, 3D post-stack volumes, SEG-Y, SEG-P1 navigation | ~30–40 TB *(est.)* | 🟢 open | Public domain (US Government) | COM ML | [mirror](https://edx.netl.doe.gov/dataset/namss) |
+| [NAMSS — National Archive of Marine Seismic Surveys (USGS)](https://walrus.wr.usgs.gov/namss/) | US OCS — Gulf of Mexico, Atlantic, Pacific, Alaska | 2D stacks, 3D post-stack volumes, SEG-Y, SEG-P1 navigation | ~30–40 TB *(est.)* | 🟢 open | Public domain (US Government) | COM ML | [wms-getfeatureinfo](https://walrus.wr.usgs.gov/namss/wms) · [file-pattern](https://walrus.wr.usgs.gov/namss/data/{YEAR}/namss.{SURVEY}.mcs3d.airgun.zip) · [mirror](https://edx.netl.doe.gov/dataset/namss) |
 | [PASA (Petroleum Agency South Africa)](https://www.pasa.co.za) | South African offshore and onshore — Orange Basin, Outeniqua | 2D (~300,000 line-km), 3D (>40,000 km²), field and processed | ~100s of TB *(est.)* | 🟡 academic | Fee for data packages; free indexes; academic tier available | COM? | order via data centre |
 
 ## Academic and research archives
@@ -120,6 +120,7 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 
 | Dataset | Region | Type | Size | Access | License | Use | Get it |
 |---|---|---|---|---|---|---|---|
+| [Thebe — Gigabyte Interpreted Seismic Dataset for Fault Recognition](https://doi.org/10.7910/DVN/YBYGBK) | Australia — Exmouth Plateau, Carnarvon Basin (NW Shelf) | 3D post-stack (NumPy), fault labels | ~50 GB (81 files; ~33.5 GB primary seismic+fault payload) | 🟢 open | CC BY 4.0 | COM BY ML | [dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/YBYGBK) |
 | [Hardpicks — hardrock first-break picking benchmark](https://github.com/mila-iqia/hardpicks) | Canada — Brunswick & Halfmile Lake (NB), Lalor (MB), Sudbury (ON) | 3D land reflection shot gathers, HDF5 (.hdf5.xz), first-break picks in trace headers | 23.79 GB compressed (4 surveys) | 🟢 open | CC BY 4.0 (Brunswick, Halfmile Lake); Open Government Licence - Canada (Lalor, Sudbury) | COM BY ML | [Brunswick 3D](https://d3sakqnghgsk6x.cloudfront.net/Brunswick_3D/Brunswick_orig_1500ms_V2.hdf5.xz) · [Halfmile Lake 3D](https://d3sakqnghgsk6x.cloudfront.net/Halfmile_3D/Halfmile3D_add_geom_sorted.hdf5.xz) · [Lalor 3D](https://d3sakqnghgsk6x.cloudfront.net/Lalor_3D/Lalor_raw_z_1500ms_norp_geom_v3.hdf5.xz) · [Sudbury 3D](https://d3sakqnghgsk6x.cloudfront.net/Sudbury_3D/preprocessed_Sudbury3D.hdf.xz) |
 | [DiTing](https://doi.org/10.1016/j.eqs.2022.01.022) | China, 2013–2020 | 180 s 3-component at 50 Hz, P/S picks, first-motion polarity | >100 GB (2.73 M traces, 787k events) *(est.)* | 🟡 free acct | Open (registration on the Chinese platform) | COM? | download via data.earthquake.cn |
 | [MultiSeismo (PNNL) — multimodal seismic dataset](https://huggingface.co/datasets/PNNL/MultiSeismo) | Global — 16k+ events, 2010-2023 | multi-station waveforms, parquet, intensity maps, population-exposure rasters, textual event descriptions (JSON) | 106.53 GB (104 parquet files) | 🟢 open | CC0 1.0 | COM ML | [HuggingFace repo](https://huggingface.co/datasets/PNNL/MultiSeismo) |
@@ -133,6 +134,7 @@ Sizes marked *(est.)* are derived from line-km or survey counts and can be off b
 
 | Dataset | Region | Type | Size | Access | License | Use | Get it |
 |---|---|---|---|---|---|---|---|
+| [FaultSeg3D synthetic fault training data (Xinming Wu)](https://github.com/xinwucwp/faultSeg) | Synthetic | 3D synthetic seismic, fault labels, 128^3 volumes | ~1.5 GB (computed; Google Drive folder, not measured) *(est.)* | 🟢 open | CC BY-NC 4.0 | **NC** BY | [google-drive](https://drive.google.com/drive/folders/1FcykAxpqiy2NpLP1icdatrrSQgLRXLP8) |
 | [SubsurfaceGen field-scale velocity + wavefield dataset](https://huggingface.co/datasets/subsurfacegen/field-scale-dataset) | Synthetic — field-scale models spanning multiple geological settings | 3D velocity volumes (SOS-smoothed, 619 depth samples), 2D velocity slices, acoustic wavefields, multi-source shot-gather cubes, HDF5 | 11.92 TB (47,084 files) | 🟢 open | CC BY 4.0 | COM BY ML | [HuggingFace repo](https://huggingface.co/datasets/subsurfacegen/field-scale-dataset) · [preview variant (2.81 GB)](https://huggingface.co/datasets/subsurfacegen/field-scale-dataset-preview) |
 
 ## Earthquake / passive waveform archives

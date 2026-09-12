@@ -374,13 +374,22 @@
   access: open-download
   url: https://walrus.wr.usgs.gov/namss/
   download:
+    - kind: wms-getfeatureinfo
+      uri: https://walrus.wr.usgs.gov/namss/wms
+    - kind: file-pattern
+      uri: https://walrus.wr.usgs.gov/namss/data/{YEAR}/namss.{SURVEY}.mcs3d.airgun.zip
     - kind: mirror
       uri: https://edx.netl.doe.gov/dataset/namss
-  bulk_method: "per-survey ZIP over HTTPS; scriptable with wget once survey IDs are known"
+  bulk_method: "WMS GetFeatureInfo (JSON) yields per-survey data_url; direct per-survey ZIP over HTTPS, scriptable"
   notes: >-
     567 2D surveys (2.36 M line-km) + 182 3D surveys as of 2019, likely 800+ now.
     No registration, no account — the easiest large US archive to script against.
-    No pre-stack. Inherits BOEM's 25-year proprietary term.
+    The WMS GetFeatureInfo endpoint returns JSON with a per-survey data_url
+    (filters incl. data-type=3D, year, contributor) pointing at direct ZIPs
+    namss.{SURVEY}.mcs3d.airgun.zip. HEAD-measured 2026-09-12: B-01b-97-LA
+    93,572,550,339 B (~87 GiB); B-19-95-LA 25,410,955,546 B (~23.7 GiB). SEG-Y
+    delivered per-survey in one ZIP (confirm post-stack vs field/airgun traces
+    after unzip). Inherits BOEM's 25-year proprietary term.
   verified: true
   tags: ["no-account", "public-domain", "scriptable"]
 
@@ -437,12 +446,20 @@
   access: open-download
   url: https://catalog.sarig.sa.gov.au/dataset/mesac719
   download:
+    - kind: ckan-api
+      uri: https://catalog.sarig.sa.gov.au/api/3/action/package_search?q=seismic+segy
     - kind: basin-in-a-box (Otway)
       uri: https://catalog.sarig.sa.gov.au/dataset/mesac29507
-  bulk_method: "no login; AWS S3 bulk for large packages"
+  bulk_method: "no login; CKAN API + Azure-blob direct downloads with byte-exact size_bytes"
   notes: >-
-    The "Basin in a Box" packages bundle SEG-Y + logs + reports + mapping as one
-    zip — the fastest way to get a complete, workstation-ready basin.
+    The cleanest open archive here for bulk 3D SEG-Y ingestion: open CC BY 4.0,
+    CKAN-scriptable, curl-friendly direct downloads on Azure blob with byte-exact
+    size_bytes in the API. CKAN package_search (q=seismic+segy) returned 224
+    datasets; explicitly-labelled 3D PSTM/PSDM SEG-Y volumes present. HEAD-measured
+    2026-09-12: Adidas 3D (mesac1894) 21,975,625,809 B (~21.98 GB); Moorari 3D
+    repro (mesac35918) 600,108,689 B; Kita 3D PSTM (mesac1926) ~10.97 GB (API
+    size_bytes). The "Basin in a Box" packages bundle SEG-Y + logs + reports as
+    one workstation-ready zip.
   verified: true
   tags: ["no-account", "wells", "bulk"]
 
@@ -466,9 +483,19 @@
   usage_basis: spdx
   access: open-download
   url: https://geoscience.data.qld.gov.au/data/seismic/?type=seismic&res_format=segy
-  download: []
-  bulk_method: "S3-backed download, no login"
-  notes: "1,402 open seismic datasets confirmed via the CKAN API. 3-year confidentiality then open file."
+  download:
+    - kind: ckan-api
+      uri: https://geoscience.data.qld.gov.au/api/3/action/package_search?q=seismic+segy
+  bulk_method: "CKAN API (S3-backed); direct file fetch needs browser-like headers"
+  notes: >-
+    1,402 open seismic datasets; CKAN package_search (q=seismic+segy) returns 112,
+    broader 3D query ~4,648. CC BY 4.0. 3D stack/migrated SEG-Y present (e.g.
+    Overston 3D cr139972; Rookwood cr141931 with SEGY STACK / VELOCITY / PSTM GATH
+    zips). Files on S3 gsq-prod-ckan-horizon-public — but both the S3 URL and the
+    CKAN /download redirect returned HTTP 403 AccessDenied to plain curl
+    (User-Agent/bot filter, not a true permission wall; bucket is -public, metadata
+    open) and CKAN size is null, so file sizes are UNVERIFIED (2026-09-12).
+    3-year confidentiality then open file.
   verified: true
   tags: ["no-account", "cc-by", "scriptable"]
 
@@ -495,7 +522,11 @@
   url: https://wapims.dmp.wa.gov.au/wapims
   download: []
   bulk_method: "individual items online; basin packages so large you mail in a hard drive"
-  notes: "Contact petdata@dmpe.wa.gov.au for bulk."
+  notes: >-
+    Contact petdata@dmpe.wa.gov.au for bulk. No public API surfaced from the portal
+    (2026-09-12); bulk/basin packages are request + physical media and direct
+    post-stack 3D SEG-Y download was not confirmed — effectively request-based
+    despite some individual items being online.
   verified: true
   tags: ["bulk"]
 
@@ -544,12 +575,23 @@
     share_alike: "unclear"
     ml_training: "unclear"
   usage_basis: licence-text
-  access: open-registration
-  url: https://data.gov.ie/dataset/3d-seismic-survey
-  download: []
-  bulk_method: "web/FTP; ordered on disk for large volumes"
-  notes: "Released data has been free since 2013. Includes the 2013 ~18,000 km Atlantic regional 2D."
-  verified: false
+  access: open-request
+  url: https://isde.ie/geonetwork/
+  download:
+    - kind: csw-api
+      uri: https://isde.ie/geonetwork/srv/eng/csw
+  bulk_method: "request via S&P Global (DECC/PAD data agent); ISDE CSW for metadata only"
+  notes: >-
+    CORRECTION (verified 2026-09-12): the previously-catalogued
+    data.gov.ie/dataset/3d-seismic-survey URL is DEAD (HTTP 404, multiple UAs).
+    Released offshore petroleum SEG-Y (~25-36 3D surveys) is distributed on request
+    via S&P Global (IHS Markit), the DECC/PAD data agent — commercially
+    administered, 10-year confidentiality. Open no-login access is metadata only:
+    the Irish Spatial Data Exchange (ISDE) GeoNetwork CSW (isde.ie/geonetwork;
+    GetRecords reports 1,420 records, ~25 seismic) and data.gov.ie CKAN (CC BY 4.0)
+    which holds academic/INFOMAR shallow-seismic + survey outlines, not petroleum
+    SEG-Y. Note: the www.isde.ie host does not resolve; use bare isde.ie.
+  verified: true
   tags: []
 
 - id: videpi-italy
@@ -2462,3 +2504,89 @@
     err LARGE - here the published figure was far too SMALL.
   verified: true
   tags: ["synthetic", "velocity-model", "fwi", "wavefield", "cc-by", "large", "size-correction"]
+
+- id: thebe
+  name: Thebe — Gigabyte Interpreted Seismic Dataset for Fault Recognition
+  category: ml-benchmark
+  region: Australia — Exmouth Plateau, Carnarvon Basin (NW Shelf)
+  country: AU
+  data_type: ["3D post-stack (NumPy)", "fault labels"]
+  ancillary: ["none"]
+  size_bytes: 50061299588
+  size_bytes_min: null
+  size_bytes_max: null
+  size_display: "~50 GB (81 files; ~33.5 GB primary seismic+fault payload)"
+  size_confidence: verified
+  license: "CC BY 4.0"
+  license_spdx: CC-BY-4.0
+  usage:
+    commercial: "yes"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "yes"
+  usage_basis: spdx
+  access: open-download
+  url: https://doi.org/10.7910/DVN/YBYGBK
+  download:
+    - kind: dataverse
+      uri: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/YBYGBK
+  bulk_method: "Harvard Dataverse per-file HTTPS / Dataverse API"
+  notes: >-
+    The largest public real-seismic fault dataset and the key real-data
+    fault-labeled benchmark (companion to the synthetic FaultSeg3D). Thebe Gas
+    Field, Exmouth Plateau, Carnarvon Basin, NW Shelf Australia. 1,804
+    seismic/fault cross-section pairs; full volume 1803 x 3174 x 1537; NumPy
+    (seismic as .npz/.zip, binary fault labels as .npy, 100 sections per file);
+    author split 900 train / 200 val / 703 test. Canonical host is Harvard
+    Dataverse (NOT Zenodo). File sizes measured 2026-09-12 via the Dataverse
+    dataset API (byte-exact filesize per file; 81 files sum ~50.06 GB; primary
+    seismic zips ~24.75 GB + fault .npy ~8.79 GB ~= 33.5 GB; the rest is
+    redundant .npz/.zip copies, PDFs and notebooks). The record carries both a
+    CC0-with-modified-terms and a CC BY 4.0 licence PDF and the paper states
+    CC BY 4.0 — recorded conservatively as CC BY 4.0; verify the additional-terms
+    PDF before commercial use. Paper: An et al., Data in Brief 2021
+    (S2352340921005035 / PMC8220338).
+  verified: true
+  tags: ["fault", "ml-benchmark", "labels", "numpy", "field-data", "large"]
+
+- id: faultseg3d
+  name: FaultSeg3D synthetic fault training data (Xinming Wu)
+  category: synthetic
+  region: Synthetic
+  country: GLOBAL
+  data_type: ["3D synthetic seismic", "fault labels", "128^3 volumes"]
+  ancillary: ["none"]
+  size_bytes: null
+  size_bytes_min: null
+  size_bytes_max: null
+  size_display: "~1.5 GB (computed; Google Drive folder, not measured)"
+  size_confidence: estimate
+  license: "CC BY-NC 4.0"
+  license_spdx: CC-BY-NC-4.0
+  usage:
+    commercial: "no"
+    redistribution: "yes"
+    attribution_required: "yes"
+    share_alike: "no"
+    ml_training: "unclear"
+  usage_basis: spdx
+  access: open-download
+  url: https://github.com/xinwucwp/faultSeg
+  download:
+    - kind: google-drive
+      uri: https://drive.google.com/drive/folders/1FcykAxpqiy2NpLP1icdatrrSQgLRXLP8
+  bulk_method: "Google Drive folder (gdown)"
+  notes: >-
+    The standard synthetic fault-segmentation training set; companion to Wu et
+    al. "FaultSeg3D" (Geophysics 2019). 200 training + 20 validation paired
+    volumes, each 128 x 128 x 128 raw binary .dat, dtype float32 (np.single),
+    laid out train/seis + train/fault + validation/seis + validation/fault.
+    Format/counts verified 2026-09-12 from the repo code (utils.py DataGenerator:
+    np.fromfile(..., dtype=np.single) reshaped to (128,128,128); train.py
+    train_ID=range(200), valid_ID=range(20)). Size ~1.48 GB is COMPUTED
+    (220 vols x 2 x 128^3 x 4 B), not measured — the data is a Google Drive
+    folder that does not expose Content-Length. Role: synthetic fault
+    fine-tuning / pretraining for 3D fault U-Nets.
+  verified: true
+  tags: ["fault", "synthetic", "ml-benchmark", "small", "noncommercial"]

@@ -597,17 +597,28 @@
   access: open-download
   url: https://data.geus.dk/geusmap/?mapname=oil_and_gas&lang=en
   download:
+    - kind: postgrest-api
+      uri: https://data.geus.dk/sambaweb/processing?id=eq.1961
+    - kind: azure-blob
+      uri: https://geusdata.blob.core.windows.net/geusdata/seismic/3D/AG9801.zip
     - kind: wfs-api
-      uri: https://data.geus.dk/geusmap/ows/25832.jsp?mapname=oil_and_gas&service=WFS&version=1.0.0&request=GetFeature&typename=seismic_3d_surveys
-  bulk_method: "map basket download (session/blob); public WFS for metadata inventory"
+      uri: https://data.geus.dk/geusmap/ows/25832.jsp?mapname=oil_and_gas&service=WFS&version=1.0.0&request=GetFeature&typename=seismic_3d_processings
+  bulk_method: "scriptable: sambaweb PostgREST 'downloadlink' -> direct Azure blob (resumable, no login)"
   notes: >-
     Free since Oct 2023 — the old Frisbee webshop is retired; all processed 3D
-    seismic (SEG-Y) is downloadable free (a handling fee remains only for raw field
-    data). The GeusMap WFS is public and scriptable: typename seismic_3d_surveys
-    returned 76 released 3D surveys 2026-09-12 (e.g. AG9801, ALMA-91, AMALIE-92),
-    with a seismic_3d_processings feature type too. The SEG-Y download itself is a
-    session/basket blob (no plain per-file REST GET), so bulk harvesting needs a
-    browser-driven order flow. Data copyrights to Energistyrelsen.
+    seismic (SEG-Y) is downloadable free (handling fee only for raw field data).
+    DOWNLOAD-VERIFIED 2026-09-12 end-to-end: the public procsum page's "Download
+    data" (terms-accept only, NO login) streams a direct Azure blob
+    geusdata.blob.core.windows.net/geusdata/seismic/3D/{name}.zip. Ranged GET of
+    AG9801.zip (3D, Danish North Sea, has Final Migration = post-stack) returned
+    HTTP 206 + ZIP magic, 10,518,663,239 B (~10.5 GB), resumable, NO browser
+    session needed. Fully scriptable: the sambaweb PostgREST API
+    (data.geus.dk/sambaweb/processing?id=eq.{id}) exposes a downloadlink field per
+    survey; the GeusMap WFS (typename seismic_3d_surveys / seismic_3d_processings,
+    field info_and_download -> procsum.html?proc_id=) lists 76 released 3D surveys.
+    Corrects the earlier "session/basket, needs browser" note — the blob is a plain
+    direct GET. Terms grant use/processing and sale of derivative products (e.g. a
+    trained model) with attribution to GEUS. Data copyrights to Energistyrelsen.
   verified: true
   tags: ["wells"]
 

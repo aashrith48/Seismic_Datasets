@@ -421,10 +421,11 @@
     No registration, no account — the easiest large US archive to script against.
     The WMS GetFeatureInfo endpoint returns JSON with a per-survey data_url
     (filters incl. data-type=3D, year, contributor) pointing at direct ZIPs
-    namss.{SURVEY}.mcs3d.airgun.zip. HEAD-measured 2026-09-12: B-01b-97-LA
-    93,572,550,339 B (~87 GiB); B-19-95-LA 25,410,955,546 B (~23.7 GiB). SEG-Y
-    delivered per-survey in one ZIP (confirm post-stack vs field/airgun traces
-    after unzip). Inherits BOEM's 25-year proprietary term.
+    namss.{SURVEY}.mcs3d.airgun.zip. DOWNLOAD-VERIFIED 2026-09-12: a ranged GET of
+    B-19-95-LA returned HTTP 206 + ZIP magic (scriptable, browser UA),
+    25,410,955,546 B (~23.7 GiB); B-01b-97-LA HEAD-measured 93,572,550,339 B
+    (~87 GiB). SEG-Y delivered per-survey in one ZIP (confirm post-stack vs
+    field/airgun traces after unzip). Inherits BOEM's 25-year proprietary term.
   verified: true
   tags: ["no-account", "public-domain", "scriptable"]
 
@@ -490,11 +491,13 @@
     The cleanest open archive here for bulk 3D SEG-Y ingestion: open CC BY 4.0,
     CKAN-scriptable, curl-friendly direct downloads on Azure blob with byte-exact
     size_bytes in the API. CKAN package_search (q=seismic+segy) returned 224
-    datasets; explicitly-labelled 3D PSTM/PSDM SEG-Y volumes present. HEAD-measured
-    2026-09-12: Adidas 3D (mesac1894) 21,975,625,809 B (~21.98 GB); Moorari 3D
-    repro (mesac35918) 600,108,689 B; Kita 3D PSTM (mesac1926) ~10.97 GB (API
-    size_bytes). The "Basin in a Box" packages bundle SEG-Y + logs + reports as
-    one workstation-ready zip.
+    datasets; explicitly-labelled 3D PSTM/PSDM SEG-Y volumes present.
+    DOWNLOAD-VERIFIED 2026-09-12: a ranged GET of Adidas 3D (mesac1894)
+    .../mesac-public/resources/files/GSSA_data_packages/Adidas.zip returned
+    HTTP 206 + ZIP magic (resumable, browser UA), size 21,975,625,809 B (~21.98
+    GB). Also measured: Moorari 3D repro (mesac35918) 600,108,689 B; Kita 3D PSTM
+    (mesac1926) ~10.97 GB (API size_bytes). The "Basin in a Box" packages bundle
+    SEG-Y + logs + reports as one workstation-ready zip.
   verified: true
   tags: ["no-account", "wells", "bulk"]
 
@@ -526,11 +529,12 @@
     1,402 open seismic datasets; CKAN package_search (q=seismic+segy) returns 112,
     broader 3D query ~4,648. CC BY 4.0. 3D stack/migrated SEG-Y present (e.g.
     Overston 3D cr139972; Rookwood cr141931 with SEGY STACK / VELOCITY / PSTM GATH
-    zips). Files on S3 gsq-prod-ckan-horizon-public — but both the S3 URL and the
-    CKAN /download redirect returned HTTP 403 AccessDenied to plain curl
-    (User-Agent/bot filter, not a true permission wall; bucket is -public, metadata
-    open) and CKAN size is null, so file sizes are UNVERIFIED (2026-09-12).
-    3-year confidentiality then open file.
+    zips). Files on S3 gsq-prod-ckan-horizon-public — but the S3 URL returns HTTP
+    403 AccessDenied EVEN WITH a full browser User-Agent (retried 2026-09-12), and
+    the CKAN /download redirect also 403s, so anonymous scripted download is
+    GENUINELY BLOCKED (not merely a UA filter) despite the -public bucket name and
+    open metadata; CKAN size is null, file sizes UNVERIFIED. Getting files likely
+    needs an authenticated/browser session. 3-year confidentiality then open file.
   verified: true
   tags: ["no-account", "cc-by", "scriptable"]
 

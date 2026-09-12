@@ -53,10 +53,14 @@
     exposes 21 SEG-Y resources (near/mid/far/full angle stacks at D / T / PSTM /
     RPSTM stages), per-file 13.0–45.84 GB (e.g. T-PSTM-FULL 45.84 GB, near-stack
     13 GB), total 648.95 GB. Search/browse/add-to-cart need NO login (one-time
-    human-verification challenge on search); DOWNLOAD requires a free RealMe login
-    ("Login to download"). So the NZ set is online (not physical-media-only);
-    post-login delivery (direct vs queued) not yet confirmed. The old-mirror sizes
-    below were measured when the S3 bucket was public.
+    human-verification challenge on search); DOWNLOAD requires a free RealMe login.
+    DELIVERY CONFIRMED 2026-09-12 (logged in with a fresh basic RealMe account):
+    pre-login the button reads "Login to download"; post-login it becomes an ACTIVE
+    "Download all ( 648.95 GB )" — a DIRECT download, NOT a physical-media order or
+    queued request. (A basic RealMe login is free and self-service; no NZ-residency
+    / verified-identity needed.) So the full raw Parihaka 3D SEG-Y is genuinely
+    obtainable online for free. The old-mirror sizes below were measured when the
+    S3 bucket was public.
     The canonical open 3D for ML work — used in the SEG/AICrowd fault-identification
     challenge and countless facies papers. Angle stacks make AVO experiments possible.
     True pre-stack gathers must be ordered from NZP&M.

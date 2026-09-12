@@ -311,12 +311,21 @@
   usage_basis: licence-text
   access: open-registration
   url: https://ndr.nstauthority.co.uk/
-  download: []
-  bulk_method: "web portal with preview + download; bulk transfer on request"
+  download:
+    - kind: arcgis-hub
+      uri: https://opendata-nstauthority.hub.arcgis.com/
+  bulk_method: "registered web portal (Create Download Package) + NDR API; no-login metadata via ArcGIS Hub"
   notes: >-
-    Free with registration and genuinely large. Includes the government-funded
-    2D programmes (SW Britain, ESP ~19,000 km, Rockall, Mid-North Sea High).
-    4-year confidentiality on processed seismic.
+    Free with registration and genuinely large, but every actual SEG-Y file is
+    login-gated and the registration model is organisation-based (academic/
+    non-industry via a New Company Request Form) — whether an unaffiliated
+    individual can self-register is unverified. No-login access is metadata only:
+    the NSTA ArcGIS Hub (opendata-nstauthority.hub.arcgis.com) publishes seismic
+    survey outline/header layers ("NDR 3dseis", "NDR Seismic (ED50)", 2D SDS lines,
+    MNSH Government Seismic) as GeoJSON/Shapefile/CSV/WMS — polygons, not traces.
+    Programmatic trace retrieval uses the registered NDR API. Includes the
+    government-funded 2D programmes (SW Britain, ESP ~19,000 km, Rockall, Mid-North
+    Sea High). 4-year confidentiality on processed seismic. (Verified 2026-09-12.)
   verified: true
   tags: ["prestack", "petabyte", "flagship"]
 
@@ -342,12 +351,23 @@
   usage_basis: unstated
   access: open-download
   url: https://www.nlog.nl/en/seismic-data
-  download: []
-  bulk_method: "interactive map / data-centre download; FTP for large volumes"
+  download:
+    - kind: arcgis-rest
+      uri: https://www.nlog.nl/standalone/rest/services/nlog_gdn/gdw_ng_smc_grid_utm_v1/MapServer/0/query?f=json&where=1=1&outFields=*
+    - kind: smc-api
+      uri: https://www.nlog.nl/nlog_smc2d-api/surveys
+  bulk_method: "free 3D self-download via map basket; scriptable ArcGIS REST + nlog_smc2d-api (POST/basket flow); FTP for large volumes"
   notes: >-
-    The most frictionless national archive in Europe — no registration at all.
-    ~135+ 3D surveys covering ~99,900 km², plus ~5,900 NAM 2D lines.
-    5-year statutory confidentiality (10 for multi-client).
+    The most frictionless national archive in Europe — no registration at all;
+    non-confidential 3D is free to self-download via the map ("free 3D seismic data
+    download via the map"). ~135+ 3D surveys covering ~99,900 km², plus ~5,900 NAM
+    2D lines. The data model distinguishes PostStackSection vs PreStackDataSet;
+    SEG-Y is standard. Scriptable metadata via ArcGIS REST (gdw_ng_smc_grid_utm_v1
+    3D-survey footprints, e.g. L3NAM1987F, Z3NAM1990E) and the nlog_smc2d-api
+    (POST /surveys, verified live 2026-09-12); the actual SEG-Y download runs
+    through a select-then-download-object basket flow, not a plain GET. A fee
+    schedule applies only to data not yet online. 5-year statutory confidentiality
+    (10 for multi-client).
   verified: true
   tags: ["no-account", "flagship"]
 
@@ -551,9 +571,18 @@
   usage_basis: unstated
   access: open-download
   url: https://data.geus.dk/geusmap/?mapname=oil_and_gas&lang=en
-  download: []
-  bulk_method: "map-based download; no API"
-  notes: "Free since Oct 2023 — the old Frisbee webshop is retired."
+  download:
+    - kind: wfs-api
+      uri: https://data.geus.dk/geusmap/ows/25832.jsp?mapname=oil_and_gas&service=WFS&version=1.0.0&request=GetFeature&typename=seismic_3d_surveys
+  bulk_method: "map basket download (session/blob); public WFS for metadata inventory"
+  notes: >-
+    Free since Oct 2023 — the old Frisbee webshop is retired; all processed 3D
+    seismic (SEG-Y) is downloadable free (a handling fee remains only for raw field
+    data). The GeusMap WFS is public and scriptable: typename seismic_3d_surveys
+    returned 76 released 3D surveys 2026-09-12 (e.g. AG9801, ALMA-91, AMALIE-92),
+    with a seismic_3d_processings feature type too. The SEG-Y download itself is a
+    session/basket blob (no plain per-file REST GET), so bulk harvesting needs a
+    browser-driven order flow. Data copyrights to Energistyrelsen.
   verified: true
   tags: ["wells"]
 

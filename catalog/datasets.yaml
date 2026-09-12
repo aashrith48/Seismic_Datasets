@@ -329,18 +329,27 @@
   download:
     - kind: arcgis-hub
       uri: https://opendata-nstauthority.hub.arcgis.com/
-  bulk_method: "registered web portal (Create Download Package) + NDR API; no-login metadata via ArcGIS Hub"
+  bulk_method: "browse with a free account; DOWNLOAD needs org Company-Admin approval or a New Company Request Form (academic/solo)"
   notes: >-
-    Free with registration and genuinely large, but every actual SEG-Y file is
-    login-gated and the registration model is organisation-based (academic/
-    non-industry via a New Company Request Form) — whether an unaffiliated
-    individual can self-register is unverified. No-login access is metadata only:
-    the NSTA ArcGIS Hub (opendata-nstauthority.hub.arcgis.com) publishes seismic
-    survey outline/header layers ("NDR 3dseis", "NDR Seismic (ED50)", 2D SDS lines,
-    MNSH Government Seismic) as GeoJSON/Shapefile/CSV/WMS — polygons, not traces.
-    Programmatic trace retrieval uses the registered NDR API. Includes the
-    government-funded 2D programmes (SW Britain, ESP ~19,000 km, Rockall, Mid-North
-    Sea High). 4-year confidentiality on processed seismic. (Verified 2026-09-12.)
+    Free and genuinely large, but access is TWO-TIER (browser-verified 2026-09-12
+    with a fresh account). (1) Sign-up is individual and self-service — Azure AD
+    B2C (email + verification code + password + name); it yields role
+    "Public_User (Unknown)" with BROWSE/Data-Discovery only (map + Project IDs
+    table + files-per-project + seismic outlines — you can see what exists but not
+    download). (2) DOWNLOAD requires "Request Download Access": select your
+    organisation's Company ID from the register -> alerts your org's Company
+    Administrator who grants access; if your org is not listed, or you are a solo
+    consultant / ACADEMIC, you must submit the New Company Request Form to be
+    added to the NDR Register of Organisations (manual NDR approval). So a fresh
+    individual account CANNOT download SEG-Y without org membership + admin
+    approval, or an academic register application. Public no-login access is
+    metadata only: the NSTA ArcGIS Hub (opendata-nstauthority.hub.arcgis.com) and
+    NSTA Open Data publish seismic survey outline/header layers ("NDR 3dseis", 2D
+    SDS lines, MNSH Government Seismic) as GeoJSON/Shapefile/CSV/WMS — polygons,
+    not traces. Once approved, trace retrieval is via the portal Create Download
+    Package + NDR API. Includes government-funded 2D programmes (SW Britain, ESP
+    ~19,000 km, Rockall, Mid-North Sea High). 4-year confidentiality on processed
+    seismic.
   verified: true
   tags: ["prestack", "petabyte", "flagship"]
 

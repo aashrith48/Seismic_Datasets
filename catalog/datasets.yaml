@@ -144,10 +144,13 @@
   access: open-request
   url: https://wiki.seg.org/wiki/Waihapa-3D
   download: []
-  bulk_method: "SEG wiki link, or order free from NZP&M"
+  bulk_method: "order free from NZP&M (data-pack); no confirmed direct download"
   notes: >-
-    The exact S3 key could not be confirmed — the SEG wiki sits behind a Cloudflare
-    challenge and the bucket denies listing. Search "Waihapa-3D SEG wiki".
+    VERIFIED 2026-09-12 as REQUEST-ONLY, not a standalone direct download. Covered
+    by NZP&M open-file data and the free "Onshore Taranaki 2018 Block Offer Data
+    Pack" (a Kingdom project provided as a pack, not per-file HTTP). The SEG-wiki S3
+    key was never confirmed and the open.source.geoscience bucket is now private
+    (403) anyway. No fetchable .sgy URL; the ~1–2 GB size stays UNVERIFIED.
   verified: false
   tags: ["segy", "needs-verification"]
 
@@ -173,8 +176,14 @@
   access: open-registration
   url: https://geodata.nzpam.govt.nz/
   download: []
-  bulk_method: "NZP&M exploration database (RealMe login)"
-  notes: "Not on the public S3 mirror. NZ's most-drilled field — full well suite available."
+  bulk_method: "NZP&M order/data-request (login); large 3D shipped on media, not free direct HTTP"
+  notes: >-
+    Not on the public S3 mirror. NZ's most-drilled field — full well suite
+    available. VERIFIED 2026-09-12: NZP&M releases open-file data via
+    data.nzpam.govt.nz/GOLD (login) and the Geodata Catalogue, but large 3D volumes
+    are NOT free direct HTTP downloads — they carry a media/handling cost and are
+    shipped, or come on the paid Petroleum Exploration Data Pack drive. No directly
+    fetchable .sgy URL exists to measure; size stays indicative/unverified.
   verified: false
   tags: ["wells", "prestack"]
 
@@ -828,9 +837,22 @@
   usage_basis: licence-text
   access: academic-free
   url: https://www.gov.br/anp/pt-br/assuntos/exploracao-e-producao-de-oleo-e-gas/dados-tecnicos
-  download: []
-  bulk_method: "portal ordering; delivery on media/SFTP"
-  notes: "One of the largest state archives anywhere. Free to academia under agreement."
+  download:
+    - kind: portal
+      uri: https://reate.cprm.gov.br/anp/
+  bulk_method: "ReATE web (onshore); SEI order -> FTP/media (offshore); no open REST API"
+  notes: >-
+    One of the largest state archives anywhere. VERIFIED 2026-09-12: ReATE
+    (reate.cprm.gov.br) is live and hosts FREE PUBLIC onshore post-stack 2D/3D
+    across ~24 terrestrial basins (since 2021); offshore free public post-stack
+    (since 2022) + pre-stack (Nov 2023) exists but is ORDER-BASED via SEI, delivered
+    mostly by FTP (credentials, 10-day window) or physical media — not one-click.
+    The ReATE page itself is only a notification form (no data API; /api /download
+    /dados /webgis all 404). Academic: free under agreement but you must submit
+    resulting publications via SEI (~60 days) or be blocked. The "~37 TB post-stack /
+    ~100 TB pre-stack" figures are UNVERIFIED (not confirmed on any reachable page) —
+    treat size as indicative. Best free-academic path to real post-stack 3D of the
+    three PB-scale NDRs (India/Colombia expose only previews/footprints).
   verified: true
   tags: ["petabyte", "academic-free"]
 
@@ -915,9 +937,19 @@
   access: academic-free
   url: https://www.dghindia.gov.in/
   download: []
-  bulk_method: "web/FTP request; media delivery"
-  notes: "Enormous, and free to academia — an underexploited archive. 7-year confidentiality."
-  verified: false
+  bulk_method: "register -> GIS view / image previews -> quote/invoice -> data sent (not self-service)"
+  notes: >-
+    Enormous, but VERIFIED 2026-09-12 to be effectively NOT free-downloadable SEG-Y.
+    Per the DGH NDR data policy (ndrdgh.gov.in/NDR/pdf/data_policy.pdf): registered
+    academic users can only VIEW seismic remotely as IMAGE FILES + log/listing
+    previews; recognised universities get data free only up to 50 sq km, ">50 sq km
+    then standard data charges apply for the whole volume", non-commercial only, and
+    must submit research outputs to NDR/DGH within 3 months. Actual raw SEG-Y for
+    free is not available — it is view/image-preview + request-and-pay (quote ->
+    invoice -> "NDR team sends data"). No open/anonymous data API. Liveness caveat:
+    the ndr.dghindia.gov.in app has a broken/incomplete TLS cert chain (needs
+    cert-verification relaxed). 7-year confidentiality.
+  verified: true
   tags: ["petabyte", "academic-free"]
 
 - id: cnih-mexico
@@ -969,11 +1001,24 @@
     ml_training: "unclear"
   usage_basis: licence-text
   access: academic-free
-  url: https://www.anh.gov.co
-  download: []
-  bulk_method: "order/download from EPIS"
-  notes: "5-year confidentiality, then public."
-  verified: false
+  url: https://www2.sgc.gov.co/ProgramasDeInvestigacion/BancoInformacionPetrolera/Paginas/Informacion-General-EPIS.aspx
+  download:
+    - kind: open-data-index
+      uri: https://www.datos.gov.co/geospatial/Banco-de-Informaci-n-Petrolera-S-smica-3D/m929-qm2x/data
+  bulk_method: "browse footprints on datos.gov.co / SGC; email SGC (sgc_suministro.epis@sgc.gov.co) for actual data"
+  notes: >-
+    CORRECTION (verified 2026-09-12): EPIS/BIP moved from ANH to the SERVICIO
+    GEOLÓGICO COLOMBIANO (SGC) in 2016. The catalogued epis.anh.gov.co is DEAD
+    (Azure IP resolves but never responds) and the old www.epis.com.co now
+    redirects to an unrelated travel site — both should not be cited. Open no-login
+    access is METADATA/FOOTPRINTS only: the "Banco de Información Petrolera: Sísmica
+    3D" layer on datos.gov.co (id m929-qm2x) is survey-footprint polygons +
+    attributes (Socrata reports it non-tabular / href-only), not SEG-Y traces.
+    Actual 3D SEG-Y is REQUEST-BASED: free for Colciencias/Minciencias-recognised
+    research orgs, fee for industry, via email to SGC (sgc_suministro.epis@sgc.gov.co
+    / sgc_recepcion.epis@sgc.gov.co). Released after confidentiality. Not
+    self-service. ~72 TB / 1.2M media is a portal claim (unverified).
+  verified: true
   tags: ["petabyte", "academic-free"]
 
 # ---------------------------------------------------------------------------

@@ -243,13 +243,21 @@
     downloads WITHOUT an account: selecting an acquisition yields a session
     userToken and the Survey Data OData function GetSurveyDataForSelection
     (userToken=...) returns per-item Download_Url + File_Size_Bytes + Data_Format
-    (SEGY) + Data_Description. Files are ZIPs on CloudFront
-    (dnxxuwuw8tglo.cloudfront.net/Surveys/*.zip) served with HTTP range support;
-    a normal browser User-Agent is required (bare curl gets 403). Verified
-    2026-09-12: Sequoia 3D MSS 2021 exposes 90 items incl. a "Final Stacks" SEGY
-    (D00020664.zip, 12,733,719,264 B = post-stack 3D) — ranged GET returned HTTP
-    206 + ZIP magic. Unreleased seismic is request-only via the basket and, since
-    28 Nov 2025, needs ministerial approval before release.
+    (SEGY) + Data_Description. Downloads use TWO hosts (verified 2026-09-12):
+    files <=20 GB come from CloudFront (dnxxuwuw8tglo.cloudfront.net/Surveys/*.zip)
+    which is behind AWS WAF bot mitigation — reliable in a browser but hostile to
+    plain curl (intermittent HTTP 403/202 even with a full browser User-Agent), so
+    scripting those needs a headless browser or the browser "copy as cURL"
+    aws-waf-token cookie; files >20 GB come from a plain public S3 bucket
+    (nopimsopenfile-20gb.s3.amazonaws.com/Surveys_20GB/*.zip) that IS cleanly
+    scriptable/resumable with a UA (206 + Accept-Ranges confirmed). Example —
+    Sequoia 3D MSS 2021 (ENO0603256, Otway, released) has 90 items incl. the
+    post-stack 3D SEGY "Final Stacks" D00020664.zip (12,733,719,264 B, CloudFront)
+    and "Raw Stacks" D00020663.zip; ZIPs unpack to SEG-Y. Data_Description labels
+    the modality (Field seismic / Raw Stacks / Final Stacks / Gathers / Velocity /
+    Navigation) so curation can filter to "Final Stacks" post-stack 3D. Unreleased
+    seismic is request-only via the basket and, since 28 Nov 2025, needs
+    ministerial approval before release.
   verified: true
   tags: ["prestack", "petabyte", "flagship"]
 

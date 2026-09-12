@@ -558,26 +558,37 @@
   size_bytes: null
   size_display: "~100s of TB"
   size_confidence: estimate
-  license: "Free, WA Government terms"
+  license: "Non-commercial use licence (WA DMPE); derived products must be given to the Licensor with attribution"
   license_spdx: null
   usage:
-    commercial: "unclear"
+    commercial: "no"
     redistribution: "unclear"
-    attribution_required: "unclear"
+    attribution_required: "yes"
     share_alike: "unclear"
     ml_training: "unclear"
-  usage_basis: unstated
-  access: open-download
+  usage_basis: licence-text
+  access: open-request
   url: https://wapims.dmp.wa.gov.au/wapims
   download: []
-  bulk_method: "individual items online; basin packages so large you mail in a hard drive"
+  bulk_method: "online Search -> View details -> per-item 'Available for download': reports/metadata direct Download; seismic SEG-Y is Add to Order (basket request)"
   notes: >-
-    Contact petdata@dmpe.wa.gov.au for bulk. No public API surfaced from the portal
-    (2026-09-12); bulk/basin packages are request + physical media and direct
-    post-stack 3D SEG-Y download was not confirmed — effectively request-based
-    despite some individual items being online.
+    BROWSER-VERIFIED 2026-09-12: WAPIMS is an online search portal (no login; you
+    accept a NON-COMMERCIAL land-information licence disclaimer on entry). Search
+    Surveys/Wells -> select -> "View details" shows tabs Reports / Survey Data /
+    Seismic Lines, each item with an "Available for download" flag. Reports, tape
+    lists, QC files and Excel are directly downloadable (Available=Yes, Download
+    link); the actual seismic SEG-Y is NOT self-service. Example — Acme 3D M.S.S.
+    (S001812, Carnarvon): 3 reports + 10 survey-data items; the Field / MIG /
+    VELOCITY / NAVIGATION and Far/Near/Final PSTM SEGY volumes are all
+    "Available for download: No" and offer only "Add to Order" (basket request),
+    while reports and the QC SEGY-migration report are Available=Yes. So SEG-Y is
+    order/request-based (Basket -> submit; large/bulk delivered via the data
+    centre / physical media; contact petdata@dmpe.wa.gov.au). Non-commercial
+    licence: derived products must be provided to the Licensor and acknowledge WA
+    copyright. Survey confidentiality 3-15 yr. WA Commonwealth OFFSHORE released
+    AFTER 1 Jan 2012 is NOT here — use NOPIMS. No public API surfaced.
   verified: true
-  tags: ["bulk"]
+  tags: ["bulk", "non-commercial", "request"]
 
 - id: geus-denmark
   name: GEUS Subsurface Data Portal (Denmark)

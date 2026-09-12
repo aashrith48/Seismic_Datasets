@@ -530,17 +530,21 @@
   download:
     - kind: ckan-api
       uri: https://geoscience.data.qld.gov.au/api/3/action/package_search?q=seismic+segy
-  bulk_method: "CKAN API (S3-backed); direct file fetch needs browser-like headers"
+  bulk_method: "browser download via CKAN /download (reCAPTCHA + queue gated); direct S3 locked, not curl-scriptable"
   notes: >-
     1,402 open seismic datasets; CKAN package_search (q=seismic+segy) returns 112,
     broader 3D query ~4,648. CC BY 4.0. 3D stack/migrated SEG-Y present (e.g.
     Overston 3D cr139972; Rookwood cr141931 with SEGY STACK / VELOCITY / PSTM GATH
-    zips). Files on S3 gsq-prod-ckan-horizon-public — but the S3 URL returns HTTP
-    403 AccessDenied EVEN WITH a full browser User-Agent (retried 2026-09-12), and
-    the CKAN /download redirect also 403s, so anonymous scripted download is
-    GENUINELY BLOCKED (not merely a UA filter) despite the -public bucket name and
-    open metadata; CKAN size is null, file sizes UNVERIFIED. Getting files likely
-    needs an authenticated/browser session. 3-year confidentiality then open file.
+    zips). NO LOGIN required. BROWSER-DOWNLOAD-VERIFIED 2026-09-12: the resource
+    page's Download link (CKAN /data/dataset/{id}/resource/{rid}/download/...)
+    fired a real download of Rookwood SEGY STACK (249.42 MB, CC-BY) in a headless
+    browser. BUT it is gated by an invisible reCAPTCHA + a download queue
+    ("downloads at full capacity, you are number N"), and the underlying S3 bucket
+    gsq-prod-ckan-horizon-public is locked (direct URL + CKAN /download return HTTP
+    403 to plain curl, even with a browser UA; CKAN size is null). So GSQ is FREE
+    and browser-downloadable but NOT plain-curl-scriptable — harvesting needs a
+    real/headless browser to pass reCAPTCHA. (Correction: not auth-gated; login is
+    optional.) 3-year confidentiality then open file.
   verified: true
   tags: ["no-account", "cc-by", "scriptable"]
 
